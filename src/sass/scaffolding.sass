@@ -1,0 +1,64 @@
+*,
+*:before,
+*:after
+  box-sizing: border-box
+
+/* Clearfix for float elements */
+.clearfix:before,
+.clearfix:after
+  content: ''
+  display: table
+
+.clearfix:after 
+  clear: both
+
+.clearfix
+  zoom: 1 /* For IE 6/7 hasLayout */
+
+
+/* Common styles */
+html
+  height: 100%
+  font-size: 21px
+
+body
+  margin: 0
+  padding: 0
+  height: 100%
+  min-width: 320px
+  font-family: $main-font
+  font-size: 1rem
+  line-height: 1.6
+  color: $main-color
+
+img
+  max-width: 100%
+  height: auto
+
+a
+  color: #000
+  +trans
+  &:hover, &:focus
+    color: $accent
+    outline: none
+    text-decoration: none
+
+/* Hidden element */
+.visually-hidden
+  position: absolute
+  width: 1px
+  height: 1px
+  margin: -1px
+  padding: 0
+  border: 0
+  clip: rect(0 0 0 0)
+  overflow: hidden
+
+.wrapper
+  display: flex
+  flex-direction: column
+  min-height: 100%
+  overflow-x: hidden
+
+.content
+  flex: 1 0 auto
