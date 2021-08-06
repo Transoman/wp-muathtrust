@@ -16968,23 +16968,13 @@ jQuery(document).ready(function ($) {
   // Toggle nav menu
   var toggleNav = function toggleNav() {
     var toggle = $('.nav-toggle');
-    var nav = $('.header__nav');
-    var closeNav = $('.nav__close');
-    var overlay = $('.nav-overlay');
+    var mobileMenu = $('.mobile-menu');
+    var body = $('body');
     toggle.on('click', function (e) {
       e.preventDefault();
-      nav.toggleClass('open');
-      overlay.toggleClass('is-active');
-    });
-    closeNav.on('click', function (e) {
-      e.preventDefault();
-      nav.removeClass('open');
-      overlay.removeClass('is-active');
-    });
-    overlay.on('click', function (e) {
-      e.preventDefault();
-      nav.removeClass('open');
-      $(this).removeClass('is-active');
+      toggle.toggleClass('is-active');
+      mobileMenu.toggleClass('open');
+      body.toggleClass('menu-open');
     });
   }; // Modal
 
@@ -17014,9 +17004,29 @@ jQuery(document).ready(function ($) {
     }
   };
 
+  var widgetCart = function widgetCart() {
+    var toggle = $('.widget-cart__toggle');
+    var box = $('.widget-cart');
+    var closeBtn = $('.widget-cart__close');
+    toggle.click(function (e) {
+      e.preventDefault();
+
+      if (box.hasClass('is-active')) {
+        box.removeClass('is-active');
+      } else {
+        box.addClass('is-active');
+      }
+    });
+    closeBtn.click(function (e) {
+      e.preventDefault();
+      box.removeClass('is-active');
+    });
+  };
+
   toggleNav();
-  initModal();
-  inputMask(); // SVG
+  initModal(); // inputMask();
+
+  widgetCart(); // SVG
 
   svg4everybody({});
 });

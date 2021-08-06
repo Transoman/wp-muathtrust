@@ -9,26 +9,14 @@ jQuery(document).ready(function($) {
   // Toggle nav menu
   let toggleNav = function () {
     let toggle = $('.nav-toggle');
-    let nav = $('.header__nav');
-    let closeNav = $('.nav__close');
-    let overlay = $('.nav-overlay');
+    let mobileMenu = $('.mobile-menu');
+    let body = $('body');
 
     toggle.on('click', function (e) {
       e.preventDefault();
-      nav.toggleClass('open');
-      overlay.toggleClass('is-active');
-    });
-
-    closeNav.on('click', function (e) {
-      e.preventDefault();
-      nav.removeClass('open');
-      overlay.removeClass('is-active');
-    });
-
-    overlay.on('click', function (e) {
-      e.preventDefault();
-      nav.removeClass('open');
-      $(this).removeClass('is-active');
+      toggle.toggleClass('is-active');
+      mobileMenu.toggleClass('open');
+      body.toggleClass('menu-open');
     });
   };
 
@@ -57,11 +45,34 @@ jQuery(document).ready(function($) {
       });
     }
   };
+  
+  let widgetCart = function() {
+    let toggle = $('.widget-cart__toggle');
+    let box = $('.widget-cart');
+    let closeBtn = $('.widget-cart__close');
+    
+    toggle.click(function (e) {
+      e.preventDefault();
+
+      if (box.hasClass('is-active')) {
+        box.removeClass('is-active');
+      } else {
+        box.addClass('is-active');
+      }
+    });
+
+    closeBtn.click(function (e) {
+      e.preventDefault();
+
+      box.removeClass('is-active');
+    });
+  };
 
 
   toggleNav();
   initModal();
-  inputMask();
+  // inputMask();
+  widgetCart();
 
   // SVG
   svg4everybody({});

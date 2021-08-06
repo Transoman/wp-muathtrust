@@ -1,0 +1,130 @@
+.widget-cart
+  &.is-active
+    .widget-cart
+      &__body
+        opacity: 1
+        visibility: visible
+  &__cart
+    position: relative
+    display: inline-block
+    &:hover, &:focus
+      .widget-cart
+        &__cart-icon
+          fill: $accent
+    &-icon
+      fill: $main-color
+      +trans
+    &-count
+      position: absolute
+      top: rem(-3px)
+      left: calc(100% + #{rem(3px)})
+      z-index: 1
+      font-size: rem(15px)
+  &__close
+    position: relative
+    display: block
+    width: rem(32px)
+    height: rem(32px)
+    &::before, &::after
+      content: ''
+      position: absolute
+      top: 50%
+      left: 50%
+      width: 80%
+      height: 2px
+      background-color: $main-color
+      border-radius: 5px
+    &::before
+      transform: translate(-50%, -50%) rotate(45deg)
+    &::after
+      transform: translate(-50%, -50%) rotate(-45deg)
+  &__body
+    position: absolute
+    right: 0
+    top: rem(32px)
+    z-index: 1
+    display: flex
+    flex-direction: column
+    width: rem(460px)
+    padding: rem(30px) rem(40px) rem(80px)
+    background-color: $geyser
+    border-radius: rem(10px)
+    opacity: 0
+    visibility: hidden
+    +trans
+    +sm-block
+      position: fixed
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+      width: auto
+      padding: rem(29px) rem(15px) rem(60px)
+      border-radius: 0
+      overflow-y: auto
+      +smooth-scroll
+    &-top
+      display: flex
+      align-items: center
+      justify-content: flex-end
+      margin-bottom: rem(25px)
+      +sm-block
+        margin-bottom: rem(55px)
+      & > *:not(:last-child)
+        margin-right: rem(25px)
+    &-bottom
+      margin-top: auto
+      text-align: center
+      .btn
+        +sm-block
+          width: 100%
+  &__title
+    margin-bottom: rem(50px)
+    text-align: center
+  &__total-wrap
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-bottom: rem(50px)
+  &__total
+    padding: rem(10px) rem(22px)
+    background-color: $white
+    border-radius: rem(10px)
+    font-size: rem(32px)
+    font-weight: 500
+    line-height: 1.1
+    text-align: center
+    +sm-block
+      min-width: rem(135px)
+      padding: rem(19px) rem(30px)
+      font-size: rem(21px)
+      font-weight: 700
+    &-text
+      @extend h4
+      color: $accent
+
+.widget-cart-items
+  margin: 0 0 rem(50px)
+  padding: 0
+  list-style: none
+  &__item
+    position: relative
+  &__name
+    font-size: rem(18px)
+    font-weight: 600
+    margin-bottom: rem(10px)
+    text-transform: uppercase
+  &__period
+    margin-bottom: rem(20px)
+    color: $light-blue
+  &__price
+    @extend h4
+  &__remove
+    position: absolute
+    top: 0
+    right: 0
+    z-index: 1
+    font-size: rem(15px)
+    font-weight: 600
+    color: $silver-chalice
+    text-transform: uppercase

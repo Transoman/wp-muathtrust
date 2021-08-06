@@ -1,0 +1,45 @@
+.mobile-menu
+  position: fixed
+  top: 0
+  right: 0
+  left: 0
+  bottom: 0
+  z-index: 10
+  padding: 0 0 rem(60px)
+  background-color: $bg-color
+  overflow-y: auto
+  transform: translateY(-100%)
+  opacity: 0
+  +trans(all, 0.5s)
+  +smooth-scroll
+  &::before
+    content: ''
+    position: sticky
+    top: 0
+    z-index: 1
+    display: block
+    height: rem(115px)
+    margin-bottom: rem(30px)
+    background-color: $bg-color
+    +sm-block
+      height: rem(90px)
+  &.open
+    +lg-block
+      transform: translateY(0)
+      opacity: 1
+  &__wrap
+    display: flex
+    flex-direction: column
+  &__bottom
+    margin-top: auto
+    text-align: center
+  .nav-list
+    flex-direction: column
+    margin-bottom: rem(30px)
+    +sm-block
+      align-items: flex-start
+    li
+      margin-right: 0
+      margin-bottom: rem(30px)
+      &:last-child
+        margin-bottom: 0

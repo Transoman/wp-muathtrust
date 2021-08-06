@@ -1,17 +1,50 @@
+.nav
+  +lg-block
+    display: none
+
+.nav-list
+  margin: 0
+  padding: 0
+  list-style: none
+  display: flex
+  align-items: center
+  li
+    margin-right: rem(30px)
+    &:last-child
+      margin-right: 0
+  a
+    position: relative
+    font-size: rem(18px)
+    font-weight: 500
+    white-space: nowrap
+    &::after
+      content: ''
+      position: absolute
+      bottom: 0
+      right: 0
+      width: 0
+      height: 1px
+      background-color: $main-color
+      +trans
+    &:hover, &:focus
+      color: $main-color
+      &::after
+        width: 100%
+        left: 0
+        right: auto
+
 .nav-toggle
   display: none
-  position: absolute
-  right: 0
-  top: 17px
-  width: 28px
-  height: 15px
+  width: 27px
+  height: 16px
   padding: 0
-  margin: 0
+  margin: 0 0 0 rem(30px)
   outline: none
   border: none
   background: none
-  z-index: 10
   cursor: pointer
+  +lg-block
+    display: block
   &:focus
     outline: none
   &__line
@@ -19,7 +52,8 @@
     display: block
     height: 2px
     width: 100%
-    background: $accent
+    background: $main-color
+    border-radius: rem(10px)
     +trans
     &::after, &::before
       content: ''
@@ -28,13 +62,14 @@
       display: block
       height: 2px
       width: 100%
-      background: $accent
+      background: $main-color
+      border-radius: rem(10px)
       +trans
     &::before
       top: -6px
     &::after
       top: 6px
-  &.active
+  &.is-active
     .nav-toggle__line
       background: transparent
       &::after

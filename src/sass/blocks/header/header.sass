@@ -1,1 +1,26 @@
 .header
+  position: relative
+  z-index: 11
+  &__wrap
+    position: relative
+    display: flex
+    align-items: center
+    height: rem(115px)
+    +sm-block
+      height: rem(90px)
+  &__logo
+    position: relative
+    z-index: 2
+    +sm-block
+      width: rem(80px)
+  &__nav
+    margin-left: auto
+  &__widget-cart
+    margin: 0 rem(30px)
+    +lg-block
+      margin-left: auto
+    +sm-block
+      margin-right: 0
+  &__btn-donate
+    +sm-block
+      display: none

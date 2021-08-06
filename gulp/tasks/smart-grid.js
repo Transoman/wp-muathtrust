@@ -7,12 +7,15 @@ let settings = {
   offset: '30px', /* gutter width px || % || rem */
   mobileFirst: false, /* mobileFirst ? 'min-width' : 'max-width' */
   container: {
-    maxWidth: '1230px', /* max-width оn very large screen */
+    maxWidth: '1630px', /* max-width оn very large screen */
     fields: '15px' /* side fields */
   },
   breakPoints: {
+    xl: {
+      width: '1660px'
+    },
     lg: {
-      width: '1260px', /* -> @media (max-width: 1230px) */
+      width: '1280px', /* -> @media (max-width: 1230px) */
     },
     md: {
       width: '992px'
