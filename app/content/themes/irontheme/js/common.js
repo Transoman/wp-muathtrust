@@ -17008,18 +17008,22 @@ jQuery(document).ready(function ($) {
     var toggle = $('.widget-cart__toggle');
     var box = $('.widget-cart');
     var closeBtn = $('.widget-cart__close');
+    var body = $('body');
     toggle.click(function (e) {
       e.preventDefault();
 
       if (box.hasClass('is-active')) {
         box.removeClass('is-active');
+        body.removeClass('cart-open');
       } else {
         box.addClass('is-active');
+        body.addClass('cart-open');
       }
     });
     closeBtn.click(function (e) {
       e.preventDefault();
       box.removeClass('is-active');
+      body.removeClass('cart-open');
     });
   };
 

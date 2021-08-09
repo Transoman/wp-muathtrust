@@ -4,13 +4,14 @@
       &__body
         opacity: 1
         visibility: visible
-  &__cart
-    position: relative
-    display: inline-block
+  &__toggle
     &:hover, &:focus
       .widget-cart
         &__cart-icon
           fill: $accent
+  &__cart
+    position: relative
+    display: inline-block
     &-icon
       fill: $main-color
       +trans

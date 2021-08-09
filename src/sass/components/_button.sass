@@ -1,14 +1,16 @@
 .btn
   display: inline-block
   vertical-align: middle
-  padding: 10px 15px
+  min-width: rem(250px)
+  padding: rem(15px) rem(15px) rem(12px)
   font-family: $main-font
-  font-size: 16px
-  font-weight: 700
+  font-size: rem(18px)
+  font-weight: 500
   color: #fff
   text-align: center
   background-color: $accent
   border: 0
+  border-radius: rem(50px)
   outline: none
   text-decoration: none
   cursor: pointer
@@ -16,13 +18,40 @@
   transition: all .25s ease
   text-transform: uppercase
   &:hover
-    background-color: lighten($accent, 5%)
+    background-color: $light-blue
     color: #fff
-  &:focus
-    background-color: darken($accent, 5%)
+  &:focus, &:active
+    background-color: $lighten-blue
     color: #fff
     outline: none
+  &--lighten
+    background-color: $lighten-blue
+    &:hover
+      background-color: $light-blue
+    &:focus, &:active
+      background-color: $accent
+  &--light
+    background-color: $light-blue
+    &:hover
+      background-color: $lighten-blue
+    &:focus, &:active
+      background-color: $accent
   &[disabled]
     background-color: #e5e5e5
     cursor: not-allowed
     color: #fff
+
+.btn-round
+  display: flex
+  align-items: center
+  justify-content: center
+  width: rem(50px)
+  height: rem(50px)
+  border-radius: 50%
+  background-color: $accent
+  +trans
+  &:hover, &:focus
+    background-color: $light-blue
+  svg
+    font-size: rem(20px)
+    fill: $white

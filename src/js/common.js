@@ -50,14 +50,17 @@ jQuery(document).ready(function($) {
     let toggle = $('.widget-cart__toggle');
     let box = $('.widget-cart');
     let closeBtn = $('.widget-cart__close');
+    let body = $('body');
     
     toggle.click(function (e) {
       e.preventDefault();
 
       if (box.hasClass('is-active')) {
         box.removeClass('is-active');
+        body.removeClass('cart-open');
       } else {
         box.addClass('is-active');
+        body.addClass('cart-open');
       }
     });
 
@@ -65,6 +68,7 @@ jQuery(document).ready(function($) {
       e.preventDefault();
 
       box.removeClass('is-active');
+      body.removeClass('cart-open');
     });
   };
 

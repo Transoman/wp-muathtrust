@@ -1,0 +1,41 @@
+.timetable-line
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: rem(10px) rem(10px) rem(10px) rem(40px)
+  border-radius: rem(50px)
+  background-color: $lighten-blue
+  color: $white
+  +md-block
+    flex-direction: column
+  +sm-block
+    padding: rem(25px) rem(25px) rem(20px)
+  &__left,
+  &__right
+    display: flex
+    align-items: center
+  &__left
+    +md-block
+      margin-bottom: rem(20px)
+  &__right
+    +sm-block
+      align-self: stretch
+      justify-content: space-between
+  &__name
+    padding-right: rem(25px)
+    font-weight: 500
+    border-right: 1px solid $white
+    white-space: nowrap
+    +sm-block
+      padding-right: rem(15px)
+  &__time
+    padding-left: rem(25px)
+    font-size: rem(18px)
+    font-weight: 500
+    +sm-block
+      padding-left: rem(15px)
+  &__link
+    margin-right: rem(20px)
+    font-size: rem(18px)
+    font-weight: 500
+    color: $white
