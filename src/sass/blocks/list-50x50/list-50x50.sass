@@ -1,0 +1,80 @@
+.list-50x50-section
+  padding: rem(150px) 0
+  background-color: $lighten-blue
+  +sm-block
+    padding: rem(85px) 0
+
+.list-50x50
+  &__item
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-bottom: rem(130px)
+    +md-block
+      flex-direction: column-reverse
+      align-items: stretch
+    +sm-block
+      margin-bottom: rem(110px)
+    &:last-child
+      margin-bottom: 0
+    &:nth-child(even)
+      flex-direction: row-reverse
+      +md-block
+        flex-direction: column-reverse
+      .list-50x50
+        &__content
+          padding-right: rem(130px)
+          padding-left: calc((100vw - 1630px) / 2 + 15px)
+          +xl-block
+            padding-left: calc((100vw - 1270px) / 2 + 15px)
+          +lg-block
+            padding-left: calc((100vw - 960px) / 2 + 15px)
+            padding-right: rem(30px)
+          +md-block
+            width: auto
+            max-width: 720px
+            margin: 0 auto rem(85px)
+            padding: 0 15px
+          +sm-block
+            max-width: 540px
+          +xs-block
+            max-width: 100%
+        &__image
+          img
+            border-radius: rem(500px) 0 0 rem(500px)
+  &__content
+    width: 50%
+    padding-left: rem(130px)
+    padding-right: calc((100vw - 1630px) / 2 + 15px)
+    +xl-block
+      padding-right: calc((100vw - 1270px) / 2 + 15px)
+    +lg-block
+      padding-right: calc((100vw - 960px) / 2 + 15px)
+      padding-left: rem(30px)
+    +md-block
+      width: auto
+      max-width: 720px
+      margin: 0 auto rem(85px)
+      padding: 0 15px
+    +sm-block
+      max-width: 540px
+    +xs-block
+      max-width: 100%
+    .btn-stroke
+      margin-top: rem(50px)
+  &__title
+    @extend h1
+    margin-bottom: rem(50px)
+    text-transform: none
+    a
+      color: $accent
+  &__text
+    color: $white
+  &__image
+    width: 50%
+    +md-block
+      width: auto
+    img
+      display: block
+      width: 100%
+      border-radius: 0 rem(500px) rem(500px) 0

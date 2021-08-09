@@ -2,7 +2,8 @@
 if ( have_rows( 'layouts' ) ):
 	$blocks = [
 		'hero' => 'hero',
-		'about_block' => 'about-block'
+		'about_block' => 'about-block',
+		'list_50x50' => 'list-50x50',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();

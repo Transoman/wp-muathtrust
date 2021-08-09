@@ -67,6 +67,7 @@ if ( ! function_exists( 'ith_setup' ) ) :
 		add_theme_support( 'customize-selective-refresh-widgets' );
 
 		add_image_size( 'text_block', 550, 750, true );
+		add_image_size( '50x50', 700, 530, true );
 	}
 endif;
 add_action( 'after_setup_theme', 'ith_setup' );

@@ -55,3 +55,26 @@
   svg
     font-size: rem(20px)
     fill: $white
+
+.btn-stroke
+  display: inline-block
+  vertical-align: middle
+  padding: rem(4px) rem(10px)
+  border: 1px solid $light-blue
+  border-radius: rem(50px)
+  font-size: rem(21px)
+  color: $light-blue
+  line-height: 1
+  +trans
+  &:hover
+    color: $lighten-blue
+    border-color: $lighten-blue
+  &:active, &:focus
+    color: $accent
+    border-color: $accent
+  &--white
+    color: $white
+    border-color: $white
+    &:hover
+      color: $light-blue
+      border-color: $light-blue
