@@ -1,0 +1,55 @@
+.widget-50x50
+  padding: rem(195px) 0 rem(135px)
+  background-color: $white
+  border-radius: 0 0 rem(200px) rem(200px)
+  +sm-block
+    padding: rem(85px) 0 rem(145px)
+    border-radius: 0 0 rem(100px) rem(100px)
+  &__wrap
+    display: flex
+    align-items: center
+    +md-block
+      flex-direction: column-reverse
+  &__image
+    width: 50%
+    text-align: right
+    +md-block
+      width: auto
+    &-wrap
+      position: relative
+      z-index: 1
+      margin-left: rem(85px)
+      border-radius: rem(200px) 0 0 0
+      +sm-block
+        margin-left: rem(25px)
+      &::before
+        content: ''
+        position: absolute
+        top: rem(-65px)
+        left: rem(-85px)
+        z-index: -1
+        width: 100%
+        height: 100%
+        border: 2px solid $light-blue
+        border-radius: inherit
+        +sm-block
+          top: rem(-45px)
+          left: rem(-25px)
+    img
+      display: block
+      width: 100%
+      border-radius: inherit
+  &__content
+    width: 50%
+    padding-left: rem(160px)
+    +lg-block
+      padding-left: rem(30px)
+    +md-block
+      width: auto
+      margin-bottom: rem(130px)
+      padding: 0
+    .btn-stroke
+      margin-top: rem(40px)
+  &__title
+    margin-bottom: rem(40px)
+    color: $light-blue

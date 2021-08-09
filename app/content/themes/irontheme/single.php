@@ -8,6 +8,10 @@
  */
 
 get_header();
+
+if ( function_exists( 'bcn_display' ) ) {
+	bcn_display();
+}
 ?>
 
 	<div id="primary" class="content-area">

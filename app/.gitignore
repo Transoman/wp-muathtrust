@@ -5,4 +5,5 @@ content/plugins/*
 content/ai1wm-backups
 content/cache
 content/ewww
+content/uploads
 local-config.php

@@ -5,6 +5,7 @@ if ( have_rows( 'layouts' ) ):
 		'about_block' => 'about-block',
 		'list_50x50' => 'list-50x50',
 		'cta' => 'cta',
+		'widget_50x50' => 'widget-50x50',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();

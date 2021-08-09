@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e0ad30fa2e3637f86723b6a97bc0738",
+    "content-hash": "2745009b4283f0f42a0220f84c91e6fd",
     "packages": [
         {
             "name": "composer/installers",
@@ -305,6 +305,24 @@
             "time": "2020-04-16T21:44:57+00:00"
         },
         {
+            "name": "wpackagist-plugin/breadcrumb-navxt",
+            "version": "6.6.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/breadcrumb-navxt/",
+                "reference": "tags/6.6.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/breadcrumb-navxt.6.6.0.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/breadcrumb-navxt/"
+        },
+        {
             "name": "wpackagist-plugin/classic-editor",
             "version": "1.6.2",
             "source": {
@@ -339,6 +357,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/contact-form-7/"
+        },
+        {
+            "name": "wpackagist-plugin/duplicate-post",
+            "version": "4.1.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/duplicate-post/",
+                "reference": "tags/4.1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/duplicate-post.4.1.2.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/duplicate-post/"
         },
         {
             "name": "wpackagist-plugin/force-regenerate-thumbnails",

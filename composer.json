@@ -12,7 +12,9 @@
     "wpackagist-plugin/force-regenerate-thumbnails": "*",
     "wpackagist-plugin/wordpress-seo": "*",
     "wpackagist-plugin/contact-form-7": "*",
-    "wpackagist-plugin/classic-editor": "*"
+    "wpackagist-plugin/classic-editor": "*",
+    "wpackagist-plugin/breadcrumb-navxt": "*",
+    "wpackagist-plugin/duplicate-post": "*"
   },
   "extra": {
     "wordpress-install-dir": "app/wp",
