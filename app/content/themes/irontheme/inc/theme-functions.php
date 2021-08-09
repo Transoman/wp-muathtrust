@@ -63,37 +63,10 @@ if ( ! function_exists( 'ith_setup' ) ) :
 			'caption',
 		) );
 
-		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'ith_custom_background_args', array(
-			'default-color' => 'ffffff',
-			'default-image' => '',
-		) ) );
-
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
 
-		/**
-		 * Add support for core custom logo.
-		 *
-		 * @link https://codex.wordpress.org/Theme_Logo
-		 */
-		add_theme_support( 'custom-logo', array(
-			'height'      => 250,
-			'width'       => 250,
-			'flex-width'  => true,
-			'flex-height' => true,
-		) );
-
-		/**
-		 * Add support formats post
-		 */
-		add_theme_support( 'post-formats', array(
-			'aside',
-			'gallery',
-			'quote',
-			'image',
-			'video'
-		) );
+		add_image_size( 'text_block', 550, 750, true );
 	}
 endif;
 add_action( 'after_setup_theme', 'ith_setup' );

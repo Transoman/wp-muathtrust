@@ -1,0 +1,54 @@
+.about-block
+  padding: rem(130px) 0 rem(150px)
+  background-color: $bg-color
+  +sm-block
+    padding: rem(85px) 0
+  &__wrap
+    display: grid
+    grid-template-columns: 1fr 1fr
+    +lg-block
+      gap: 0 rem(30px)
+    +md-block
+      grid-template-columns: 1fr
+      gap: rem(85px) 0
+  &__left
+    display: flex
+    flex-direction: column
+    padding-right: rem(80px)
+    +lg-block
+      padding-right: 0
+  &__right
+    padding-left: rem(70px)
+    +lg-block
+      padding-left: 0
+    img
+      display: block
+      width: 100%
+      border-radius: 0 rem(200px) 0 0
+  &__title
+    margin-bottom: rem(50px)
+    color: $accent
+  &__links
+    margin-top: rem(105px)
+    +md-block
+      margin-top: rem(50px)
+    &-item
+      display: flex
+      align-items: center
+      justify-content: space-between
+      padding: rem(20px) 0 rem(17px)
+      border-bottom: 1px solid $light-blue
+      &:first-child
+        border-top: 1px solid $light-blue
+      &:hover, &:focus
+        svg
+          fill: $lighten-blue
+      svg
+        fill: $main-color
+        font-size: rem(25px)
+        +trans
+        +sm-block
+          font-size: rem(16px)
+    &-title
+      font-weight: 500
+      color: $main-color
