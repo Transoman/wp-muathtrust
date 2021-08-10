@@ -14,7 +14,8 @@
     "wpackagist-plugin/contact-form-7": "*",
     "wpackagist-plugin/classic-editor": "*",
     "wpackagist-plugin/breadcrumb-navxt": "*",
-    "wpackagist-plugin/duplicate-post": "*"
+    "wpackagist-plugin/duplicate-post": "*",
+    "wpackagist-plugin/custom-post-type-permalinks": "*"
   },
   "extra": {
     "wordpress-install-dir": "app/wp",

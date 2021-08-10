@@ -68,6 +68,8 @@ if ( ! function_exists( 'ith_setup' ) ) :
 
 		add_image_size( 'text_block', 550, 750, true );
 		add_image_size( '50x50', 700, 530, true );
+		add_image_size( 'upcoming_event', 750, 400, true );
+		add_image_size( 'news', 460, 595, true );
 	}
 endif;
 add_action( 'after_setup_theme', 'ith_setup' );
@@ -83,7 +85,7 @@ function ith_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'ith_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'ith_content_width', 1920 );
 }
 
 add_action( 'after_setup_theme', 'ith_content_width', 0 );
@@ -126,17 +128,6 @@ add_action( 'wp_enqueue_scripts', 'ith_scripts' );
  * Remove tag p in CF7
  */
 add_filter( 'wpcf7_autop_or_not', '__return_false' );
-
-/**
- * Validate Phone Number CF7
- */
-function custom_filter_wpcf7_is_tel( $result, $tel ) {
-	$result = preg_match( '/\+[0-9]{1}\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{4}/', $tel );
-
-	return $result;
-}
-
-add_filter( 'wpcf7_is_tel', 'custom_filter_wpcf7_is_tel', 10, 2 );
 
 function js_variables() {
 	$variables = array(
@@ -184,3 +175,32 @@ function get_any_post( $post_type, $count = null, $tax_name = null, $tax_id = nu
 
 	return $query;
 }
+
+/**
+ * Remove WordPress Image Compression
+ */
+add_filter( 'jpeg_quality', function ( $arg ) {
+	return 100;
+} );
+
+function add_rewrite_rules( $wp_rewrite )
+{
+	$new_rules = array(
+		'news/(.+?)/?$' => 'index.php?post_type=post&name='. $wp_rewrite->preg_index(1),
+	);
+
+	$wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
+}
+add_action('generate_rewrite_rules', 'add_rewrite_rules');
+
+function change_blog_links($post_link, $id=0){
+
+	$post = get_post($id);
+
+	if( is_object($post) && $post->post_type == 'post'){
+		return home_url('/news/'. $post->post_name.'/');
+	}
+
+	return $post_link;
+}
+add_filter('post_link', 'change_blog_links', 1, 3);

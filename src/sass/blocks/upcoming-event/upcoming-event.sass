@@ -1,0 +1,47 @@
+.upcoming-event
+  padding: rem(160px) 0 rem(60px)
+  +sm-block
+    padding: rem(85px) 0 rem(42px)
+  &__wrap
+    max-width: rem(750px)
+    margin: 0 auto
+    .btn-stroke
+      margin-top: rem(40px)
+      +sm-block
+        display: none
+  &__top
+    position: relative
+    z-index: 1
+    padding-right: rem(15px)
+    +sm-block
+      padding: 0
+  &__date
+    display: block
+    margin-bottom: rem(20px)
+    font-size: rem(20px)
+    font-weight: 500
+    color: $light-blue
+    text-transform: uppercase
+    text-align: right
+  &__title
+    @extend h1
+    text-transform: none
+    text-align: right
+    a
+      color: $accent
+  &__image
+    display: block
+    margin-top: rem(-85px)
+    margin-bottom: rem(40px)
+    +sm-block
+      margin: 0
+      height: rem(500px)
+    img
+      display: block
+      width: 100%
+      +sm-block
+        height: 100%
+        object-fit: cover
+  &__text
+    +sm-block
+      display: none

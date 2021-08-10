@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2745009b4283f0f42a0220f84c91e6fd",
+    "content-hash": "3816f6fcfb4472097b14e1152a046773",
     "packages": [
         {
             "name": "composer/installers",
@@ -359,6 +359,24 @@
             "homepage": "https://wordpress.org/plugins/contact-form-7/"
         },
         {
+            "name": "wpackagist-plugin/custom-post-type-permalinks",
+            "version": "3.4.5",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/custom-post-type-permalinks/",
+                "reference": "tags/3.4.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/custom-post-type-permalinks.3.4.5.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/custom-post-type-permalinks/"
+        },
+        {
             "name": "wpackagist-plugin/duplicate-post",
             "version": "4.1.2",
             "source": {
@@ -414,15 +432,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "16.8",
+            "version": "16.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/16.8"
+                "reference": "tags/16.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.16.8.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.16.9.zip"
             },
             "require": {
                 "composer/installers": "~1.0"

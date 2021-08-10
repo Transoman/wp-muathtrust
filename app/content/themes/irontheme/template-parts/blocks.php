@@ -6,6 +6,7 @@ if ( have_rows( 'layouts' ) ):
 		'list_50x50' => 'list-50x50',
 		'cta' => 'cta',
 		'widget_50x50' => 'widget-50x50',
+		'upcoming_event' => 'upcoming-event',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();

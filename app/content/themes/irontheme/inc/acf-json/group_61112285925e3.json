@@ -23,7 +23,7 @@
                     "name": "date",
                     "type": "date_picker",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "50",
@@ -40,7 +40,7 @@
                     "name": "time",
                     "type": "time_picker",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "50",
@@ -70,5 +70,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1628513154
+    "modified": 1628514998
 }

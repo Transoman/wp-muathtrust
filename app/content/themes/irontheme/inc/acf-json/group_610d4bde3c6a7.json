@@ -545,6 +545,52 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_6112329548e1b": {
+                    "key": "layout_6112329548e1b",
+                    "name": "news_slider",
+                    "label": "News Slider",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6112329f48e1c",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_611232b348e1d",
+                            "label": "Info",
+                            "name": "",
+                            "type": "message",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "The latest added news will be displayed",
+                            "new_lines": "wpautop",
+                            "esc_html": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -571,5 +617,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1628514064
+    "modified": 1628582636
 }
