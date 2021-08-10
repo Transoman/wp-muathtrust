@@ -1,0 +1,23 @@
+.logos-block
+  padding: rem(120px) 0 rem(80px)
+  background-color: $white
+  +sm-block
+    padding: rem(85px) 0 rem(70px)
+  &__title
+    margin-bottom: rem(120px)
+    text-align: center
+    color: $accent
+    +sm-block
+      margin-bottom: rem(70px)
+
+.logos-list
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  gap: rem(100px)
+  align-items: center
+  +md-block
+    grid-template-columns: repeat(2, 1fr)
+  +sm-block
+    gap: rem(70px) rem(25px)
+  &__item
+    text-align: center

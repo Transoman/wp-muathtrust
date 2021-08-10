@@ -8,6 +8,7 @@ if ( have_rows( 'layouts' ) ):
 		'widget_50x50' => 'widget-50x50',
 		'upcoming_event' => 'upcoming-event',
 		'news_slider' => 'news-slider',
+		'logos_block' => 'logos-block',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();
