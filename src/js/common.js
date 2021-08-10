@@ -3,7 +3,8 @@
 global.jQuery = require('jquery');
 let svg4everybody = require('svg4everybody'),
   popup = require('jquery-popup-overlay'),
-  iMask = require('imask');
+  iMask = require('imask'),
+  Swiper = require('swiper/swiper-bundle');
 
 jQuery(document).ready(function($) {
   // Toggle nav menu
@@ -71,12 +72,31 @@ jQuery(document).ready(function($) {
       body.removeClass('cart-open');
     });
   };
+  
+  let newsSlider = function () {
+    new Swiper('.news-slider', {
+      slidesPerView: 1,
+      navigation: {
+        nextEl: '.news-slider-section .swiper-button-next',
+        prevEl: '.news-slider-section .swiper-button-prev',
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,    
+        },
+        1280: {
+          slidesPerView: 3,    
+        },
+      }
+    });
+  };
 
 
   toggleNav();
   initModal();
   // inputMask();
   widgetCart();
+  newsSlider();
 
   // SVG
   svg4everybody({});

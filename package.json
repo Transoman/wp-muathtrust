@@ -41,7 +41,8 @@
     "jquery": "^3.6.0",
     "jquery-popup-overlay": "^2.1.5",
     "normalize.css": "^8.0.1",
-    "svg4everybody": "^2.1.9"
+    "svg4everybody": "^2.1.9",
+    "swiper": "^6.8.1"
   },
   "browserslist": [
     "last 5 version",

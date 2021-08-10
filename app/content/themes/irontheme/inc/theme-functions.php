@@ -204,3 +204,11 @@ function change_blog_links($post_link, $id=0){
 	return $post_link;
 }
 add_filter('post_link', 'change_blog_links', 1, 3);
+
+add_filter('excerpt_more', function($more) {
+	return '...';
+});
+
+add_filter( 'excerpt_length', function(){
+	return 40;
+} );

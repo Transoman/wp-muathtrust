@@ -1,0 +1,16 @@
+.swiper-button-prev,
+.swiper-button-next
+  @extend .btn-round
+  @extend .btn-round--light
+  &::after
+    display: none
+
+.swiper-btns
+  display: flex
+  align-items: center
+  .swiper-button-prev,
+  .swiper-button-next
+    position: static
+    margin: 0
+  .swiper-button-prev
+    margin-right: rem(20px)

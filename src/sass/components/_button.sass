@@ -50,8 +50,14 @@
   border-radius: 50%
   background-color: $accent
   +trans
-  &:hover, &:focus
+  &:hover, &:focus, &:active
     background-color: $light-blue
+  &--light
+    background-color: $light-blue
+    &:hover
+      background-color: $lighten-blue
+    &:focus, &:active
+      background-color: $accent
   svg
     font-size: rem(20px)
     fill: $white
