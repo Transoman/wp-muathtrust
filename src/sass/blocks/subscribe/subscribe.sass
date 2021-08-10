@@ -1,0 +1,65 @@
+.subscribe
+  background-color: $white
+  +sm-block
+    padding-top: rem(70px)
+  &__wrap
+    display: flex
+    border: 2px solid $light-blue
+    +md-block
+      flex-direction: column
+    +sm-block
+      border: 0
+  &__left
+    width: 50%
+    padding: rem(150px) rem(100px) rem(150px) rem(85px)
+    +lg-block
+      padding-right: rem(50px)
+      padding-left: rem(40px)
+    +md-block
+      width: auto
+    +sm-block
+      margin-bottom: rem(40px)
+      padding: 0
+  &__right
+    width: 50%
+    +md-block
+      width: auto
+    img
+      display: block
+      width: 100%
+      height: 100%
+      object-fit: cover
+      max-width: none
+      +sm-block
+        position: relative
+        left: 50%
+        width: 100vw
+        margin-left: -50vw
+
+  &__title
+    margin-bottom: rem(40px)
+    color: $light-blue
+
+.subscribe-form
+  .form-group
+    margin: 0
+  input[type="email"]
+    width: 100%
+    height: rem(70px)
+    padding-right: rem(70px)
+    padding-left: rem(25px)
+    background-color: $geyser
+    border: none
+    box-shadow: none
+    border-radius: rem(50px)
+    outline: none
+    font-size: rem(20px)
+    font-weight: 600
+    color: $accent
+    &::placeholder
+      color: inherit
+  .btn-round
+    position: absolute
+    top: 50%
+    right: rem(10px)
+    transform: translateY(-50%)

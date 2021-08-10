@@ -681,6 +681,59 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_61125880d9f18": {
+                    "key": "layout_61125880d9f18",
+                    "name": "subscribe",
+                    "label": "Subscribe",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61125888d9f19",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_61125895d9f1a",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -707,5 +760,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1628591377
+    "modified": 1628593649
 }

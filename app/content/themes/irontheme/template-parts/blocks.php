@@ -9,6 +9,7 @@ if ( have_rows( 'layouts' ) ):
 		'upcoming_event' => 'upcoming-event',
 		'news_slider' => 'news-slider',
 		'logos_block' => 'logos-block',
+		'subscribe' => 'subscribe',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();
