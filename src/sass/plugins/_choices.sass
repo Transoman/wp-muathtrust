@@ -1,0 +1,46 @@
+.choices
+  &__inner
+    @extend .form-field
+    display: flex
+    .choices__list
+      margin: auto 0
+      padding: 0
+
+.is-open
+  .choices__inner
+    border-radius: rem(10px)
+  &.is-flipped
+    .choices__inner
+      border-radius: rem(10px)
+
+.choices__list--dropdown
+  .choices__item
+    font-size: rem(21px)
+
+.choices[data-type*='select-one']
+  .choices__inner
+    padding-bottom: 0
+
+.choices[data-type*='select-one']
+  &:after
+    right: rem(20px)
+    width: rem(20px)
+    height: rem(10px)
+    margin-top: rem(-5px)
+    border: 0
+    background: url("images/general/chevron-down.svg") no-repeat center / contain
+    +trans
+  &.is-open
+    &:after
+      transform: rotate(180deg)
+
+.choices[data-type*="select-one"] select.choices__input
+  display: block !important
+  opacity: 0
+  pointer-events: none
+  position: absolute
+  left: 0
+  bottom: 0
+
+.choices__list--dropdown .choices__item--selectable
+  padding-right: 10px !important

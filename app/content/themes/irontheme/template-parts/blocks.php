@@ -10,6 +10,7 @@ if ( have_rows( 'layouts' ) ):
 		'news_slider' => 'news-slider',
 		'logos_block' => 'logos-block',
 		'subscribe' => 'subscribe',
+		'quick_donate' => 'quick-donate',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();

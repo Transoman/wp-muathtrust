@@ -1,13 +1,25 @@
 .form-group
   position: relative
   margin-bottom: 20px
-.form-field
+
+.form-field,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+select
   width: 100%
-  padding: 15px 25px
-  border: 1px solid #C4C4C4
-  border-radius: 5px
+  height: rem(70px)
+  padding: 0 rem(20px)
+  border: 0
+  border-radius: rem(10px)
+  background: $white
   box-shadow: none
   appearance: none
+  font-size: rem(21px)
+  &::placeholder
+    color: #C8CBCD
   &:focus
     outline: none
     border-color: $accent

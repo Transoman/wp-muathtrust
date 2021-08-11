@@ -37,6 +37,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
+    "choices.js": "^9.0.1",
     "imask": "^6.0.7",
     "jquery": "^3.6.0",
     "jquery-popup-overlay": "^2.1.5",

@@ -4,7 +4,8 @@ global.jQuery = require('jquery');
 let svg4everybody = require('svg4everybody'),
   popup = require('jquery-popup-overlay'),
   iMask = require('imask'),
-  Swiper = require('swiper/swiper-bundle');
+  Swiper = require('swiper/swiper-bundle'),
+  Choices = require('choices.js');
 
 jQuery(document).ready(function($) {
   // Toggle nav menu
@@ -90,6 +91,15 @@ jQuery(document).ready(function($) {
       }
     });
   };
+  
+  let customSelect = function() {
+    $('select').each(function(index, el) {
+      new Choices(el, {
+        searchEnabled: false,
+        itemSelectText: '',
+      });
+    });
+  };
 
 
   toggleNav();
@@ -97,6 +107,7 @@ jQuery(document).ready(function($) {
   // inputMask();
   widgetCart();
   newsSlider();
+  customSelect();
 
   // SVG
   svg4everybody({});

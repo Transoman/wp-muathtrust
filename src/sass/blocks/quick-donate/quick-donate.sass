@@ -1,0 +1,72 @@
+.quick-donate
+  position: relative
+  z-index: 1
+  padding-top: rem(160px)
+  +sm-block
+    padding-top: rem(85px)
+  &::before
+    content: ''
+    position: absolute
+    z-index: -1
+    top: 0
+    height: rem(410px)
+    width: 100%
+    background-color: $white
+    border-radius: 0 0 rem(200px) rem(200px)
+    pointer-events: none
+  &__wrap
+    padding: rem(90px) rem(85px) rem(140px)
+    background-color: $lighten-blue
+    border-radius: rem(100px)
+    +lg-block
+      padding-right: rem(30px)
+      padding-left: rem(30px)
+    +sm-block
+      position: relative
+      width: 100vw
+      left: 50%
+      margin-left: -50vw
+      padding: rem(85px) rem(15px) rem(145px)
+      border-radius: 0 0 rem(100px) rem(100px)
+  &__title
+    margin-bottom: rem(60px)
+    text-align: center
+    color: $white
+    +sm-block
+      margin-bottom: rem(40px)
+
+.quick-donate-form
+  display: grid
+  grid-template-columns: 1fr 1fr rem(250px)
+  gap: 0 rem(50px)
+  align-items: center
+  +md-block
+    grid-template-columns: 1fr
+    gap: rem(20px) 0
+  .form-group
+    margin-bottom: 0
+    &--btn
+      +md-block
+        text-align: center
+      +sm-block
+        .btn
+          width: 100%
+  select[name="amount"] + div
+    padding-left: rem(70px)
+
+.amount-field
+  position: absolute
+  top: 50%
+  left: rem(5px)
+  z-index: 1
+  transform: translateY(-50%)
+  display: flex
+  align-items: center
+  justify-content: center
+  width: rem(60px)
+  height: rem(60px)
+  border-radius: rem(10px)
+  background-color: $geyser
+  font-size: rem(32px)
+  font-weight: 500
+  line-height: 1

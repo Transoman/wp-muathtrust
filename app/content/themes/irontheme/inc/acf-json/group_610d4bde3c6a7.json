@@ -734,6 +734,33 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_61125f78a4c6c": {
+                    "key": "layout_61125f78a4c6c",
+                    "name": "quick_donate",
+                    "label": "Quick Donate",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61125f95a4c6e",
+                            "label": "Info",
+                            "name": "",
+                            "type": "message",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "This block has no settings",
+                            "new_lines": "wpautop",
+                            "esc_html": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -760,5 +787,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1628593649
+    "modified": 1628594117
 }
