@@ -97,13 +97,53 @@ add_action( 'after_setup_theme', 'ith_content_width', 0 );
  */
 function ith_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', TEXTDOMAIN ),
-		'id'            => 'sidebar-1',
+		'name'          => esc_html__( 'Footer 1', TEXTDOMAIN ),
+		'id'            => 'footer-1',
 		'description'   => esc_html__( 'Add widgets here.', TEXTDOMAIN ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer 2', TEXTDOMAIN ),
+		'id'            => 'footer-2',
+		'description'   => esc_html__( 'Add widgets here.', TEXTDOMAIN ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer 3', TEXTDOMAIN ),
+		'id'            => 'footer-3',
+		'description'   => esc_html__( 'Add widgets here.', TEXTDOMAIN ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer 4', TEXTDOMAIN ),
+		'id'            => 'footer-4',
+		'description'   => esc_html__( 'Add widgets here.', TEXTDOMAIN ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer 5', TEXTDOMAIN ),
+		'id'            => 'footer-5',
+		'description'   => esc_html__( 'Add widgets here.', TEXTDOMAIN ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
 	) );
 }
 

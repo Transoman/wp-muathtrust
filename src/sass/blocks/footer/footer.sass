@@ -1,1 +1,75 @@
 .footer
+  padding: rem(100px) 0 rem(90px)
+  background-color: $bg-color
+  +xs-block
+    padding: rem(85px) 0
+  &__top
+    display: flex
+    justify-content: space-between
+    margin-bottom: rem(40px)
+    +lg-block
+      flex-direction: column
+    &-left
+      +lg-block
+        margin-bottom: rem(50px)
+    &-right
+      display: flex
+      flex-wrap: wrap
+      +md-block
+        margin-right: rem(-25px)
+        margin-left: rem(-25px)
+      +sm-block
+        margin-right: rem(-12px)
+        margin-left: rem(-12px)
+  &__logo
+    img
+      display: inline-block
+      +sm-block
+        width: rem(104px)
+  &__col
+    margin-right: rem(55px)
+    margin-bottom: rem(50px)
+    +md-block
+      width: 33.33%
+      margin-right: 0
+      padding: 0 rem(25px)
+    +sm-block
+      width: 50%
+      padding: 0 rem(12px)
+    &:last-child
+      margin-right: 0
+    ul
+      margin: 0
+      padding: 0
+      list-style: none
+      li
+        margin-bottom: rem(10px)
+        &:last-child
+          margin-bottom: 0
+      a
+        position: relative
+        &::after
+          content: ''
+          position: absolute
+          bottom: 0
+          right: 0
+          width: 0
+          height: 1px
+          background-color: $main-color
+          +trans
+        &:hover, &:focus
+          color: $main-color
+          &::after
+            width: 100%
+            left: 0
+            right: auto
+    .widget-title
+      margin-bottom: rem(20px)
+  &__info
+    margin-bottom: rem(30px)
+    color: $light-blue
+    font-weight: 500
+    +xs-block
+      margin-bottom: rem(40px)
+  &__dev
+    font-weight: 600
