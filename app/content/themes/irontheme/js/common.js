@@ -32565,12 +32565,47 @@ jQuery(document).ready(function ($) {
     });
   };
 
+  var loadMore = function loadMore() {
+    $('.load-more').click(function (e) {
+      e.preventDefault();
+      var button = $(this),
+          oldBtnText = button.text(),
+          data = {
+        'action': 'load_more',
+        'query': posts,
+        'page': current_page,
+        'nonce': nonce
+      };
+      $.ajax({
+        url: window.wp_data.ajax_url,
+        data: data,
+        type: 'POST',
+        beforeSend: function beforeSend(xhr) {
+          button.text('Loading...');
+        },
+        success: function success(data) {
+          if (data) {
+            //reset button text
+            button.text(oldBtnText); //append new data
+
+            $('#response').append(data);
+            current_page++;
+            if (current_page == max_page) $('.load-more-wrap').remove();
+          } else {
+            $('.load-more-wrap').remove();
+          }
+        }
+      });
+    });
+  };
+
   toggleNav();
   initModal(); // inputMask();
 
   widgetCart();
   newsSlider();
-  customSelect(); // SVG
+  customSelect();
+  loadMore(); // SVG
 
   svg4everybody({});
 });

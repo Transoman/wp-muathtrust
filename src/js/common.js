@@ -100,6 +100,47 @@ jQuery(document).ready(function($) {
       });
     });
   };
+  
+  let loadMore = function() {
+    $('.load-more').click(function(e) {
+      e.preventDefault();
+
+      let button = $(this),
+        oldBtnText = button.text(),
+        data = {
+          'action': 'load_more',
+          'query': posts,
+          'page' : current_page,
+          'nonce': nonce
+        };
+
+      $.ajax({
+        url : window.wp_data.ajax_url,
+        data : data,
+        type : 'POST',
+        beforeSend : function ( xhr ) {
+          button.text('Loading...');
+        },
+        success : function( data ){
+          if( data ) {
+
+            //reset button text
+            button.text( oldBtnText );
+
+            //append new data
+            $('#response').append(data);
+
+            current_page++;
+            if ( current_page == max_page )
+              $('.load-more-wrap').remove();
+
+          } else {
+            $('.load-more-wrap').remove();
+          }
+        }
+      });
+    });
+  };
 
 
   toggleNav();
@@ -108,6 +149,7 @@ jQuery(document).ready(function($) {
   widgetCart();
   newsSlider();
   customSelect();
+  loadMore();
 
   // SVG
   svg4everybody({});
