@@ -1,0 +1,44 @@
+.event-hero
+  position: relative
+  &__image
+    position: relative
+    overflow: hidden
+    border-radius: 0 rem(200px) 0 0
+    +sm-block
+      height: rem(612px)
+      margin-bottom: rem(60px)
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+      background-color: rgba(#000, 0.2)
+    img
+      display: block
+      width: 100%
+      +sm-block
+        height: 100%
+        object-fit: cover
+        max-width: none
+  &__content
+    position: absolute
+    z-index: 1
+    right: 0
+    left: 0
+    bottom: rem(150px)
+    color: $white
+    +md-block
+      bottom: rem(80px)
+    +sm-block
+      position: static
+      right: auto
+      left: auto
+      bottom: auto
+      color: $accent
+  &__type
+    @extend h4
+    margin-bottom: rem(20px)
+  &__title
+    margin: 0

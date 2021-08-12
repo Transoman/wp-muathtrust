@@ -1,0 +1,19 @@
+.share
+  display: flex
+  align-items: center
+  &__label
+    margin-right: rem(50px)
+    color: $light-blue
+  &__items
+    display: flex
+    align-items: center
+  &__item
+    margin-right: rem(15px)
+    &:last-child
+      margin-right: 0
+    &:hover, &:focus
+      svg
+        fill: $lighten-blue
+    svg
+      fill: $accent
+      +trans

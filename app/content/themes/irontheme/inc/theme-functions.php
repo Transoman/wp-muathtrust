@@ -70,6 +70,7 @@ if ( ! function_exists( 'ith_setup' ) ) :
 		add_image_size( '50x50', 700, 530, true );
 		add_image_size( 'upcoming_event', 750, 400, true );
 		add_image_size( 'news', 460, 595, true );
+		add_image_size( 'page_hero', 1920, 780, true );
 	}
 endif;
 add_action( 'after_setup_theme', 'ith_setup' );

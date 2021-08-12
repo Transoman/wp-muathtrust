@@ -1,0 +1,37 @@
+@import 'event-hero'
+
+.event
+  padding: rem(80px) 0 rem(100px)
+  +sm-block
+    padding: rem(30px) 0 rem(85px)
+  &__wrap
+    display: flex
+    flex-wrap: wrap
+  &__details
+    width: 50%
+    +md-block
+      width: auto
+      margin-bottom: rem(85px)
+    &-item
+      display: flex
+      align-items: center
+      margin-bottom: rem(20px)
+    &-label
+      width: rem(65px)
+      color: $light-blue
+    &-value
+      color: $accent
+    &-btns
+      display: flex
+      align-items: center
+      margin-top: rem(30px)
+      & > *:not(:last-child)
+        margin-right: rem(30px)
+  &__content
+    width: 50%
+    +md-block
+      width: auto
+    .share
+      margin-top: rem(80px)
+      +sm-block
+        margin-top: rem(60px)
