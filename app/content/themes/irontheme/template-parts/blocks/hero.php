@@ -11,17 +11,7 @@ $hero_bg_image = get_sub_field( 'background_image' );
 				<h3 class="hero__text"><?php echo $hero_text; ?></h3>
 			<?php endif; ?>
 
-			<div class="timetable-line hero__timetable-line">
-				<div class="timetable-line__left">
-					<div class="timetable-line__name">Prayer Times</div>
-					<div class="timetable-line__time">Friday Prayers start at 1:30pm</div>
-				</div>
-
-				<div class="timetable-line__right">
-					<a href="#" class="timetable-line__link">See full timetable</a>
-					<a href="#" class="timetable-line__btn btn-round"><?php ith_the_icon( 'arrow-right' ); ?></a>
-				</div>
-			</div>
+			<?php get_timetable_line( 'hero__timetable-line' ); ?>
 		</div>
 	</div>
 </section>

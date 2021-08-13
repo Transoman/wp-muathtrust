@@ -1,0 +1,31 @@
+.mosque-content
+  position: relative
+  z-index: 1
+  background-color: $bg-color
+  border-radius: 0 0 rem(200px) rem(200px)
+  +md-block
+    padding-bottom: rem(370px)
+  +sm-block
+    border-radius: 0 0 rem(100px) rem(100px)
+  &::before
+    content: ''
+    position: absolute
+    right: calc((100vw - 1630px) / 2 + 15px)
+    bottom: rem(125px)
+    z-index: -1
+    width: rem(281px)
+    height: rem(288px)
+    background: url(images/general/decor.png) no-repeat center / contain
+    +xl-block
+      right: calc((100vw - 1270px) / 2 + 15px)
+    +lg-block
+      right: calc((100vw - 960px) / 2 + 15px)
+    +md-block
+      right: calc((100vw - 720px) / 2 + 15px)
+      bottom: rem(145px)
+    +sm-block
+      right: calc((100vw - 540px) / 2 + 15px)
+      width: rem(220px)
+      height: rem(225px)
+    +xs-block
+      right: 15px

@@ -1,0 +1,50 @@
+.widget-upcoming-events
+  padding-top: rem(160px)
+  background-color: $white
+  +sm-block
+    padding-top: rem(85px)
+  &__section-title
+    margin-bottom: rem(100px)
+    +sm-block
+      margin-bottom: rem(50px)
+  &__item
+    display: flex
+    align-items: center
+    padding: rem(50px) 0
+    border-bottom: 1px solid $light-blue
+    +md-block
+      display: block
+      margin-bottom: rem(60px)
+      padding: 0
+      border: 0
+    &:first-child
+      padding-top: 0
+    &:last-child
+      +md-block
+        margin-bottom: 0
+  &__date
+    display: block
+    width: 16.9%
+    color: $light-blue
+    +md-block
+      width: auto
+      margin-bottom: rem(30px)
+  &__image
+    width: 26%
+    +md-block
+      width: auto
+      margin-bottom: rem(30px)
+    img
+      display: block
+      width: 100%
+  &__content
+    width: 25.4%
+    margin-left: rem(90px)
+    +md-block
+      width: auto
+      margin-left: 0
+      margin-bottom: rem(30px)
+  &__title
+    margin-bottom: rem(20px)
+  &__btn
+    margin-left: auto

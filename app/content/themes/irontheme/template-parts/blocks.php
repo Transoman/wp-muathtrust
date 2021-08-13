@@ -11,6 +11,7 @@ if ( have_rows( 'layouts' ) ):
 		'logos_block' => 'logos-block',
 		'subscribe' => 'subscribe',
 		'quick_donate' => 'quick-donate',
+		'widget_upcoming_events' => 'widget-upcoming-events',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();

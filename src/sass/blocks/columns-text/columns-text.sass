@@ -1,0 +1,43 @@
+.columns-text
+  padding: rem(120px) 0 rem(80px)
+  +sm-block
+    padding: rem(85px) 0 rem(70px)
+  &__wrap
+    display: flex
+    flex-wrap: wrap
+  &__left
+    width: 50%
+    +md-block
+      width: 100%
+  &__right
+    width: 50%
+    +md-block
+      width: 100%
+  &__title
+    margin-bottom: rem(40px)
+  &__list-title
+    margin-top: rem(120px)
+    margin-bottom: rem(45px)
+    +sm-block
+      margin-top: rem(85px)
+  &__list-links
+    &-item
+      display: flex
+      align-items: center
+      justify-content: space-between
+      padding: rem(25px) 0 rem(20px)
+      border-bottom: 1px solid $light-blue
+      &:hover, &:focus
+        svg
+          fill: $light-blue
+      svg
+        flex-shrink: 0
+        margin-left: rem(10px)
+        fill: $main-color
+        font-size: rem(30px)
+        +trans
+    &-title
+      font-size: rem(20px)
+      font-weight: 600
+      color: $main-color
+      text-transform: uppercase

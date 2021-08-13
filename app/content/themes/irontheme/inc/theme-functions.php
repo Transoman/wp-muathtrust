@@ -71,6 +71,8 @@ if ( ! function_exists( 'ith_setup' ) ) :
 		add_image_size( 'upcoming_event', 750, 400, true );
 		add_image_size( 'news', 460, 595, true );
 		add_image_size( 'page_hero', 1920, 780, true );
+		add_image_size( 'text_with_image', 483, 725, true );
+		add_image_size( 'widget_upcoming_events', 323, 215, true );
 	}
 endif;
 add_action( 'after_setup_theme', 'ith_setup' );

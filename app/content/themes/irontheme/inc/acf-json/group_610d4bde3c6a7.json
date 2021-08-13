@@ -546,6 +546,33 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_611628c1d5454": {
+                    "key": "layout_611628c1d5454",
+                    "name": "widget_upcoming_events",
+                    "label": "Widget Upcoming Events",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_611628dcd5455",
+                            "label": "Info",
+                            "name": "",
+                            "type": "message",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Automatically displays upcoming events",
+                            "new_lines": "wpautop",
+                            "esc_html": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_6112329548e1b": {
                     "key": "layout_6112329548e1b",
                     "name": "news_slider",
@@ -787,5 +814,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1628594117
+    "modified": 1628842260
 }

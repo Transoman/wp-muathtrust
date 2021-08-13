@@ -38,3 +38,7 @@ function ith_pingback_header() {
 }
 
 add_action( 'wp_head', 'ith_pingback_header' );
+
+function get_timetable_line( $class = '' ) {
+	get_template_part( 'template-parts/timetable', 'line', array( 'class' => $class ) );
+}
