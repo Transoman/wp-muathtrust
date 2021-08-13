@@ -1,0 +1,54 @@
+.businesses-block
+  padding-top: rem(120px)
+  background-color: $white
+  +sm-block
+    padding-top: rem(85px)
+  &__title
+    margin-bottom: rem(130px)
+    text-align: center
+    color: $light-blue
+    +sm-block
+      margin-bottom: rem(60px)
+      font-size: rem(36px)
+      text-align: left
+
+.businesses-block-list
+  &__item
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    padding: rem(60px) 0
+    border-bottom: 1px solid $light-blue
+    +md-block
+      flex-direction: column
+    +sm-block
+      padding: rem(40px) 0
+    &:first-child
+      padding-top: 0
+  &__left
+    width: 38%
+    flex-shrink: 0
+    +md-block
+      width: auto
+      margin-bottom: rem(40px)
+  &__right
+    width: 50%
+    +md-block
+      width: auto
+    &-bottom
+      display: flex
+      align-items: center
+      margin-top: rem(55px)
+      +sm-block
+        flex-direction: column
+        align-items: flex-start
+  &__name
+    margin-bottom: rem(15px)
+  &__logo
+    +sm-block
+      max-width: rem(145px)
+      margin-bottom: rem(20px)
+  &__url
+    margin-left: auto
+    +sm-block
+      margin-left: 0

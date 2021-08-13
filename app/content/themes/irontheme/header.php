@@ -77,7 +77,14 @@
 						</div>
 					</div>
 
-					<a href="#" class="btn btn--lighten header__btn-donate">Donate</a>
+					<?php $donate_btn_class = '';
+					if ( is_home() || is_front_page() ) {
+						$donate_btn_class = 'btn--lighten';
+					} elseif ( is_page_template( 'templates/tpl-mosque.php' ) ) {
+						$donate_btn_class = 'btn--lighten';
+					}
+					?>
+					<a href="#" class="btn header__btn-donate <?php echo $donate_btn_class; ?>">Donate</a>
 
 					<button type="button" class="nav-toggle">
 						<span class="nav-toggle__line"></span>
