@@ -1,6 +1,24 @@
 .form-group
   position: relative
-  margin-bottom: 20px
+  margin-bottom: rem(30px)
+
+.form-row
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 0 rem(70px)
+  align-items: center
+  margin-bottom: rem(30px)
+  +sm-block
+    grid-template-columns: 1fr
+    gap: rem(30px) 0
+  .form-group
+    margin: 0
+  &--last
+    margin-top: rem(60px)
+    margin-bottom: 0
+    +sm-block
+      gap: rem(70px) 0
+      margin-top: rem(50px)
 
 .form-field,
 input[type="text"],
@@ -23,3 +41,49 @@ select
   &:focus
     outline: none
     border-color: $accent
+
+.wpcf7-not-valid-tip
+  margin-top: rem(5px)
+  font-size: rem(14px)
+
+.wpcf7-list-item
+  margin-left: rem(25px)
+  +sm-block
+    margin-left: 0
+  input[type="checkbox"]
+    @extend .visually-hidden
+    &:checked ~ span::after
+      opacity: 1
+  span
+    position: relative
+    padding-left: rem(35px)
+    color: $accent
+    &::before
+      content: ''
+      position: absolute
+      top: rem(7px)
+      left: 0
+      width: rem(20px)
+      height: rem(20px)
+      border: 2px solid $accent
+      cursor: pointer
+    &::after
+      content: ''
+      position: absolute
+      top: rem(12px)
+      left: rem(4px)
+      width: rem(12px)
+      height: rem(12px)
+      background: url(images/general/check.svg) no-repeat center / contain
+      opacity: 0
+      +trans
+      cursor: pointer
+    a
+      color: $accent
+      border-bottom: 1px solid $accent
+      &:hover
+        color: $light-blue
+
+.wpcf7
+  .ajax-loader
+    display: none
