@@ -73,6 +73,9 @@ if ( ! function_exists( 'ith_setup' ) ) :
 		add_image_size( 'page_hero', 1920, 780, true );
 		add_image_size( 'text_with_image', 483, 725, true );
 		add_image_size( 'widget_upcoming_events', 323, 215, true );
+		add_image_size( 'age_of_children', 310, 460, true );
+		add_image_size( 'opening_time', 460, 690, true );
+		add_image_size( 'staff', 460, 942, true );
 	}
 endif;
 add_action( 'after_setup_theme', 'ith_setup' );

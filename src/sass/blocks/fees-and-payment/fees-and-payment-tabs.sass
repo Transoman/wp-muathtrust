@@ -1,0 +1,65 @@
+.fees-and-payment-tabs
+  background-color: $white
+  border-radius: 0 0 rem(200px) rem(200px)
+  +sm-block
+    border-radius: 0 0 rem(100px) rem(100px)
+  &__list-wrap
+    background-color: $lighten-blue
+  &__list-select
+    @extend h4
+    color: $accent
+    display: none
+    align-items: center
+    justify-content: space-between
+    padding: rem(20px) 0
+    +sm-block
+      display: flex
+    &.is-open
+      svg
+        transform: rotate(180deg)
+    svg
+      width: 17px
+      height: 17px
+      fill: $accent
+      +trans
+  &__list
+    margin: 0
+    padding: rem(20px) 0
+    list-style: none
+    display: flex
+    justify-content: space-between
+    +sm-block
+      display: none
+      flex-direction: column
+      padding-top: 0
+    li
+      +sm-block
+        margin-bottom: rem(10px)
+        &:last-child
+          margin-bottom: 0
+    a
+      @extend h4
+      color: $accent
+      &:hover
+        color: $white
+      &.is-active
+        color: $white
+  &__item
+    display: none
+    padding: rem(100px) 0 rem(120px)
+    +sm-block
+      padding: rem(60px) 0 rem(145px)
+    &.is-active
+      display: block
+  &__content
+    max-width: rem(760px)
+    ul
+      margin: 0
+      padding: 0
+      list-style: none
+      li
+        margin-bottom: rem(15px)
+        &::before
+          content: '— '
+        &:last-child
+          margin-bottom: 0

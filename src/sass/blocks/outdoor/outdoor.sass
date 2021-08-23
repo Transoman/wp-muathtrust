@@ -1,0 +1,53 @@
+.outdoor
+  position: relative
+  z-index: 1
+  padding: rem(120px) 0
+  background:
+    color: $silver-chalice
+    repeat: no-repeat
+    position: center
+    size: cover
+  color: $white
+  border-radius: 0 0 rem(200px) rem(200px)
+  overflow: hidden
+  +sm-block
+    padding: rem(85px) 0 rem(145px)
+    border-radius: 0 0 rem(100px) rem(100px)
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: -1
+    background-color: rgba(#000, 0.25)
+    pointer-events: none
+  &__title
+    text-align: center
+    color: $white
+    +sm-block
+      text-align: left
+  &__wrap
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: 0 rem(70px)
+    max-width: rem(755px)
+    margin: 0 auto
+    +sm-block
+      grid-template-columns: 1fr
+      gap: rem(30px) 0
+  &__bottom
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: 0 rem(70px)
+    max-width: rem(755px)
+    margin: rem(100px) auto 0
+    +sm-block
+      grid-template-columns: 1fr
+      gap: 0
+      margin-top: rem(80px)
+    &-text
+      grid-column-start: 2
+      grid-column-end: 3
+      @extend h4

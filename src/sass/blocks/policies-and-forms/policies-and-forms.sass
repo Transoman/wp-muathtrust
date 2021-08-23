@@ -1,0 +1,38 @@
+.policies-and-forms
+  padding-top: rem(160px)
+  background-color: $white
+  +sm-block
+    padding-top: rem(145px)
+    padding-bottom: rem(60px)
+  &__title
+    margin-bottom: rem(100px)
+    text-align: center
+    +sm-block
+      margin-bottom: rem(85px)
+      text-align: left
+
+.policies-and-forms-policies
+  padding-top: rem(40px)
+  border-top: 2px solid $lighten-blue
+
+.policies-and-forms-forms
+  margin-top: rem(90px)
+  padding-top: rem(40px)
+  border-top: 2px solid $lighten-blue
+  +sm-block
+    margin-top: rem(75px)
+  &__item
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-bottom: rem(35px)
+    &:last-child
+      margin-bottom: 0
+  &__title
+    @extend h2
+    margin-right: rem(25px)
+  &__link
+    @extend h4
+    color: $accent
+    &:hover, &:focus
+      color: $light-blue

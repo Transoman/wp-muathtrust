@@ -1,0 +1,28 @@
+.widget-acc
+  &__item
+    margin-bottom: rem(25px)
+    &:last-child
+      margin-bottom: 0
+  &__head
+    position: relative
+    padding: rem(10px) rem(45px) rem(10px) 0
+    @extend h2
+    cursor: pointer
+    &::before, &::after
+      content: ''
+      position: absolute
+      top: 50%
+      right: rem(4px)
+      transform: translateY(-50%)
+      width: rem(30px)
+      height: rem(2px)
+      background-color: $accent
+      +trans
+    &::after
+      transform: translateY(-50%) rotate(90deg)
+    &.is-active
+      &::after
+        transform: translateY(-50%) rotate(0)
+  &__content
+    padding: rem(20px) 0 0
+    display: none

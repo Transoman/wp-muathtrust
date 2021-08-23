@@ -1,0 +1,69 @@
+.nursery-section-1
+  margin-top: rem(-115px)
+  padding-top: rem(115px)
+  background-color: $lighten-blue
+  color: $white
+  +sm-block
+    margin-top: rem(-90px)
+    padding-top: rem(160px)
+  &__wrap
+    display: flex
+    flex-wrap: wrap
+  &__left
+    display: flex
+    flex-direction: column
+    width: 50%
+    padding: rem(80px) rem(60px) rem(100px) 0
+    +md-block
+      width: 100%
+      padding-right: 0
+    +sm-block
+      margin-bottom: rem(85px)
+      padding: 0
+    .page-nav
+      margin-top: auto
+      +md-block
+        margin-top: rem(140px)
+  &__title
+    margin-bottom: rem(50px)
+  &__right
+    position: relative
+    z-index: 1
+    width: 50%
+    padding: rem(90px) 0 rem(100px) rem(70px)
+    +md-block
+      width: 100%
+      padding-left: 0
+    +sm-block
+      padding: rem(85px) 0
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      bottom: 0
+      z-index: -1
+      width: 50vw
+      background-color: $light-blue
+      +md-block
+        left: 50%
+        margin-left: -50vw
+        width: 100vw
+  &__list
+    &-item
+      margin-bottom: rem(90px)
+      padding-bottom: rem(60px)
+      border-bottom: 1px solid $white
+      +sm-block
+        padding-bottom: rem(85px)
+      &:last-child
+        margin-bottom: 0
+        border: 0
+        padding: 0
+    &-title
+      margin-bottom: rem(40px)
+      +sm-block
+        font-size: rem(36px)
+    &-text
+      img
+        margin: rem(20px) 0

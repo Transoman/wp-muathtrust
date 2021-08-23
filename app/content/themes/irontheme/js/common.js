@@ -32599,13 +32599,82 @@ jQuery(document).ready(function ($) {
     });
   };
 
+  var fpTabs = function fpTabs() {
+    $('.fees-and-payment-tabs__list a').click(function (e) {
+      e.preventDefault();
+      $('.fees-and-payment-tabs__list a').removeClass('is-active');
+      $(this).addClass('is-active');
+      var id = $(this).attr('href');
+      $('.fees-and-payment-tabs__item').removeClass('is-active');
+      $('.fees-and-payment-tabs__item' + id).addClass('is-active');
+      var textActive = $('.fees-and-payment-tabs__list a.is-active').text();
+      $('.fees-and-payment-tabs__list-select span').text(textActive);
+    });
+    $('.fees-and-payment-tabs__list-select').click(function () {
+      $(this).toggleClass('is-open');
+      $('.fees-and-payment-tabs__list').slideToggle();
+    });
+  };
+
+  var widgetAcc = function widgetAcc() {
+    var acc = $('.widget-acc');
+    var toggle = acc.find('.widget-acc__head');
+    var content = acc.find('.widget-acc__content');
+    toggle.click(function () {
+      if ($(this).hasClass('is-active')) {
+        $(this).removeClass('is-active');
+        $(this).next().slideUp();
+      } else {
+        $(this).addClass('is-active');
+        content.not($(this).next()).slideUp();
+        toggle.not($(this)).removeClass('is-active');
+        $(this).next().slideToggle();
+      }
+    });
+  };
+
+  $('a[href*="#"]') // Remove links that don't actually link to anything
+  .not('[href="#"]').not('[href="#0"]').click(function (event) {
+    // On-page links
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']'); // Does a scroll target exist?
+
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function () {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+
+          if ($target.is(":focus")) {
+            // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+
+            $target.focus(); // Set focus again
+          }
+
+          ;
+        });
+      }
+    }
+  });
   toggleNav();
   initModal(); // inputMask();
 
   widgetCart();
   newsSlider();
   customSelect();
-  loadMore(); // SVG
+  loadMore();
+  fpTabs();
+  widgetAcc(); // SVG
 
   svg4everybody({});
 });

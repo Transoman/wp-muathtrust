@@ -1,0 +1,19 @@
+.age-of-children
+  padding: rem(160px) 0
+  +sm-block
+    padding: rem(85px) 0 rem(140px)
+  &__wrap
+    display: grid
+    grid-template-columns: 1fr 1fr
+    +md-block
+      grid-template-columns: 1fr
+  &__left
+    +md-block
+      display: none
+    img
+      border-radius: 0 rem(200px) 0 rem(200px)
+  &__title
+    margin-bottom: rem(60px)
+  &__text
+    @extend h3
+    color: $light-blue

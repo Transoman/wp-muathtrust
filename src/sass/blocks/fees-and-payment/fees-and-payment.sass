@@ -1,0 +1,32 @@
+@import 'fees-and-payment-tabs'
+
+.fees-and-payment
+  padding-top: rem(160px)
+  &__head
+    padding: rem(120px) 0 rem(100px)
+    background-color: $light-blue
+    color: $white
+    +sm-block
+      padding: rem(85px) 0
+    .container
+      position: relative
+      z-index: 1
+      &::before
+        content: ''
+        position: absolute
+        right: 15px
+        top: 50%
+        z-index: -1
+        transform: translateY(-50%)
+        width: 281px
+        height: 288px
+        background: url(images/general/decor.png) no-repeat center / contain
+        pointer-events: none
+        +md-block
+          display: none
+  &__title
+    padding-right: rem(290px)
+    +md-block
+      padding-right: 0
+  &__text
+    max-width: rem(565px)

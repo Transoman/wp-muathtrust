@@ -1,0 +1,32 @@
+.opening-time
+  &__wrap
+    position: relative
+    display: grid
+    grid-template-columns: 1fr 1fr
+    border: 2px solid $accent
+    border-radius: 0 0 rem(200px) 0
+    +md-block
+      grid-template-columns: 1fr
+      gap: rem(85px) 0
+      border: 0
+  &__content
+    max-width: rem(485px)
+    padding: rem(60px) 0 rem(60px) rem(45px)
+    +md-block
+      padding: 0
+  &__title
+    margin-bottom: rem(40px)
+    color: $accent
+  &__image
+    position: absolute
+    bottom: -2px
+    right: -2px
+    +md-block
+      position: static
+      bottom: auto
+      right: auto
+    img
+      display: block
+      border-radius: rem(200px) 0 rem(200px) 0
+      +md-block
+        width: 100%

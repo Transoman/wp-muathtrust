@@ -4,6 +4,7 @@ $args = array(
 	'posts_per_page' => 1,
 	'orderby' => 'meta_value_num',
 	'order' => 'ASC',
+	'meta_key' => 'event_details_date',
 	'meta_query' => array(
 		array(
 			'key' => 'event_details_date',

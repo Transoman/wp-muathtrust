@@ -46,3 +46,4 @@ if ( class_exists( 'acf' ) ) {
 
 require get_template_directory() . '/inc/post-types.php';
 require get_template_directory() . '/inc/ajax.php';
+require get_template_directory() . '/inc/external.php';

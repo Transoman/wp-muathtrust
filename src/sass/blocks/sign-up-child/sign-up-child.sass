@@ -1,0 +1,33 @@
+.sign-up-child
+  padding: rem(160px) 0
+  background-color: $lighten-blue
+  +sm-block
+    padding: rem(140px) 0 rem(145px)
+  &__wrap
+    max-width: rem(950px)
+    margin: 0 auto
+  &__title
+    max-width: rem(650px)
+    margin: 0 auto rem(80px)
+    text-align: center
+    color: $accent
+    +sm-block
+      margin-bottom: rem(60px)
+      font-size: rem(36px)
+  form
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"]
+      padding-right: rem(25px)
+      padding-left: rem(25px)
+      border: 2px solid $accent
+      border-radius: rem(50px)
+      background: none
+      color: $main-color
+      &::placeholder
+        color: $geyser
+    input[type="submit"]
+      +sm-block
+        width: 100%
+    .wpcf7-not-valid-tip
+      margin-left: rem(25px)

@@ -1,0 +1,22 @@
+.staff-list
+  &__item
+    position: relative
+    margin-bottom: rem(58px)
+    +md-block
+      padding-left: rem(60px)
+    +sm-block
+      margin-bottom: rem(35px)
+    &:last-child
+      margin-bottom: 0
+  &__counter
+    position: absolute
+    top: rem(-10px)
+    right: calc(100%)
+    width: rem(60px)
+    font-size: rem(36px)
+    font-weight: 500
+    color: $lighten-blue
+    line-height: 1
+    +md-block
+      right: auto
+      left: 0

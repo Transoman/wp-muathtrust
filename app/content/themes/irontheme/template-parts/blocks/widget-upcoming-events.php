@@ -4,7 +4,14 @@ $args = array(
 	'posts_per_page' => 3,
 	'orderby' => 'meta_value_num',
 	'order' => 'ASC',
-	'meta_key' => 'event_details_date'
+	'meta_key' => 'event_details_date',
+	'meta_query' => array(
+		array(
+			'key' => 'event_details_date',
+			'value' => date('Ymd'),
+			'compare' => '>='
+		)
+	)
 );
 
 $events = new WP_Query( $args );
