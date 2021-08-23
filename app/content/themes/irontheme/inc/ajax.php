@@ -8,7 +8,7 @@ function load_more_posts() {
 	$args = json_decode( stripslashes( $_POST['query'] ), true );
 	$args['paged'] = $_POST['page'] + 1;
 	$args['post_status'] = 'publish';
-	$post_type = $args['post_type'];
+	$post_type = $args['post_type'] ? $args['post_type'] : 'post';
 
 	query_posts( $args );
 
@@ -37,6 +37,12 @@ function load_more_posts() {
 					<div class="container">
 						<hr>
 					</div>
+				</div>
+			<?php
+			} elseif ( $post_type == 'post' ) {
+			?>
+				<div class="news-list__item">
+					<?php get_template_part( 'template-parts/news', 'card' ); ?>
 				</div>
 			<?php
 			}

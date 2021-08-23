@@ -1,0 +1,18 @@
+.news
+  padding-bottom: rem(100px)
+  +sm-block
+    padding-bottom: rem(85px)
+  .load-more-wrap
+    margin-top: rem(100px)
+    +sm-block
+      margin-top: rem(85px)
+
+.news-list
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: rem(100px) rem(73px)
+  +lg-block
+    grid-template-columns: repeat(2, 1fr)
+  +sm-block
+    grid-template-columns: 1fr
+    gap: rem(77px) 0
