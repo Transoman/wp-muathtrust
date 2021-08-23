@@ -1,0 +1,19 @@
+.latest-news
+  padding-top: rem(160px)
+  +sm-block
+    padding-top: rem(140px)
+  &__title
+    margin-bottom: rem(100px)
+    text-align: center
+    +sm-block
+      margin-bottom: rem(85px)
+
+.latest-news-list
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: rem(100px) rem(73px)
+  +md-block
+    grid-template-columns: repeat(2, 1fr)
+  +sm-block
+    grid-template-columns: 1fr
+    gap: rem(60px) 0

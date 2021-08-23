@@ -1,0 +1,32 @@
+.article
+  padding: rem(80px) 0 rem(100px)
+  +sm-block
+    padding: rem(75px) 0 rem(85px)
+  &__wrap
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    +md-block
+      flex-direction: column
+  &__left
+    width: 50%
+    +md-block
+      width: 100%
+      margin-bottom: rem(85px)
+  &__right
+    width: 37.1%
+    +md-block
+      width: 100%
+    img
+      display: block
+      width: 100%
+      border-radius: 0 rem(200px) 0 0
+    .share
+      margin-top: rem(40px)
+  &__date
+    display: block
+    margin-bottom: rem(30px)
+    color: $light-blue
+  &__title
+    margin-bottom: rem(50px)
+    color: $accent

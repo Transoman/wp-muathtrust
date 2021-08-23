@@ -92,6 +92,17 @@ jQuery(document).ready(function($) {
     });
   };
   
+  let newsGallerySlider = function () {
+    new Swiper('.news-gallery-slider', {
+      slidesPerView: 1,
+      spaceBetween: 85,
+      navigation: {
+        nextEl: '.news-gallery-wrap .swiper-button-next',
+        prevEl: '.news-gallery-wrap .swiper-button-prev',
+      }
+    });
+  };
+  
   let customSelect = function() {
     $('select').each(function(index, el) {
       new Choices(el, {
@@ -226,6 +237,7 @@ jQuery(document).ready(function($) {
   // inputMask();
   widgetCart();
   newsSlider();
+  newsGallerySlider();
   customSelect();
   loadMore();
   fpTabs();
