@@ -2,6 +2,7 @@
 if ( have_rows( 'layouts' ) ):
 	$blocks = [
 		'hero' => 'hero',
+		'hero_v2' => 'hero-v2',
 		'about_block' => 'about-block',
 		'list_50x50' => 'list-50x50',
 		'cta' => 'cta',
@@ -25,6 +26,7 @@ if ( have_rows( 'layouts' ) ):
 		'staff' => 'staff',
 		'sign_up_child' => 'sign-up-child',
 		'policies_and_forms' => 'policies-and-forms',
+		'vacancies' => 'vacancies',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();
