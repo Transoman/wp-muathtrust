@@ -12,7 +12,16 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<?php
+$page_background_type = get_field( 'page_background_type' );
+$body_class = '';
+
+if ( $page_background_type == 'inherit' ) {
+	$body_class = 'no-bg';
+}
+?>
+
+<body <?php body_class( $body_class ); ?>>
 
 	<div class="wrapper">
 		<header class="header">

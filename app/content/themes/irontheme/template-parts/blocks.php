@@ -17,6 +17,14 @@ if ( have_rows( 'layouts' ) ):
 		'quote' => 'quote',
 		'timeline' => 'timeline',
 		'teams_block' => 'teams-block',
+		'outdoor_area' => 'outdoor-area',
+		'age_of_children' => 'age-of-children',
+		'opening_time' => 'opening-time',
+		'fees_and_payment' => 'fees-and-payment',
+		'big_image' => 'big-image',
+		'staff' => 'staff',
+		'sign_up_child' => 'sign-up-child',
+		'policies_and_forms' => 'policies-and-forms',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();

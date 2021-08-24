@@ -199,6 +199,7 @@ jQuery(document).ready(function($) {
     // Remove links that don't actually link to anything
     .not('[href="#"]')
     .not('[href="#0"]')
+    .not('.fees-and-payment-tabs__list a')
     .click(function(event) {
       // On-page links
       if (

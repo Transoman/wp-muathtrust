@@ -15,7 +15,8 @@
     "wpackagist-plugin/classic-editor": "*",
     "wpackagist-plugin/breadcrumb-navxt": "*",
     "wpackagist-plugin/duplicate-post": "*",
-    "wpackagist-plugin/custom-post-type-permalinks": "*"
+    "wpackagist-plugin/custom-post-type-permalinks": "*",
+    "wpackagist-plugin/acf-unique-id-field": "*"
   },
   "extra": {
     "wordpress-install-dir": "app/wp",
