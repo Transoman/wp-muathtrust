@@ -25,18 +25,17 @@
     &::after, &::before
       content: ''
       position: absolute
-      left: 0
+      top: 50%
+      left: 50%
       display: block
       height: 2px
       width: 100%
       background: #BDBDBD
       transition: all .25s ease
     &::before
-      top: 10px
-      transform: rotate(45deg)
+      transform: translate(-50%, -50%) rotate(45deg)
     &::after
-      top: 10px
-      transform: rotate(-45deg)
+      transform: translate(-50%, -50%) rotate(-45deg)
     &:focus
       outline: none
   &__title

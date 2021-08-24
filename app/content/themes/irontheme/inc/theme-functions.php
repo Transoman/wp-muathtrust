@@ -77,6 +77,8 @@ if ( ! function_exists( 'ith_setup' ) ) :
 		add_image_size( 'opening_time', 460, 690, true );
 		add_image_size( 'staff', 460, 942, true );
 		add_image_size( 'gallery', 1240, 600, true );
+		add_image_size( 'style_2', 540, 463, true );
+		add_image_size( 'team', 380, 495, true );
 	}
 endif;
 add_action( 'after_setup_theme', 'ith_setup' );

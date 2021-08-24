@@ -1,0 +1,83 @@
+.timeline
+  padding: rem(80px) 0 rem(160px)
+  background-color: $light-blue
+  color: $white
+  +sm-block
+    padding: rem(42.5px) 0 rem(140px)
+  &__item
+    margin-bottom: rem(200px)
+    +sm-block
+      margin-bottom: rem(140px)
+    &:last-child
+      margin-bottom: 0
+    &:nth-child(even)
+      .timeline__wrap
+        flex-direction: row-reverse
+        +md-block
+          flex-direction: column
+    &--style_1
+      .timeline
+        &__content
+          padding-top: rem(60px)
+          +md-block
+            padding-top: 0
+        &__image
+          width: 37.1%
+          +md-block
+            width: 100%
+          img
+            border-radius: 0 rem(200px) 0 rem(200px)
+            +sm-block
+              height: rem(680px)
+              object-fit: cover
+    &--style_2
+      .timeline
+        &__image
+          position: relative
+          right: calc((-100vw + 1630px) / 2 - 15px)
+          +xl-block
+            right: calc((-100vw + 1270px) / 2 - 15px)
+          +lg-block
+            right: calc((-100vw + 960px) / 2 - 15px)
+          +md-block
+            right: calc((-100vw + 720px) / 2 - 15px)
+          +sm-block
+            right: -15px
+          img
+            border-radius: rem(200px) 0 0 rem(200px)
+    &--style_3
+      .timeline
+        &__image
+          width: 37.1%
+          +md-block
+            width: 100%
+          img
+            border-radius: 0 rem(200px) 0 0
+            +sm-block
+              height: rem(595px)
+              object-fit: cover
+  &__wrap
+    display: flex
+    justify-content: space-between
+    +md-block
+      flex-direction: column
+  &__content
+    width: 50%
+    +md-block
+      width: 100%
+  &__text-1
+    margin-bottom: rem(60px)
+    font-size: rem(32px)
+    font-weight: 500
+  &__year
+    margin-bottom: rem(50px)
+    font-family: $title-font
+    font-size: rem(110px)
+    line-height: 1
+  &__image
+    +md-block
+      margin-bottom: rem(85px)
+    img
+      display: block
+      +md-block
+        width: 100%
