@@ -6,5 +6,5 @@
  *
  * @package ith
  */
-
+get_template_part( 'template-parts/breadcrumbs' );
 get_template_part( 'template-parts/blocks' );

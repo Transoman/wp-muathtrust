@@ -9,9 +9,11 @@ $hero_bg_image = get_sub_field( 'background_image' );
 		<div class="hero__wrap"<?php echo $hero_bg_image ? ' style="background-image: url('.$hero_bg_image.')"' : ''; ?>>
 			<?php if ( $hero_type == 'with_timetable' ): ?>
 				<h3 class="hero__text"><?php echo $hero_text; ?></h3>
-			<?php endif; ?>
 
-			<?php get_timetable_line( 'hero__timetable-line' ); ?>
+				<?php get_timetable_line( 'hero__timetable-line' ); ?>
+			<?php else: ?>
+				<h1 class="hero__title"><?php echo $hero_title ? $hero_title : get_the_title(); ?></h1>
+			<?php endif; ?>
 		</div>
 	</div>
 </section>

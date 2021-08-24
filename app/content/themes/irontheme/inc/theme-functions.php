@@ -162,11 +162,9 @@ add_action( 'widgets_init', 'ith_widgets_init' );
 function ith_scripts() {
 	wp_enqueue_style( 'ith-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'ith-main', get_template_directory_uri() . '/js/common.js', array(), '', true );
+	require_once get_template_directory() . '/inc/dynamic-css.php';
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+	wp_enqueue_script( 'ith-main', get_template_directory_uri() . '/js/common.js', array(), '', true );
 }
 
 add_action( 'wp_enqueue_scripts', 'ith_scripts' );
@@ -259,3 +257,20 @@ add_filter('excerpt_more', function($more) {
 add_filter( 'excerpt_length', function(){
 	return 40;
 } );
+
+function acf_iris_palette() {
+	?>
+	<script type="text/javascript">
+		jQuery(function($){
+			acf.add_filter('color_picker_args', function( args, field ){
+				args.palettes = ['#9EBCDC', '#5F89C1', '#1C3E9A', '#F1F1F1', '#DDE2E6', '#A0A0A0']
+
+				// return
+				return args;
+
+			});
+		});
+	</script>
+	<?php
+}
+add_action( 'admin_print_scripts', 'acf_iris_palette', 90 );
