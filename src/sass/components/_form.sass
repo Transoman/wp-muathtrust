@@ -1,6 +1,9 @@
 .form-group
   position: relative
-  margin-bottom: rem(30px)
+  margin-bottom: rem(40px)
+  &--last
+    margin-top: rem(60px)
+    margin-bottom: 0
 
 .form-row
   display: grid
@@ -26,7 +29,8 @@ input[type="email"],
 input[type="tel"],
 input[type="password"],
 input[type="number"],
-select
+select,
+textarea
   width: 100%
   height: rem(70px)
   padding: 0 rem(20px)
@@ -41,6 +45,17 @@ select
   &:focus
     outline: none
     border-color: $accent
+
+textarea
+  height: rem(90px)
+  padding-top: rem(20px)
+  padding-bottom: rem(20px)
+
+.form-label
+  @extend h4
+  display: inline-block
+  margin-bottom: rem(15px)
+  cursor: pointer
 
 .wpcf7-not-valid-tip
   margin-top: rem(5px)

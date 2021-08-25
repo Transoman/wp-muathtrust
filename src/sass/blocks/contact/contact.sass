@@ -1,0 +1,74 @@
+.contact
+  &__top
+    display: flex
+    justify-content: space-between
+    padding: rem(80px) 0
+    +md-block
+      flex-direction: column
+    +sm-block
+      padding: rem(75px) 0 rem(42.5px)
+  &__info
+    width: 40%
+    +md-block
+      width: 100%
+    &-text
+      margin-bottom: rem(40px)
+    &-item
+      margin-bottom: rem(20px)
+      &:last-child
+        margin-bottom: 0
+      &--address
+        margin-top: rem(40px)
+  &__image
+    position: relative
+    width: 55%
+    right: calc((-100vw + 1630px) / 2 - 15px)
+    +xl-block
+      right: calc((-100vw + 1270px) / 2 - 15px)
+    +lg-block
+      right: calc((-100vw + 960px) / 2 - 15px)
+    +md-block
+      display: none
+    img
+      display: block
+      width: 100%
+      border-radius: rem(500px) 0 0 rem(500px)
+  &__map
+    position: relative
+    padding-top: rem(460px)
+    margin: rem(80px) 0
+    +sm-block
+     margin: rem(42.5px) 0 rem(70px)
+    iframe
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+  &__form
+    display: flex
+    justify-content: space-between
+    padding: rem(80px) 0 rem(160px)
+    +md-block
+      flex-direction: column
+    +sm-block
+      padding: rem(70px) 0 0
+    &-left
+      width: 50%
+      +md-block
+        width: 100%
+        margin-bottom: rem(60px)
+    &-right
+      width: 44.35%
+      padding-right: rem(70px)
+      +lg-block
+        padding-right: 0
+      +md-block
+        width: 100%
+    &-title
+      margin-bottom: rem(20px)
+    .wpcf7-list-item
+      margin-left: 0
+    .btn
+      +sm-block
+        width: 100%
