@@ -1,0 +1,124 @@
+.donation-form
+  position: relative
+  z-index: 1
+  border-radius: 0 rem(200px) 0 0
+  margin-left: rem(45px)
+  margin-top: rem(-740px)
+  +sm-block
+    margin-left: 0
+    margin-top: rem(-250px)
+    border-radius: 0 rem(100px) 0 0
+  &::before
+    content: ''
+    position: absolute
+    top: rem(53px)
+    left: rem(-45px)
+    z-index: -1
+    width: 100%
+    height: 100%
+    background-color: $light-blue
+    border-radius: inherit
+    +sm-block
+      display: none
+  &__inner
+    height: 100%
+    padding: rem(120px) rem(70px) rem(105px) rem(50px)
+    background-color: $accent
+    border-radius: inherit
+    color: $white
+    +lg-block
+      padding-right: rem(50px)
+      padding-left: rem(30px)
+    +sm-block
+      padding: rem(120px) rem(15px)
+  &__types
+    display: flex
+    margin-bottom: rem(40px)
+    border-bottom: 3px solid $white
+    +sm-block
+      margin-bottom: rem(45px)
+  &__type
+    @extend h4
+    width: 50%
+    input[type="radio"]
+      @extend .visually-hidden
+      &:checked ~ label
+        background-color: $lighten-blue
+    label
+      display: block
+      padding: rem(23px) rem(15px) rem(19px)
+      text-align: center
+      cursor: pointer
+      line-height: 1
+      +trans
+  &__list
+    margin-bottom: rem(60px)
+    &-item
+      display: flex
+      align-items: center
+      justify-content: space-between
+      margin-bottom: rem(40px)
+      cursor: pointer
+      &:last-child
+        margin-bottom: 0
+      input[type="radio"]
+        @extend .visually-hidden
+        &:checked + .donation-form__list-price
+          background-color: $lighten-blue
+          color: $white
+    &-price
+      display: flex
+      align-items: center
+      justify-content: center
+      min-width: rem(180px)
+      height: rem(80px)
+      margin-left: rem(15px)
+      background-color: $white
+      border-radius: rem(10px)
+      font-size: rem(36px)
+      font-weight: 700
+      color: $main-color
+      +trans
+      +lg-block
+        min-width: rem(135px)
+        height: rem(60px)
+        font-size: rem(21px)
+      +sm-block
+        margin-left: 0
+    &-name
+      width: 50%
+  &__other-amount
+    margin-bottom: rem(60px)
+    padding-left: rem(15px)
+    +sm-block
+      padding-left: 0
+    h4
+      margin-bottom: rem(20px)
+    .form-group
+      margin-bottom: 0
+      input[type="number"]
+        padding-right: rem(40px)
+        padding-left: rem(40px)
+        font-size: rem(36px)
+        font-weight: 700
+        appearance: none
+        -moz-appearance: textfield
+        +lg-block
+          font-size: rem(21px)
+        +sm-block
+          padding-right: rem(20px)
+          padding-left: rem(20px)
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button
+          appearance: none
+          margin: 0
+    &-remove
+      position: absolute
+      top: 50%
+      right: rem(40px)
+      transform: translateY(-50%)
+      font-size: rem(15px)
+      font-weight: 600
+      text-transform: uppercase
+      +sm-block
+        right: rem(20px)

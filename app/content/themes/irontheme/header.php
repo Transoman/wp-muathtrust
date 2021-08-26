@@ -93,7 +93,7 @@ if ( $page_background_type == 'inherit' ) {
 						$donate_btn_class = 'btn--lighten';
 					}
 					?>
-					<a href="#" class="btn header__btn-donate <?php echo $donate_btn_class; ?>">Donate</a>
+					<a href="<?php echo home_url( 'donate' ); ?>" class="btn header__btn-donate <?php echo $donate_btn_class; ?>">Donate</a>
 
 					<button type="button" class="nav-toggle">
 						<span class="nav-toggle__line"></span>
