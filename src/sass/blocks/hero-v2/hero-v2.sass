@@ -1,28 +1,51 @@
 .hero-v2
-  position: relative
-  z-index: 1
-  display: flex
-  align-items: flex-end
-  min-height: rem(570px)
-  padding: rem(150px) 0
-  background:
-    repeat: no-repeat
-    position: center
-    size: cover
-  border-radius: 0 rem(200px) 0 0
-  overflow: hidden
-  +sm-block
-    min-height: rem(700px)
-    padding: rem(110px) 0
-  &::before
-    content: ''
-    position: absolute
-    top: 0
-    right: 0
-    bottom: 0
-    left: 0
-    z-index: -1
-    background-color: rgba(#000, 0.2)
+  &--text-block
+    .hero-v2
+      &__inner
+        +sm-block
+          min-height: rem(610px)
+          padding-bottom: rem(180px)
+  &__inner
+    position: relative
+    z-index: 1
+    display: flex
+    align-items: flex-end
+    min-height: rem(570px)
+    padding: rem(150px) 0
+    background:
+      repeat: no-repeat
+      position: center
+      size: cover
+    border-radius: 0 rem(200px) 0 0
+    overflow: hidden
+    +sm-block
+      min-height: rem(700px)
+      padding: rem(110px) 0
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+      z-index: -1
+      background-color: rgba(#000, 0.2)
   &__title
     margin: 0
     color: $white
+  &__text-block
+    position: relative
+    z-index: 1
+    width: 50%
+    margin-top: rem(-140px)
+    margin-left: auto
+    margin-bottom: rem(75px)
+    padding: rem(60px) rem(80px)
+    background-color: $white
+    +md-block
+      width: 100%
+    +sm-block
+      margin-bottom: rem(60px)
+      padding: rem(60px) rem(50px)
+    h4
+      margin-bottom: rem(20px)

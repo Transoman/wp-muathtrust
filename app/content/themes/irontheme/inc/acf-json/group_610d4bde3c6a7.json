@@ -177,6 +177,25 @@
                             "max_height": "",
                             "max_size": "",
                             "mime_types": ""
+                        },
+                        {
+                            "key": "field_61273dd186b05",
+                            "label": "Text block",
+                            "name": "text_block",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 0,
+                            "delay": 0
                         }
                     ],
                     "min": "",
@@ -822,10 +841,10 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_61125f95a4c6e",
-                            "label": "Info",
-                            "name": "",
-                            "type": "message",
+                            "key": "field_612777ceef436",
+                            "label": "Show Cover",
+                            "name": "show_cover",
+                            "type": "true_false",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -834,9 +853,11 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "message": "This block has no settings",
-                            "new_lines": "wpautop",
-                            "esc_html": 0
+                            "message": "",
+                            "default_value": 1,
+                            "ui": 1,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
                         }
                     ],
                     "min": "",
@@ -2269,6 +2290,54 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_61273ed10eba4": {
+                    "key": "layout_61273ed10eba4",
+                    "name": "prayer_timetable",
+                    "label": "Prayer Timetable",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61273ed80eba5",
+                            "label": "Bottom text",
+                            "name": "bottom_text",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_612776adb2d47",
+                            "label": "PDF timetable",
+                            "name": "pdf_timetable",
+                            "type": "file",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "url",
+                            "library": "all",
+                            "min_size": "",
+                            "max_size": "",
+                            "mime_types": "pdf"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -2295,5 +2364,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1629815446
+    "modified": 1629976554
 }

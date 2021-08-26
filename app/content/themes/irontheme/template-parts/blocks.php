@@ -27,6 +27,7 @@ if ( have_rows( 'layouts' ) ):
 		'sign_up_child' => 'sign-up-child',
 		'policies_and_forms' => 'policies-and-forms',
 		'vacancies' => 'vacancies',
+		'prayer_timetable' => 'prayer-timetable',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();

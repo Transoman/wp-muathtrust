@@ -1,4 +1,7 @@
-<section class="quick-donate">
+<?php
+$show_cover = get_sub_field( 'show_cover' );
+?>
+<section class="quick-donate<?php echo $show_cover ? ' quick-donate--cover' : ''; ?>">
 	<div class="container">
 		<div class="quick-donate__wrap">
 			<h2 class="quick-donate__title">Quick Donate</h2>

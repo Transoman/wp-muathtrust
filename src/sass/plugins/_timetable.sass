@@ -1,0 +1,101 @@
+table.dptTimetable
+  margin-top: 0
+  font-size: rem(21px)
+  font-weight: 600
+  line-height: 1.4
+  text-transform: uppercase
+  border: 0
+  +md-block
+    font-size: rem(14px)
+  thead
+    +md-block
+      display: none
+  thead.prayerName
+    background: none
+  tr,
+  td,
+  th
+    +md-block
+      display: block
+      width: auto
+  th
+    border: 1px solid $light-blue
+  tr
+    padding: 0
+    border: 0
+    &:hover
+      background-color: $lighten-blue
+      color: $white
+    td
+      padding: rem(10px)
+      border: 1px solid $light-blue
+      +md-block
+        width: auto
+  th.tableHeading
+    background: none
+    +md-block
+      display: none
+  th.highlight,
+  tr.highlight,
+  td.highlight
+    background-color: $lighten-blue !important
+    color: $white
+  tbody
+    tr
+      +md-block
+        &:nth-child(even)
+          background-color: $geyser
+        &:hover
+          background-color: $lighten-blue
+    td
+      +md-block
+        position: relative
+        padding-left: 50%
+        text-align: right
+        border-bottom: 0
+        &:last-child
+          border-bottom: 1px solid $light-blue
+        &::before
+          position: absolute
+          top: 50%
+          left: rem(15px)
+          transform: translateY(-50%)
+        &:nth-child(1)
+          &::before
+            content: 'Date'
+        &:nth-child(2)
+          &::before
+            content: 'Day'
+        &:nth-child(3)
+          &::before
+            content: 'Fajr Begins'
+        &:nth-child(4)
+          &::before
+            content: 'Fajr Iqamah'
+        &:nth-child(5)
+          &::before
+            content: 'Fajr Sunrise'
+        &:nth-child(6)
+          &::before
+            content: 'Zuhr Begins'
+        &:nth-child(7)
+          &::before
+            content: 'Zuhr Iqamah'
+        &:nth-child(8)
+          &::before
+            content: 'Asr Begins'
+        &:nth-child(9)
+          &::before
+            content: 'Asr Iqamah'
+        &:nth-child(10)
+          &::before
+            content: 'Maghrib Begins'
+        &:nth-child(11)
+          &::before
+            content: 'Maghrib Iqamah'
+        &:nth-child(12)
+          &::before
+            content: 'Isha Begins'
+        &:nth-child(13)
+          &::before
+            content: 'Isha Iqamah'
