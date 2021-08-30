@@ -56,6 +56,17 @@
           width: 100%
   select[name="amount"] + div
     padding-left: rem(70px)
+  input[name="custom_amount"]
+    padding-left: rem(90px)
+    appearance: none
+    -moz-appearance: textfield
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button
+      appearance: none
+      margin: 0
+  &__custom-amount
+    display: none
+    margin-top: rem(20px)
 
 .amount-field
   position: absolute

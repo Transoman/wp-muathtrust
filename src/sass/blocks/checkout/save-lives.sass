@@ -1,0 +1,43 @@
+.save-lives
+  padding: rem(205px) 0 rem(90px)
+  background-color: $light-blue
+  +sm-block
+    padding: rem(140px) 0 rem(85px)
+  &__wrap
+    position: relative
+    padding: rem(90px) rem(150px)
+    border: 2px solid $white
+    background-color: $lighten-blue
+    border-radius: 0 rem(200px) 0 rem(200px)
+    +md-block
+      padding-right: rem(100px)
+      padding-left: rem(100px)
+    +sm-block
+      padding: rem(85px) rem(15px)
+      border-radius: 0 rem(100px) 0 rem(100px)
+    &::before
+      content: ''
+      position: absolute
+      bottom: calc(100% - #{rem(67px)})
+      right: rem(55px)
+      width: rem(263px)
+      height: rem(270px)
+      background: url(images/general/decor.png) no-repeat center / contain
+      +sm-block
+        display: none
+    .section-title
+      margin-bottom: rem(60px)
+      +sm-block
+        margin-bottom: rem(50px)
+  &__text
+    max-width: rem(730px)
+    p
+      margin-bottom: rem(30px)
+  &__checkboxes
+    display: flex
+    flex-direction: column
+    margin-top: rem(60px)
+    .circle-check
+      margin-bottom: rem(15px)
+      &:last-child
+        margin-bottom: 0

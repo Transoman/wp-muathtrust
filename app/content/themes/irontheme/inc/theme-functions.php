@@ -168,6 +168,7 @@ function ith_scripts() {
 	require_once get_template_directory() . '/inc/dynamic-css.php';
 
 	wp_enqueue_script( 'ith-main', get_template_directory_uri() . '/js/common.js', array(), '', true );
+	wp_enqueue_script( 'ith-donate', get_template_directory_uri() . '/js/donate.js', array(), '', true );
 }
 
 add_action( 'wp_enqueue_scripts', 'ith_scripts' );
@@ -277,3 +278,11 @@ function acf_iris_palette() {
 	<?php
 }
 add_action( 'admin_print_scripts', 'acf_iris_palette', 90 );
+
+function register_session() {
+	if ( ! session_id() ) {
+		session_start();
+	}
+}
+
+add_action( 'init', 'register_session' );

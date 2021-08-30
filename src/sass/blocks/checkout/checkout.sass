@@ -1,0 +1,81 @@
+@import "checkout-form-box"
+@import "gift-aid"
+@import "save-lives"
+
+.checkout
+  position: relative
+  z-index: 1
+  padding: rem(60px) 0
+  background:
+    repeat: no-repeat
+    position: center top
+    size: cover
+  +sm-block
+    padding: rem(85px) 0
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: -1
+    background-color: rgba(#000, 0.1)
+  &__wrap
+    display: flex
+    justify-content: space-between
+    +md-block
+      flex-direction: column
+  &__left
+    width: 32.66%
+    padding-top: rem(80px)
+    color: $white
+    +lg-block
+      width: 45%
+    +md-block
+      width: 100%
+      margin-bottom: rem(85px)
+      padding-top: 0
+  &__right
+    width: 50%
+    +md-block
+      width: 100%
+  &__title
+    margin-bottom: rem(60px)
+    +sm-block
+      margin-bottom: rem(40px)
+
+.checkout-form__actions
+  padding: 0 0 rem(160px)
+  background-color: $light-blue
+  .container
+    display: flex
+    align-items: center
+    justify-content: space-between
+    +sm-block
+      flex-direction: column
+      align-items: stretch
+    a
+      display: flex
+      align-items: center
+      font-size: rem(18px)
+      font-weight: 500
+      color: $white
+      text-transform: uppercase
+      +sm-block
+        align-self: flex-start
+      &:hover
+        color: $lighten-blue
+      &:active
+        color: $accent
+      svg
+        margin-right: rem(10px)
+        font-size: rem(25px)
+    .btn
+      margin-right: rem(210px)
+      +lg-block
+        margin-right: 0
+      +sm-block
+        margin-top: rem(85px)
+      &:hover
+        background-color: $lighten-blue

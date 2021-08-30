@@ -14,10 +14,14 @@
 
 <?php
 $page_background_type = get_field( 'page_background_type' );
+$page_background_color = get_field( 'page_background_color' );
 $body_class = '';
+$header_style = '';
 
 if ( $page_background_type == 'inherit' ) {
 	$body_class = 'no-bg';
+} elseif ( $page_background_type !== 'inherit' && $page_background_color ) {
+	$header_style = ' style="background-color: ' . $page_background_color . '"';
 }
 ?>
 
@@ -50,40 +54,11 @@ if ( $page_background_type == 'inherit' ) {
 						<a href="#" class="widget-cart__toggle">
 							<div class="widget-cart__cart">
 								<?php ith_the_icon( 'cart', 'widget-cart__cart-icon' ); ?>
-								<span class="widget-cart__cart-count">1</span>
+								<span class="widget-cart__cart-count"><?php echo get_basket_items_count(); ?></span>
 							</div>
 						</a>
 
-						<div class="widget-cart__body">
-							<div class="widget-cart__body-top">
-								<div class="widget-cart__cart">
-									<?php ith_the_icon( 'cart', 'widget-cart__cart-icon' ); ?>
-									<span class="widget-cart__cart-count">1</span>
-								</div>
-
-								<a href="#" class="widget-cart__close"></a>
-							</div>
-
-							<h4 class="widget-cart__title">Donation Basket</h4>
-
-							<div class="widget-cart__total-wrap">
-								<div class="widget-cart__total-text">Your Donation</div>
-								<div class="widget-cart__total">£<span>2100</span></div>
-							</div>
-
-							<ul class="widget-cart-items">
-								<li class="widget-cart-items__item">
-									<div class="widget-cart-items__name">Donation</div>
-									<div class="widget-cart-items__period">Monthly</div>
-									<div class="widget-cart-items__price">£2100</div>
-									<a href="#" class="widget-cart-items__remove">Remove</a>
-								</li>
-							</ul>
-
-							<div class="widget-cart__body-bottom">
-								<a href="#" class="btn btn--light">Checkout</a>
-							</div>
-						</div>
+						<?php get_template_part( 'template-parts/widget-cart' ); ?>
 					</div>
 
 					<?php $donate_btn_class = '';

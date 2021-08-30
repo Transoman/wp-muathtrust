@@ -1,6 +1,7 @@
 'use strict';
 
 global.jQuery = require('jquery');
+global.Cookies = require('js-cookie');
 let svg4everybody = require('svg4everybody'),
   popup = require('jquery-popup-overlay'),
   iMask = require('imask'),
@@ -66,7 +67,7 @@ jQuery(document).ready(function($) {
       }
     });
 
-    closeBtn.click(function (e) {
+    box.on('click', '.widget-cart__close', function (e) {
       e.preventDefault();
 
       box.removeClass('is-active');
@@ -107,6 +108,7 @@ jQuery(document).ready(function($) {
     $('select').each(function(index, el) {
       new Choices(el, {
         searchEnabled: false,
+        shouldSort: false,
         itemSelectText: '',
       });
     });

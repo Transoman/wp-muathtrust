@@ -40,6 +40,22 @@
     background-color: #e5e5e5
     cursor: not-allowed
     color: #fff
+  &.btn-loader
+    position: relative
+    color: transparent
+    &::before
+      content: ''
+      position: absolute
+      top: 50%
+      left: 50%
+      width: rem(20px)
+      height: rem(20px)
+      margin-top: rem(-10px)
+      margin-left: rem(-10px)
+      border: 3px solid $white
+      border-top-color: transparent
+      border-radius: 50%
+      animation: spin 1s infinite linear
 
 .btn-round
   display: flex

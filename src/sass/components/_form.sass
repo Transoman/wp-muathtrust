@@ -102,3 +102,44 @@ textarea
 .wpcf7
   .ajax-loader
     display: none
+
+.circle-check
+  input[type="checkbox"]
+    @extend .visually-hidden
+    &:checked ~ span::after
+      opacity: 1
+  &--white
+    .circle-check__box
+      color: $white
+      &::before
+        border: 1px solid $white
+      &::after
+        background-color: $white
+  &__box
+    position: relative
+    padding-left: rem(45px)
+    cursor: pointer
+    &::before
+      content: ''
+      position: absolute
+      top: 50%
+      left: 0
+      margin-top: -14px
+      width: 28px
+      height: 28px
+      border-radius: 50%
+      background-color: $lighten-blue
+      cursor: pointer
+    &::after
+      content: ''
+      position: absolute
+      top: 50%
+      left: 8px
+      width: 12px
+      height: 12px
+      margin-top: -6px
+      border-radius: 50%
+      background-color: $light-blue
+      opacity: 0
+      +trans
+      cursor: pointer
