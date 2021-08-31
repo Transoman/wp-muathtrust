@@ -1,0 +1,104 @@
+.hire
+  padding: rem(80px) 0 rem(160px)
+  background-color: $light-blue
+  +sm-block
+    padding: rem(85px) 0
+  &__top
+    max-width: rem(485px)
+    margin: 0 auto rem(60px)
+    text-align: center
+    color: $white
+    +sm-block
+      margin-bottom: rem(85px)
+      text-align: left
+    &-title
+      margin-bottom: rem(30px)
+
+.hire-form
+  padding: rem(90px) rem(45px)
+  background-color: $geyser
+  border-radius: rem(50px)
+  +sm-block
+    padding: rem(85px) rem(15px) rem(100px)
+  p
+    color: $accent
+  hr
+    height: 1px
+    margin: 0 0 rem(50px)
+    border: 0
+    background-color: $light-blue
+    +sm-block
+      margin-bottom: rem(40px)
+  &__title
+    margin-bottom: rem(50px)
+    color: $light-blue
+    +sm-block
+      margin-bottom: rem(30px)
+  &__row
+    display: flex
+    justify-content: space-between
+    margin-bottom: rem(100px)
+    +md-block
+      flex-direction: column
+    +sm-block
+      margin-bottom: rem(85px)
+    &:last-child
+      margin-bottom: 0
+  &__grid
+    display: flex
+    .form-group
+      width: rem(70px)
+      margin-right: rem(30px)
+      margin-bottom: 0
+      &:last-child
+        margin-right: 0
+      span
+        display: block
+        margin-top: rem(10px)
+        font-size: rem(15px)
+        font-weight: 600
+        text-align: center
+  &__col
+    width: 41.74%
+    +md-block
+      width: 100%
+    +sm-block
+      margin-bottom: rem(60px)
+      &:last-child
+        margin-bottom: 0
+    .form-group
+      +sm-block
+        margin-bottom: rem(30px)
+      &:last-child
+        margin-bottom: 0
+  &__bottom
+    display: flex
+    align-items: center
+    margin-top: rem(60px)
+    +sm-block
+      flex-direction: column
+      align-items: stretch
+    .btn
+      margin-left: auto
+      +sm-block
+        width: 100%
+  &__back
+    display: flex
+    align-items: center
+    font-size: rem(18px)
+    font-weight: 500
+    color: $accent
+    text-transform: uppercase
+    +sm-block
+      align-self: flex-start
+      margin-bottom: rem(85px)
+    &:hover
+      color: $light-blue
+    svg
+      margin-right: rem(10px)
+      font-size: rem(25px)
+  &__checkboxes
+    .check
+      margin-bottom: rem(12px)
+      &:last-child
+        margin-bottom: 0
