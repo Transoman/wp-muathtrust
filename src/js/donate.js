@@ -146,6 +146,56 @@ jQuery(document).ready(function($) {
     // $('.box_giftaid').find('.put_price_current').text(total_amount);
     // $('.box_giftaid').find('.put_price').text(plus_gift_aid);
   }
+  
+  let confirmDonation = function() {
+    if ($('#card-element').length) {
+      var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+      var styles = {
+        base: {
+          iconColor: '#2C2C2C',
+          color: '#2C2C2C',
+          fontFamily: 'inherit',
+          fontSize: '21px',
+          fontSmoothing: 'antialiased',
+          ':-webkit-autofill': {
+            color: '#fce883',
+          },
+          '::placeholder': {
+            color: '#C8CBCD',
+          },
+        },
+        invalid: {
+          iconColor: '#f00',
+          color: '#f00',
+        },
+      };
+      var elements = stripe.elements();
+      var card = elements.create('card', {
+        style: styles,
+        hidePostalCode: true
+      });
+      var errorBlock = $('.card-error');
+
+      card.mount('#card-element');
+
+      card.on('change', function(event) {
+        if (event.error) {
+          errorBlock.text(event.error.message);
+        } else {
+          errorBlock.text('');
+        }        
+      });
+      
+      var form = $('.confirm-form');
+      
+      form.submit(function(e) {
+        e.preventDefault();
+        
+        location.href = '/thank-you';
+      });
+    }
+  };
 
   quickDonate();
+  confirmDonation();
 });
