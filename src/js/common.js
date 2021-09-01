@@ -1,6 +1,7 @@
 'use strict';
 
-global.jQuery = require('jquery');
+// import datepicker from 'air-datepicker';
+// global.jQuery = require('jquery');
 global.Cookies = require('js-cookie');
 let svg4everybody = require('svg4everybody'),
   popup = require('jquery-popup-overlay'),
@@ -233,6 +234,43 @@ jQuery(document).ready(function($) {
         }
       }
     });
+  
+  let hireForm = function() {
+    let room = $('select[name="hire_accommodation"]');
+    
+    if (room.length) {
+      let selectedPrice = room.find('option:selected').data('custom-properties');
+      let priceBlock = $('.select-price span');
+
+      priceBlock.text(selectedPrice.price)
+
+      room.on('change', function () {
+        selectedPrice = $(this).find('option:selected').data('custom-properties');
+        priceBlock.text(selectedPrice.price)
+      });
+    }
+  };
+
+  // var disabledDays = [2, 5];
+  // let dt = $('.js-datepicker').datepicker({
+  //   language: 'en',
+  //   minDate: new Date(),
+  //   range: true,
+  //   multipleDatesSeparator: ' - ',
+  //   onRenderCell: function (date, cellType) {
+  //     if (cellType == 'day') {
+  //       var day = date.getDate(),
+  //         isDisabled = disabledDays.indexOf(day) != -1;
+  //
+  //       return {
+  //         disabled: isDisabled
+  //       }
+  //     }
+  //   },
+  //   onSelect: function(formattedDate, date, inst) {
+  //     console.log(formattedDate)
+  //   }
+  // });
 
 
   toggleNav();
@@ -245,6 +283,7 @@ jQuery(document).ready(function($) {
   loadMore();
   fpTabs();
   widgetAcc();
+  hireForm();
 
   // SVG
   svg4everybody({});

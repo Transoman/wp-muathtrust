@@ -5,7 +5,7 @@
 		</a>
 	</div>
 
-	<time class="news-card__date" datetime="<?php echo get_the_date( 'Y-m-d' ); ?>"><?php echo get_the_date(); ?></time>
+	<time class="news-card__date" datetime="<?php echo get_the_date( 'Y-m-d' ); ?>"><?php echo get_the_date( 'd F Y' ); ?></time>
 
 	<h4 class="news-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 

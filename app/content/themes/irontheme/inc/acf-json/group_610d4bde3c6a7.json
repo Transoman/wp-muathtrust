@@ -2338,6 +2338,79 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_612f2f01bc053": {
+                    "key": "layout_612f2f01bc053",
+                    "name": "text_block",
+                    "label": "Text Block",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_612f2f22bc054",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_612f3225525ee": {
+                    "key": "layout_612f3225525ee",
+                    "name": "accommodation_block",
+                    "label": "Accommodation Block",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_612f3229525ef",
+                            "label": "Bottom Text",
+                            "name": "bottom_text",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_612f3251525f0",
+                            "label": "Button",
+                            "name": "button",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -2364,5 +2437,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1629976554
+    "modified": 1630483047
 }

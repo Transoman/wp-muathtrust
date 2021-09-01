@@ -329,10 +329,11 @@ $paying_email = isset( $_SESSION['hire_fields']['paying_email'] ) ? $_SESSION['h
 
 						<div class="form-group">
 							<select name="hire_accommodation">
-								<option value="Amanah House" data-price="100" <?php selected( 'Amanah House', $accommodation ); ?>>Amanah House</option>
-								<option value="Recently refurbished AccommodationBlock" data-price="150" <?php selected( 'Recently refurbished AccommodationBlock', $accommodation ); ?>>Recently refurbished AccommodationBlock</option>
-								<option value="Fully fitted One Bedroom Flat" data-price="300" <?php selected( 'Fully fitted One Bedroom Flat', $accommodation ); ?>>Fully fitted One Bedroom Flat</option>
+								<option value="Amanah House" data-custom-properties='{"price": 100}' <?php selected( 'Amanah House', $accommodation ); ?>>Amanah House</option>
+								<option value="Recently refurbished AccommodationBlock" data-custom-properties='{"price": 150}' <?php selected( 'Recently refurbished AccommodationBlock', $accommodation ); ?>>Recently refurbished AccommodationBlock</option>
+								<option value="Fully fitted One Bedroom Flat" data-custom-properties='{"price": 300}' <?php selected( 'Fully fitted One Bedroom Flat', $accommodation ); ?>>Fully fitted One Bedroom Flat</option>
 							</select>
+							<span class="select-price">£<span>0</span></span>
 						</div>
 					</div>
 				</div>
@@ -354,7 +355,7 @@ $paying_email = isset( $_SESSION['hire_fields']['paying_email'] ) ? $_SESSION['h
 
 						<div class="form-group">
 							<label for="day" class="form-label">Day</label>
-							<input type="text" name="hire_day" id="day" value="<?php echo $day; ?>">
+							<input type="text" name="hire_day" id="day" class="js-datepicker" autocomplete="off" value="<?php echo $day; ?>">
 						</div>
 
 						<div class="form-group">

@@ -28,6 +28,8 @@ if ( have_rows( 'layouts' ) ):
 		'policies_and_forms' => 'policies-and-forms',
 		'vacancies' => 'vacancies',
 		'prayer_timetable' => 'prayer-timetable',
+		'text_block' => 'text-block',
+		'accommodation_block' => 'accommodation-block',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();

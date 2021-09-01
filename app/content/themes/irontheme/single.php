@@ -20,7 +20,7 @@ get_header();
 
 			<div class="article__wrap">
 				<div class="article__left">
-					<time class="article__date" datetime="<?php echo get_the_date( 'Y-m-d' ); ?>"><?php echo get_the_date(); ?></time>
+					<time class="article__date" datetime="<?php echo get_the_date( 'Y-m-d' ); ?>"><?php echo get_the_date( 'd F Y' ); ?></time>
 
 					<h1 class="article__title"><?php the_title(); ?></h1>
 

@@ -2,7 +2,7 @@
 
 get_template_part( 'template-parts/breadcrumbs' );
 
-$details = get_field( 'event_details' );
+$details = get_field( 'accommodation_details' );
 ?>
 
 <section class="event-hero">
@@ -12,7 +12,7 @@ $details = get_field( 'event_details' );
 
 	<div class="event-hero__content">
 		<div class="container">
-			<p class="event-hero__type">Event</p>
+			<p class="event-hero__type">Accommodation</p>
 			<h1 class="event-hero__title"><?php the_title(); ?></h1>
 		</div>
 	</div>
@@ -23,18 +23,13 @@ $details = get_field( 'event_details' );
 			<div class="event__wrap">
 				<div class="event__details">
 					<div class="event__details-item">
-						<div class="event__details-label">Date:</div>
-						<div class="event__details-value"><?php echo $details['date']; ?></div>
-					</div>
-					<div class="event__details-item">
-						<div class="event__details-label">Time:</div>
-						<div class="event__details-value"><?php echo $details['time']; ?></div>
+						<div class="event__details-label">Price:</div>
+						<div class="event__details-value">£<?php echo $details['price']; ?></div>
 					</div>
 
-					<div class="event__details-btns">
-						<a href="#" class="btn-stroke btn-stroke--dark">Register</a>
-						<a href="#" class="btn-stroke btn-stroke--dark">Pay for entry</a>
-					</div>
+<!--					<div class="event__details-btns">-->
+<!--						<a href="#" class="btn-stroke btn-stroke--dark">Book now</a>-->
+<!--					</div>-->
 				</div>
 
 				<div class="event__content">

@@ -80,6 +80,8 @@ if ( ! function_exists( 'ith_setup' ) ) :
 		add_image_size( 'upcoming_event', 750, 400, true );
 		add_image_size( 'gallery', 1240, 600, true );
 		add_image_size( 'page_hero', 1920, 780, true );
+		add_image_size( 'acm', 450, 290, true );
+		add_image_size( 'acm-wide', 680, 290, true );
 	}
 endif;
 add_action( 'after_setup_theme', 'ith_setup' );
@@ -163,12 +165,15 @@ add_action( 'widgets_init', 'ith_widgets_init' );
  * Enqueue scripts and styles.
  */
 function ith_scripts() {
+	wp_enqueue_style( 'air-datepicker', 'https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.min.css' );
 	wp_enqueue_style( 'ith-style', get_stylesheet_uri() );
 
 	require_once get_template_directory() . '/inc/dynamic-css.php';
 
-	wp_enqueue_script( 'ith-main', get_template_directory_uri() . '/js/common.js', array(), '', true );
-	wp_enqueue_script( 'ith-donate', get_template_directory_uri() . '/js/donate.js', array(), '', true );
+	wp_enqueue_script( 'ith-main', get_template_directory_uri() . '/js/common.js', array( 'jquery' ), '', true );
+	wp_enqueue_script( 'ith-donate', get_template_directory_uri() . '/js/donate.js', array( 'jquery' ), '', true );
+	wp_enqueue_script( 'air-datepicker', 'https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/datepicker.min.js', array( 'jquery' ), '', true );
+	wp_enqueue_script( 'air-datepicker-en', 'https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/i18n/datepicker.en.min.js', array( 'air-datepicker' ), '', true );
 }
 
 add_action( 'wp_enqueue_scripts', 'ith_scripts' );

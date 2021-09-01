@@ -29,6 +29,20 @@
     background-color: $light-blue
     +sm-block
       margin-bottom: rem(40px)
+  .select-price
+    position: absolute
+    top: 50%
+    right: rem(75px)
+    z-index: 1
+    transform: translateY(-50%)
+    +sm-block
+      right: rem(70px)
+  select[name="hire_accommodation"] + .choices__list
+    .choices__item--selectable
+      padding-right: rem(110px)
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
   &__title
     margin-bottom: rem(50px)
     color: $light-blue

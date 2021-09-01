@@ -1,0 +1,21 @@
+@import "accommodation-grid"
+
+.accommodation-block
+  padding: rem(40px) 0 rem(160px)
+  +sm-block
+    padding: rem(42.5px) 0 rem(85px)
+  &__wrap
+    max-width: rem(1040px)
+    margin: 0 auto
+  &__text
+    margin-top: rem(50px)
+    +sm-block
+      font-size: rem(15px)
+    a
+      border-bottom: 1px solid $accent
+      color: $accent
+      &:hover
+        color: $light-blue
+        border-color: $light-blue
+  &__btn
+    margin-top: rem(60px)

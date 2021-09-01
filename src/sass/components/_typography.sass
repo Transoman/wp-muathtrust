@@ -54,3 +54,32 @@ svg
   text-transform: uppercase
   color: $light-blue
   font-weight: 600
+
+.alignleft
+  /*rtl:ignore*/
+  float: left
+  /*rtl:ignore*/
+  margin-right: 1.5em
+  margin-bottom: 1.5em
+  +sm-block
+    float: none
+    display: block
+    margin: 1.5em auto
+
+.alignright
+  /*rtl:ignore*/
+  float: right
+  /*rtl:ignore*/
+  margin-left: 1.5em
+  margin-bottom: 1.5em
+  +sm-block
+    float: none
+    display: block
+    margin: 1.5em auto
+
+.aligncenter
+  clear: both
+  display: block
+  margin-left: auto
+  margin-right: auto
+  margin-bottom: 1.5em
