@@ -1,8 +1,9 @@
 <?php
 extract( $args );
 
-$json = wp_remote_get( 'http://muathtrust.loc/wp-json/dpt/v1/prayertime?filter=today' );
-if ( $json['body'] ):
+$json = wp_remote_get( home_url( 'wp-json/dpt/v1/prayertime?filter=today' ) );
+
+if ( ! is_wp_error($json) && isset( $json['body'] ) ):
 	$result = json_decode( $json['body'] );
 
 	$time = '';

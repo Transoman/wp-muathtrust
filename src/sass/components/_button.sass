@@ -111,3 +111,31 @@
     &:active
       color: $lighten-blue
       border-color: $lighten-blue
+
+.btn-to-top
+  position: fixed
+  right: rem(40px)
+  bottom: rem(40px)
+  z-index: 9
+  opacity: 0
+  visibility: hidden
+  +xs-block
+    right: rem(10px)
+  &.active
+    opacity: 1
+    visibility: visible
+  display: flex
+  align-items: center
+  justify-content: center
+  width: rem(50px)
+  height: rem(50px)
+  border-radius: 0 rem(20px) 0 rem(20px)
+  background-color: $accent
+  &:hover
+    background-color: $light-blue
+    border-radius: 0 rem(15px) 0 rem(15px)
+  &:active
+    background-color: $lighten-blue
+  svg
+    fill: $white
+    transform: rotate(180deg)

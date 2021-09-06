@@ -186,6 +186,7 @@ add_filter( 'wpcf7_autop_or_not', '__return_false' );
 function js_variables() {
 	$variables = array(
 		'ajax_url' => admin_url( 'admin-ajax.php' ),
+		'booking_nonce' => wp_create_nonce( 'booking_nonce' )
 	);
 	echo '<script type="text/javascript">window.wp_data = ' . json_encode( $variables ) . ';</script>';
 }

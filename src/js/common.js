@@ -242,13 +242,55 @@ jQuery(document).ready(function($) {
       let selectedPrice = room.find('option:selected').data('custom-properties');
       let priceBlock = $('.select-price span');
 
-      priceBlock.text(selectedPrice.price)
+      priceBlock.text(selectedPrice.price);
 
       room.on('change', function () {
         selectedPrice = $(this).find('option:selected').data('custom-properties');
         priceBlock.text(selectedPrice.price)
       });
     }
+    
+    let form = $('.hire-form--step-6');
+    
+    if (form.length) {
+      let checkTerm = form.find('input[name="hire_statemant"]');
+      let btn = form.find('[type="submit"]');
+
+      checkTerm.change(function() {
+        if (checkTerm.is(':checked')) {
+          btn.removeAttr('disabled');
+        } else {
+          btn.attr('disabled', true);
+        }
+      });
+
+      form.submit(function(e) {
+        e.preventDefault();
+
+        $.ajax({
+          url: window.wp_data.ajax_url,
+          data: {
+            action: 'booking_insert',
+            nonce: window.wp_data.booking_nonce
+          },
+          type: 'POST',
+          beforeSend: function (xhr) {
+            btn.addClass('btn-loader');
+          },
+          success: function (data) {
+            btn.removeClass('btn-loader');
+            
+            if ( data.success ) {
+              $('.alert-block').html(data.data).addClass('alert-block--success');
+              form.trigger('reset');
+              btn.attr('disabled', true);
+            }
+          }
+        });
+
+      });
+    }
+
   };
 
   // var disabledDays = [2, 5];
@@ -272,6 +314,38 @@ jQuery(document).ready(function($) {
   //   }
   // });
 
+  $('.btn-to-top').click(function(e) {
+    e.preventDefault();
+
+    $('html, body').animate({
+      scrollTop: 0
+    }, 1000);
+  });
+
+  let fixedHeader = function() {
+    let header = $('.header');
+    let h = header.innerHeight();
+
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > window.innerHeight) {
+        $('body').css('padding-top', h);
+        header.addClass('fixed');
+      }
+      else {
+        $('body').css('padding-top', 0);
+        header.removeClass('fixed');
+      }
+    });
+  };
+
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > window.innerHeight) {
+      $('.btn-to-top').addClass('active');
+    } else {
+      $('.btn-to-top').removeClass('active');
+    }
+  });
+
 
   toggleNav();
   initModal();
@@ -284,6 +358,7 @@ jQuery(document).ready(function($) {
   fpTabs();
   widgetAcc();
   hireForm();
+  fixedHeader();
 
   // SVG
   svg4everybody({});

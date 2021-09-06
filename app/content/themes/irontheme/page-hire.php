@@ -6,8 +6,6 @@ $important_text = get_field( 'hire_important_text' );
 
 $step = isset( $_GET['step'] ) ? $_GET['step'] : '';
 
-var_dump($_POST);
-
 if ( count($_POST) > 0 ) {
 	if ( $step == 2 ) {
 		if ( isset( $_POST['hire_accommodation'] ) ) {
@@ -664,6 +662,8 @@ $paying_email = isset( $_SESSION['hire_fields']['paying_email'] ) ? $_SESSION['h
 			</form>
 		<?php elseif ( $step == 6 ): ?>
 			<form action="<?php echo get_permalink(); ?>?step=6" method="post" class="hire-form hire-form--step-6">
+				<div class="alert-block"></div>
+
 				<h3 class="hire-form__title">Important</h3>
 
 				<div class="form-group">
@@ -682,7 +682,7 @@ $paying_email = isset( $_SESSION['hire_fields']['paying_email'] ) ? $_SESSION['h
 				<div class="hire-form__bottom">
 					<a href="<?php echo get_permalink(); ?>?step=5" class="hire-form__back"><?php echo ith_the_icon( 'arrow-left' ); ?>person details</a>
 
-					<button type="submit" class="btn">Next</button>
+					<button type="submit" class="btn" disabled>Book now</button>
 				</div>
 			</form>
 		<?php endif; ?>

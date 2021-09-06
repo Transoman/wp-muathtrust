@@ -47,6 +47,8 @@
 
 				<div class="footer__dev">Designed and Developed by <a href="https://www.arrenmarketing.com/" target="_blank">Arren Marketing</a></div>
 			</div>
+
+			<a href="#" class="btn-to-top"><?php ith_the_icon( 'chevron-down' ); ?></a>
 		</div>
 	</footer><!-- #colophon -->
 

@@ -48,3 +48,4 @@ require get_template_directory() . '/inc/post-types.php';
 require get_template_directory() . '/inc/ajax.php';
 require get_template_directory() . '/inc/external.php';
 require get_template_directory() . '/inc/donation.php';
+require get_template_directory() . '/inc/booking.php';

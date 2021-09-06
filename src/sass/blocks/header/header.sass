@@ -1,6 +1,13 @@
 .header
   position: relative
   z-index: 11
+  &.fixed
+    position: fixed
+    top: 0
+    right: 0
+    left: 0
+    background-color: $geyser
+    animation: slideDown 0.4s
   &__wrap
     position: relative
     display: flex
@@ -24,3 +31,9 @@
   &__btn-donate
     +sm-block
       display: none
+
+@keyframes slideDown
+  0%
+    transform: translateY(-100%)
+  100%
+    transform: translateY(0)
