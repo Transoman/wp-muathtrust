@@ -100,7 +100,7 @@ if ( $page_background_type == 'inherit' ) {
 					?>
 
 					<div class="mobile-menu__bottom">
-						<a href="#" class="btn btn--lighten mobile-menu__btn-donate">Donate</a>
+						<a href="<?php echo home_url( 'donate' ); ?>" class="btn btn--lighten mobile-menu__btn-donate">Donate</a>
 					</div>
 				</div>
 			</div>

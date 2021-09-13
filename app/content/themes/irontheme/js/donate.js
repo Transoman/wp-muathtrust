@@ -41,6 +41,32 @@ jQuery(document).ready(function($) {
       } else alert('Some error');
     });
   };
+
+  let quickDonateV2 = function () {
+    let form = $('.quick-donate-v2-form');
+    let btn = form.find('[type="submit"]');
+    
+    form.submit(function(e) {
+      e.preventDefault();
+
+      if (form[0].checkValidity() === false) {
+        return true;
+      }
+      
+      btn.addClass('btn-loader');
+      
+      let appeal = form.find('input[name="appeal"]:checked')
+      let appealId = appeal.val();
+      let amount = appeal.data('price');
+      let name = appeal.data('name');
+
+      let result = basket_add_item(amount, 'once', appealId, name);
+
+      if (result) {
+        update_donation_summary(btn);
+      } else alert('Some error');
+    });
+  };
   
   let donationForm = function() {
     let form = $('.donation-form');
@@ -334,6 +360,7 @@ jQuery(document).ready(function($) {
   };
 
   quickDonate();
+  quickDonateV2();
   donationForm();
   confirmDonation();
   checkoutForm();

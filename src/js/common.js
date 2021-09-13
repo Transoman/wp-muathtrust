@@ -338,6 +338,15 @@ jQuery(document).ready(function($) {
     let header = $('.header');
     let h = header.innerHeight();
 
+    if ($(window).scrollTop() > document.documentElement.clientHeight) {
+      $('body').css('padding-top', h);
+      header.addClass('fixed');
+    }
+    else {
+      $('body').css('padding-top', 0);
+      header.removeClass('fixed');
+    }
+    
     $(window).scroll(function() {
       if ($(this).scrollTop() > document.documentElement.clientHeight) {
         $('body').css('padding-top', h);

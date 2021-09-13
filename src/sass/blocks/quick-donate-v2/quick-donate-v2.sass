@@ -1,0 +1,87 @@
+.quick-donate-v2
+  position: relative
+  z-index: 1
+  padding-bottom: rem(60px)
+  padding-top: rem(160px)
+  +sm-block
+    padding-bottom: 0
+    padding-top: rem(85px)
+  &--cover
+    &::before
+      content: ''
+      position: absolute
+      z-index: -1
+      top: 0
+      height: rem(410px)
+      width: 100%
+      background-color: $white
+      border-radius: 0 0 rem(200px) rem(200px)
+      pointer-events: none
+  &__wrap
+    padding: rem(90px) rem(65px)
+    background-color: $lighten-blue
+    border-radius: rem(100px)
+    +lg-block
+      padding-right: rem(30px)
+      padding-left: rem(30px)
+    +sm-block
+      position: relative
+      width: 100vw
+      left: 50%
+      margin-left: -50vw
+      padding: rem(85px) rem(15px) rem(145px)
+      border-radius: 0 0 rem(100px) rem(100px)
+  &__title
+    margin-bottom: rem(30px)
+    text-align: center
+    color: $white
+    +sm-block
+      margin-bottom: rem(40px)
+  &__text
+    max-width: rem(495px)
+    margin: 0 auto
+    color: $white
+    text-align: center
+
+.quick-donate-v2-form
+  margin-top: rem(75px)
+  +sm-block
+    margin-top: rem(40px)
+  &__items
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 0 rem(40px)
+    +md-block
+      grid-template-columns: 1fr
+      gap: rem(20px) 0
+  &__item
+    cursor: pointer
+    &:hover
+      .quick-donate-v2-form__item-inner
+        background-color: $lighten-blue
+    input[type="radio"]
+      @extend .visually-hidden
+      &:checked ~ .quick-donate-v2-form__item-inner
+        background-color: $light-blue
+    &-inner
+      display: flex
+      align-items: center
+      justify-content: space-between
+      min-height: rem(140px)
+      padding: rem(20px) rem(20px) rem(20px) rem(30px)
+      background-color: $white
+      border-radius: rem(10px)
+      +trans
+    &-price
+      margin-right: rem(20px)
+      font-size: rem(36px)
+      font-weight: 700
+    &-name
+      @extend h4
+  &__bottom
+    margin-top: rem(80px)
+    text-align: center
+    +sm-block
+      margin-top: rem(20px)
+      .btn
+        width: 100%

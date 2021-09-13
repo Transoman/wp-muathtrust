@@ -12,6 +12,7 @@ if ( have_rows( 'layouts' ) ):
 		'logos_block' => 'logos-block',
 		'subscribe' => 'subscribe',
 		'quick_donate' => 'quick-donate',
+		'quick_donate_v2' => 'quick-donate-v2',
 		'widget_upcoming_events' => 'widget-upcoming-events',
 		'full_with_image' => 'full-with-image',
 		'businesses_block' => 'businesses-block',

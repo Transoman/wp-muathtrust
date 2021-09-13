@@ -162,4 +162,6 @@ $section_3_image_right = $section_3['image_right'];
 	</div>
 </section>
 
+<?php get_template_part( 'template-parts/blocks' ); ?>
+
 <?php get_footer();

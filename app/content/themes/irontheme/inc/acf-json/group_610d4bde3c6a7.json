@@ -863,6 +863,73 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_613f0e9f82ebd": {
+                    "key": "layout_613f0e9f82ebd",
+                    "name": "quick_donate_v2",
+                    "label": "Quick Donate v2",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_613f0eb682ebf",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_613f0ebc82ec0",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 0,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_613f0e9f82ebe",
+                            "label": "Show Cover",
+                            "name": "show_cover",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 1,
+                            "ui": 1,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_6116453be117a": {
                     "key": "layout_6116453be117a",
                     "name": "full_with_image",
@@ -2437,5 +2504,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1631187442
+    "modified": 1631522513
 }
