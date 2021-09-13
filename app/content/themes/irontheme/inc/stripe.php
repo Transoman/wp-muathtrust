@@ -1,7 +1,21 @@
 <?php
 require_once get_template_directory() . '/inc/libs/stripe/init.php';
 
-\Stripe\Stripe::setApiKey('sk_test_51JXoKCG3CZkpXfTw2SQmmhmrnK049DN1VIVVCHBA3cVW5NpauqsxrDfIBD94sbSBI36MAxnI26mgn7JETukqCo4H00AbHr4JvK');
+$stripe_pk = 'pk_test_51JXoKCG3CZkpXfTwJRAQvg3BVJxhyPRTePgRGms0tCrpFTVtEE8HAgRzqSJw3X8AvLdFO3tC2o5vGRrT5semutri00oA9Gj8fY';
+$stripe_sk = 'sk_test_51JXoKCG3CZkpXfTw2SQmmhmrnK049DN1VIVVCHBA3cVW5NpauqsxrDfIBD94sbSBI36MAxnI26mgn7JETukqCo4H00AbHr4JvK';
+
+\Stripe\Stripe::setApiKey($stripe_sk);
+
+function enqueue_script() {
+	global $stripe_pk;
+	wp_localize_script( 'ith-donate', 'stripe_keys',
+		array(
+			'public' => $stripe_pk
+		)
+	);
+}
+
+add_action( 'wp_enqueue_scripts', 'enqueue_script', 99 );
 
 function submit_donation() {
 	$form_fields = isset( $_SESSION['checkout_fields'] ) ? $_SESSION['checkout_fields'] : [];
