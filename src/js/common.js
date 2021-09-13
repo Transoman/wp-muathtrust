@@ -86,6 +86,13 @@ jQuery(document).ready(function($) {
       box.removeClass('is-active');
       body.removeClass('cart-open');
     });
+
+    $(document).on('click', function(e) {
+      if (! $(e.target).closest('.widget-cart').length && ! $(e.target).closest('.widget-cart-items__item').length) {
+        box.removeClass('is-active');
+        body.removeClass('cart-open');
+      }
+    });
   };
   
   let newsSlider = function () {
