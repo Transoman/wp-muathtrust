@@ -19,7 +19,7 @@ $text = get_sub_field( 'text' );
 								<?php the_sub_field( 'description' ); ?>
 							</div>
 
-							<a href="mailto:<?php echo get_option( 'admin_email' ); ?>" class="btn-stroke">Upload CV</a>
+							<a href="mailto:<?php echo get_option( 'admin_email' ); ?>" class="btn-stroke">Register Interest</a>
 						</div>
 					</div>
 				<?php endwhile; ?>

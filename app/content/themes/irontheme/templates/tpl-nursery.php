@@ -3,6 +3,10 @@
  * Template Name: Nursery Page
  */
 get_header();
+
+$breadcrumbs_visibility = get_field( 'breadcrumbs_visibility' );
+
+get_template_part( 'template-parts/breadcrumbs' );
 ?>
 <?php
 $section_1 = get_field( 'section_1' );
@@ -10,7 +14,7 @@ $section_1_left_text = $section_1['left_text'];
 $section_1_right_list = $section_1['right_list'];
 $section_1_right_navigation = $section_1['navigation'];
 ?>
-<section class="nursery-section-1">
+<section class="nursery-section-1<?php echo $breadcrumbs_visibility != 'hide' ? ' nursery-section-1--breadcrumbs-show' : ''; ?>">
 	<div class="container">
 		<div class="nursery-section-1__wrap">
 			<div class="nursery-section-1__left">

@@ -2,7 +2,7 @@ let gp = require('gulp-load-plugins')(),
     imageminJpegRecompress = require('imagemin-jpeg-recompress'),
     pngquant = require('imagemin-pngquant'),
     imgPATH = {
-      "input": [$.path.source + 'images/**/*.{png,jpg,gif,svg}',
+      "input": [$.path.source + 'images/**/*.{png,jpg,gif,svg,ico}',
         '!' + $.path.source + 'images/svg/*'],
       "ouput": $.path.build + "/images/"
     };

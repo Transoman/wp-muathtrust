@@ -213,67 +213,63 @@ if ( $step == '' || $step == 1 ) {
 
 if ( count($_POST) > 0 ) {
 	if ( isset( $_POST['amount'] ) ) {
-		$_SESSION['checkout_fields']['amount'] = $_POST['amount'];
+		$_SESSION['checkout_fields']['amount'] = sanitize_text_field( $_POST['amount'] );
 	}
 
 	if ( isset( $_POST['category'] ) ) {
-		$_SESSION['checkout_fields']['category'] = $_POST['category'];
+		$_SESSION['checkout_fields']['category'] = sanitize_text_field( $_POST['category'] );
 	}
 
 	if ( isset( $_POST['notes'] ) ) {
-		$_SESSION['checkout_fields']['notes'] = $_POST['notes'];
+		$_SESSION['checkout_fields']['notes'] = sanitize_text_field( $_POST['notes'] );
 	}
 
 	if ( isset( $_POST['title'] ) ) {
-		$_SESSION['checkout_fields']['title'] = $_POST['title'];
+		$_SESSION['checkout_fields']['title'] = sanitize_text_field( $_POST['title'] );
 	}
 
 	if ( isset( $_POST['first_name'] ) ) {
-		$_SESSION['checkout_fields']['first_name'] = $_POST['first_name'];
+		$_SESSION['checkout_fields']['first_name'] = sanitize_text_field( $_POST['first_name'] );
 	}
 
 	if ( isset( $_POST['last_name'] ) ) {
-		$_SESSION['checkout_fields']['last_name'] = $_POST['last_name'];
+		$_SESSION['checkout_fields']['last_name'] = sanitize_text_field( $_POST['last_name'] );
 	}
 
 	if ( isset( $_POST['email'] ) ) {
-		$_SESSION['checkout_fields']['email'] = $_POST['email'];
+		$_SESSION['checkout_fields']['email'] = sanitize_email( $_POST['email'] );
 	}
 
 	if ( isset( $_POST['address_1'] ) ) {
-		$_SESSION['checkout_fields']['address_1'] = $_POST['address_1'];
+		$_SESSION['checkout_fields']['address_1'] = sanitize_text_field( $_POST['address_1'] );
 	}
 
 	if ( isset( $_POST['address_2'] ) ) {
-		$_SESSION['checkout_fields']['address_2'] = $_POST['address_2'];
+		$_SESSION['checkout_fields']['address_2'] = sanitize_text_field( $_POST['address_2'] );
 	}
 
 	if ( isset( $_POST['city'] ) ) {
-		$_SESSION['checkout_fields']['city'] = $_POST['city'];
-	}
-
-	if ( isset( $_POST['province'] ) ) {
-		$_SESSION['checkout_fields']['province'] = $_POST['province'];
+		$_SESSION['checkout_fields']['city'] = sanitize_text_field( $_POST['city'] );
 	}
 
 	if ( isset( $_POST['zip'] ) ) {
-		$_SESSION['checkout_fields']['zip'] = $_POST['zip'];
+		$_SESSION['checkout_fields']['zip'] = sanitize_text_field( $_POST['zip'] );
 	}
 
 	if ( isset( $_POST['country'] ) ) {
-		$_SESSION['checkout_fields']['country'] = $_POST['country'];
+		$_SESSION['checkout_fields']['country'] = sanitize_text_field( $_POST['country'] );
 	}
 
 	if ( isset( $_POST['gift_aid'] ) ) {
-		$_SESSION['checkout_fields']['gift_aid'] = $_POST['gift_aid'];
+		$_SESSION['checkout_fields']['gift_aid'] = sanitize_text_field( $_POST['gift_aid'] );
 	}
 
 	if ( isset( $_POST['updates_via_email'] ) ) {
-		$_SESSION['checkout_fields']['updates_via_email'] = $_POST['updates_via_email'];
+		$_SESSION['checkout_fields']['updates_via_email'] = sanitize_text_field( $_POST['updates_via_email'] );
 	}
 
 	if ( isset( $_POST['updates_via_post'] ) ) {
-		$_SESSION['checkout_fields']['updates_via_post'] = $_POST['updates_via_post'];
+		$_SESSION['checkout_fields']['updates_via_post'] = sanitize_text_field( $_POST['updates_via_post'] );
 	}
 }
 
@@ -288,13 +284,19 @@ $email = isset($_SESSION['checkout_fields']['email']) ? $_SESSION['checkout_fiel
 $address_1 = isset($_SESSION['checkout_fields']['address_1']) ? $_SESSION['checkout_fields']['address_1'] : '';
 $address_2 = isset($_SESSION['checkout_fields']['address_2']) ? $_SESSION['checkout_fields']['address_2'] : '';
 $city = isset($_SESSION['checkout_fields']['city']) ? $_SESSION['checkout_fields']['city'] : '';
-$province = isset($_SESSION['checkout_fields']['province']) ? $_SESSION['checkout_fields']['province'] : '';
 $zip = isset($_SESSION['checkout_fields']['zip']) ? $_SESSION['checkout_fields']['zip'] : '';
 $country = isset($_SESSION['checkout_fields']['country']) ? $_SESSION['checkout_fields']['country'] : '';
 $gift_aid = isset($_SESSION['checkout_fields']['gift_aid']) ? $_SESSION['checkout_fields']['gift_aid'] : '';
 $updates_via_email = isset($_SESSION['checkout_fields']['updates_via_email']) ? $_SESSION['checkout_fields']['updates_via_email'] : '';
 $updates_via_post = isset($_SESSION['checkout_fields']['updates_via_post']) ? $_SESSION['checkout_fields']['updates_via_post'] : '';
 
+
+$basket_items = get_basket_items();
+
+$total = 0;
+foreach ( $basket_items as $basket_item ) {
+	$total += $basket_item['amount'];
+}
 ?>
 
 <form action="<?php echo $form_url; ?>" method="post" class="checkout-form">
@@ -308,7 +310,7 @@ $updates_via_post = isset($_SESSION['checkout_fields']['updates_via_post']) ? $_
 
 				<div class="checkout__right">
 					<?php if ( $step == '' || $step == 1 ): ?>
-						<div class="checkout-form-box">
+						<div class="checkout-form-box checkout-form-box--step-1">
 							<div class="form-group">
 								<label for="amount" class="form-label">Amount</label>
 								<input type="number" name="amount" id="amount" required value="<?php echo $amount; ?>">
@@ -316,12 +318,24 @@ $updates_via_post = isset($_SESSION['checkout_fields']['updates_via_post']) ? $_
 
 							<div class="form-group">
 								<label for="category" class="form-label">Category</label>
-								<select name="category" id="category">
-									<option value="300" <?php selected( '300', $category )?>>Medicare for Child</option>
-									<option value="600" <?php selected( '600', $category )?>>Family Food Pack Sponsorship for 1 Year</option>
-									<option value="1000" <?php selected( '1000', $category )?>>Donate bread to feed 5,000 people</option>
-									<option value="2100" <?php selected( '2100', $category )?>>Sponsor Bakery For 1 Week</option>
-								</select>
+								<?php
+								$args = array(
+									'post_type' => 'appeals',
+									'posts_per_page' => -1
+								);
+
+								$appeals = new WP_Query( $args );
+
+								if ( $appeals->have_posts() ):
+								?>
+									<select name="category" id="category">
+										<?php while ( $appeals->have_posts() ): $appeals->the_post();
+											$appeals_details = get_field( 'appeals_details' );
+										?>
+											<option value="<?php echo get_the_ID(); ?>" data-custom-properties='{"price": "<?php echo $appeals_details['price']; ?>", "title": "<?php the_title(); ?>"}' <?php selected( get_the_ID(), $category )?>><?php the_title(); ?></option>
+										<?php endwhile; wp_reset_postdata(); ?>
+									</select>
+								<?php endif; ?>
 							</div>
 
 							<div class="form-group">
@@ -334,7 +348,7 @@ $updates_via_post = isset($_SESSION['checkout_fields']['updates_via_post']) ? $_
 							</div>
 						</div>
 					<?php elseif ( $step == 2 ): ?>
-						<div class="checkout-form-box">
+						<div class="checkout-form-box checkout-form-box--step-2">
 							<h3 class="checkout-form__title">Customer details</h3>
 
 							<div class="form-group">
@@ -360,8 +374,8 @@ $updates_via_post = isset($_SESSION['checkout_fields']['updates_via_post']) ? $_
 							</div>
 
 							<div class="form-group">
-								<label for="email" class="form-label">Email</label>
-								<input type="email" name="email" id="email" value="<?php echo $email; ?>">
+								<label for="email" class="form-label">Email <sup>*</sup></label>
+								<input type="email" name="email" id="email" value="<?php echo $email; ?>" required>
 							</div>
 
 							<div class="form-group">
@@ -377,11 +391,6 @@ $updates_via_post = isset($_SESSION['checkout_fields']['updates_via_post']) ? $_
 							<div class="form-group">
 								<label for="city" class="form-label">City</label>
 								<input type="text" name="city" id="city" value="<?php echo $city; ?>">
-							</div>
-
-							<div class="form-group">
-								<label for="province" class="form-label">Province</label>
-								<input type="text" name="province" id="province" value="<?php echo $province; ?>">
 							</div>
 
 							<div class="form-group">
@@ -411,7 +420,7 @@ $updates_via_post = isset($_SESSION['checkout_fields']['updates_via_post']) ? $_
 					<h2 class="section-title text-center">Gift aid</h2>
 					<div class="gift-aid__top text-center">
 						<h3>Increase the value of your donation by 25%</h3>
-						<p>Your donation of £50 will become £62,5 at not extra cost to you. </p>
+						<p>Your donation of £<span class="put_price_current"><?php echo $total; ?></span> will become £<span class="put_price"><?php echo $total*0.25+$total; ?></span> at not extra cost to you. </p>
 					</div>
 
 					<div class="gift-aid__body">

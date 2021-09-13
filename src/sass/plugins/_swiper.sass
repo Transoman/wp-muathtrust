@@ -2,8 +2,11 @@
 .swiper-button-next
   @extend .btn-round
   @extend .btn-round--light
+  outline: none
   &::after
     display: none
+  &:focus
+    outline: none
 
 .swiper-btns
   display: flex

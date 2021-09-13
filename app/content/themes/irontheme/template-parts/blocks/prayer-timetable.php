@@ -8,7 +8,7 @@
 
 		<?php if ( $pdf_timetable = get_sub_field( 'pdf_timetable' ) ): ?>
 			<div class="prayer-timetable__bottom text-center">
-				<a href="<?php echo $pdf_timetable; ?>" target="_blank" class="btn">Download</a>
+				<a href="<?php echo $pdf_timetable; ?>" target="_blank" class="btn">Download PRAYER TIMETABLE</a>
 			</div>
 		<?php endif; ?>
 	</div>

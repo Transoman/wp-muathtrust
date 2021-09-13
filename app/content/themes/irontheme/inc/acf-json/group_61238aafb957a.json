@@ -191,6 +191,51 @@
             "layout": "horizontal",
             "return_format": "value",
             "save_other_choice": 0
+        },
+        {
+            "key": "field_6139f4f440bd5",
+            "label": "Link Color",
+            "name": "breadcrumbs_link_color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        },
+        {
+            "key": "field_6139f62f40bd6",
+            "label": "Link Hover Color",
+            "name": "breadcrumbs_link_hover_color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        },
+        {
+            "key": "field_6139f6abcb138",
+            "label": "Text Color",
+            "name": "breadcrumbs_text_color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
         }
     ],
     "location": [
@@ -217,5 +262,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1629724068
+    "modified": 1631188691
 }

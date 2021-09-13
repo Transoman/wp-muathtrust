@@ -9,6 +9,13 @@
   .form-group
     +sm-block
       margin-bottom: rem(30px)
+    input[type="number"]
+      appearance: none
+      -moz-appearance: textfield
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button
+        appearance: none
+        margin: 0
     &--last
       margin-top: 0
       +sm-block

@@ -31,10 +31,13 @@ $details = get_field( 'event_details' );
 						<div class="event__details-value"><?php echo $details['time']; ?></div>
 					</div>
 
-					<div class="event__details-btns">
-						<a href="#" class="btn-stroke btn-stroke--dark">Register</a>
-						<a href="#" class="btn-stroke btn-stroke--dark">Pay for entry</a>
-					</div>
+					<?php if ( $details['buttons'] ): ?>
+						<div class="event__details-btns">
+							<?php foreach ( $details['buttons'] as $button ): ?>
+								<a href="<?php echo $button['button']['url']; ?>" class="btn-stroke btn-stroke--dark" <?php echo $button['button']['target'] ? 'target="_blank"' : ''; ?>><?php echo $button['button']['title']; ?></a>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
 				</div>
 
 				<div class="event__content">

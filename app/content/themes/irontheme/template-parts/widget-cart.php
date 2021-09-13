@@ -4,7 +4,7 @@ $count_items = count($basket_items);
 
 $total = 0;
 foreach ( $basket_items as $basket_item ) {
-	$total += $basket_item['amount'];
+	$total += intval( $basket_item['amount'] );
 }
 ?>
 
@@ -29,7 +29,7 @@ foreach ( $basket_items as $basket_item ) {
 		<ul class="widget-cart-items">
 			<?php foreach ( $basket_items as $basket_item ): ?>
 				<li class="widget-cart-items__item">
-					<div class="widget-cart-items__name">Donation</div>
+					<div class="widget-cart-items__name"><?php echo $basket_item['title'] ? $basket_item['title'] : 'General Muath Trust'; ?></div>
 					<div class="widget-cart-items__period"><?php echo get_donation_type_label( $basket_item['type'] ); ?></div>
 					<div class="widget-cart-items__price">£<?php echo $basket_item['amount']; ?></div>
 					<a href="#" class="widget-cart-items__remove">Remove</a>

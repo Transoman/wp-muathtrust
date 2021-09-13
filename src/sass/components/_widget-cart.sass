@@ -106,9 +106,12 @@
       color: $accent
 
 .widget-cart-items
+  max-height: rem(210px)
   margin: 0 0 rem(50px)
   padding: 0
   list-style: none
+  overflow-y: auto
+  +smooth-scroll
   &__item
     position: relative
     margin-bottom: rem(30px)

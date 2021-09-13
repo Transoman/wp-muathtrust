@@ -1,5 +1,7 @@
 <?php get_header();
 
+get_template_part( 'template-parts/breadcrumbs' );
+
 $title = get_field( 'hire_title' );
 $text = get_field( 'hire_text' );
 $important_text = get_field( 'hire_important_text' );
@@ -327,11 +329,33 @@ $paying_email = isset( $_SESSION['hire_fields']['paying_email'] ) ? $_SESSION['h
 
 						<div class="form-group">
 							<select name="hire_accommodation">
-								<option value="Amanah House" data-custom-properties='{"price": 100}' <?php selected( 'Amanah House', $accommodation ); ?>>Amanah House</option>
-								<option value="Recently refurbished AccommodationBlock" data-custom-properties='{"price": 150}' <?php selected( 'Recently refurbished AccommodationBlock', $accommodation ); ?>>Recently refurbished AccommodationBlock</option>
-								<option value="Fully fitted One Bedroom Flat" data-custom-properties='{"price": 300}' <?php selected( 'Fully fitted One Bedroom Flat', $accommodation ); ?>>Fully fitted One Bedroom Flat</option>
+								<?php
+								$args = array(
+									'post_type'      => 'accommodation',
+									'posts_per_page' => - 1
+								);
+
+								$price = 0;
+								$i = 0;
+
+								$accommodations = new WP_Query( $args );
+
+								if ( $accommodations->have_posts() ):
+									while ( $accommodations->have_posts() ): $accommodations->the_post();
+										if ( get_the_title() == $accommodation ) {
+											$price = get_field( 'accommodation_details' )['price'];
+										} elseif ( $i++ == 0 ) {
+											$price = get_field( 'accommodation_details' )['price'];
+										}
+										?>
+										<option value="<?php the_title(); ?>"
+										        data-custom-properties='{"price": <?php echo get_field( 'accommodation_details' )['price']; ?>}' <?php selected( get_the_title(), $accommodation ); ?>><?php the_title(); ?></option>
+									<?php endwhile;
+									wp_reset_postdata();
+								endif;
+								?>
 							</select>
-							<span class="select-price">£<span>0</span></span>
+							<span class="select-price">£<span><?php echo $price; ?></span></span>
 						</div>
 					</div>
 				</div>

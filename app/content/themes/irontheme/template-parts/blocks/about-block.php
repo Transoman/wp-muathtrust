@@ -1,7 +1,7 @@
 <?php
 $title = get_sub_field( 'title' );
 $text = get_sub_field( 'text' );
-$image = get_sub_field( 'image' );
+//$image = get_sub_field( 'image' );
 ?>
 
 <section class="about-block">
@@ -20,7 +20,7 @@ $image = get_sub_field( 'image' );
 					<div class="about-block__links">
 						<?php while ( have_rows( 'links' ) ): the_row(); ?>
 						<?php $link = get_sub_field( 'link' ); ?>
-							<a href="<?php echo $link['url']; ?>" class="about-block__links-item">
+							<a href="<?php echo $link['url']; ?>" class="about-block__links-item" data-hover-id="img-<?php the_sub_field( 'image' ); ?>">
 								<span class="about-block__links-title"><?php echo $link['title']; ?></span>
 								<?php ith_the_icon( 'arrow-right' ); ?>
 							</a>
@@ -30,9 +30,10 @@ $image = get_sub_field( 'image' );
 			</div>
 
 			<div class="about-block__right">
-				<?php if ( $image ) {
-					echo wp_get_attachment_image( $image, 'text_block' );
-				} ?>
+				<?php while ( have_rows( 'links' ) ): the_row(); ?>
+					<?php $image = get_sub_field( 'image' ); ?>
+					<?php echo wp_get_attachment_image( $image, 'text_block', '', array('class' => 'img-' . $image) ); ?>
+				<?php endwhile; ?>
 			</div>
 		</div>
 	</div>

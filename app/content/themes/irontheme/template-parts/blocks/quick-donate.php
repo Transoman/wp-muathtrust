@@ -12,12 +12,12 @@ $show_cover = get_sub_field( 'show_cover' );
 						<span class="amount-field">£</span>
 						<select name="amount" required>
 							<option value="">Amount</option>
-							<option value="500">£500</option>
-							<option value="250">£250</option>
-							<option value="100">£100</option>
-							<option value="50">£50</option>
-							<option value="25">£25</option>
-							<option value="custom">Custom</option>
+							<option value="500" data-custom-properties='{"title": "General Muath Trust"}'>£500</option>
+							<option value="250" data-custom-properties='{"title": "General Muath Trust"}'>£250</option>
+							<option value="100" data-custom-properties='{"title": "General Muath Trust"}'>£100</option>
+							<option value="50" data-custom-properties='{"title": "General Muath Trust"}'>£50</option>
+							<option value="25" data-custom-properties='{"title": "General Muath Trust"}'>£25</option>
+							<option value="custom" data-custom-properties='{"title": "General Muath Trust"}'>Custom</option>
 						</select>
 					</div>
 
@@ -30,7 +30,7 @@ $show_cover = get_sub_field( 'show_cover' );
 				<div class="quick-donate-form__col">
 					<div class="form-group">
 						<select name="type" required>
-							<option value="">Monthly</option>
+							<option value="">One-Off/Monthly</option>
 							<option value="once" style="">One-off Donation</option>
 							<option value="monthly" style="">Monthly Donation</option>
 						</select>

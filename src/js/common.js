@@ -22,6 +22,19 @@ jQuery(document).ready(function($) {
       mobileMenu.toggleClass('open');
       body.toggleClass('menu-open');
     });
+
+    $(".nav li.menu-item-has-children").mouseenter(function() {
+      $('.header').addClass('nav-hover');
+    });
+
+    $(".nav li.menu-item-has-children").mouseleave(function() {
+      $('.header').removeClass('nav-hover');
+    });
+
+    $( ".mobile-menu li.menu-item-has-children > a" ).one( "click", function( event ) {
+      event.preventDefault();
+      $(this).next().slideDown();
+    });
   };
 
   // Modal
@@ -53,7 +66,6 @@ jQuery(document).ready(function($) {
   let widgetCart = function() {
     let toggle = $('.widget-cart__toggle');
     let box = $('.widget-cart');
-    let closeBtn = $('.widget-cart__close');
     let body = $('body');
     
     toggle.click(function (e) {
@@ -327,7 +339,7 @@ jQuery(document).ready(function($) {
     let h = header.innerHeight();
 
     $(window).scroll(function() {
-      if ($(this).scrollTop() > window.innerHeight) {
+      if ($(this).scrollTop() > document.documentElement.clientHeight) {
         $('body').css('padding-top', h);
         header.addClass('fixed');
       }
@@ -345,7 +357,23 @@ jQuery(document).ready(function($) {
       $('.btn-to-top').removeClass('active');
     }
   });
+  
+  let aboutBlock = function() {
+    let listItems = $('.about-block__links-item');
+    let id = null;
 
+    listItems.mouseenter(function() {
+      if (id !== $(this).data('hover-id')) {
+        id = $(this).data('hover-id');
+        $('.about-block__right img').hide();
+      }
+      $('.about-block__right img.'+id).fadeIn();      
+    });
+
+    listItems.mouseleave(function() {
+      $('.about-block__right img:not(.'+id+')').hide();      
+    });
+  };
 
   toggleNav();
   initModal();
@@ -359,6 +387,7 @@ jQuery(document).ready(function($) {
   widgetAcc();
   hireForm();
   fixedHeader();
+  aboutBlock();
 
   // SVG
   svg4everybody({});

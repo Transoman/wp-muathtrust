@@ -6,6 +6,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="apple-touch-icon" sizes="76x76" href="<?php echo THEME_URL; ?>/images/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo THEME_URL; ?>/images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="<?php echo THEME_URL; ?>/images/favicon/favicon-16x16.png">
+	<link rel="mask-icon" href="<?php echo THEME_URL; ?>/images/favicon/safari-pinned-tab.svg" color="#1c3e9a">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#1c3e9a">
 	<!--[if lt IE 9]>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
 	<![endif]-->

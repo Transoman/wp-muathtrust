@@ -1,4 +1,6 @@
 .nav
+  height: 100%
+  display: flex
   +lg-block
     display: none
 
@@ -9,11 +11,23 @@
   display: flex
   align-items: center
   li
-    margin-right: rem(30px)
+    padding-right: rem(30px)
     &:last-child
-      margin-right: 0
+      padding-right: 0
+    &.menu-item-has-children
+      &:hover
+        & > a
+          color: $accent
+        .sub-menu
+          opacity: 1
+          visibility: visible
+  & > li
+    display: flex
+    height: 100%
+    align-items: center
   a
     position: relative
+    z-index: 1
     font-size: rem(18px)
     font-weight: 500
     white-space: nowrap
@@ -32,6 +46,44 @@
         width: 100%
         left: 0
         right: auto
+  .sub-menu
+    position: absolute
+    top: 0
+    width: 100vw
+    left: 50%
+    margin-left: -50vw
+    display: flex
+    align-items: center
+    background-color: $bg-color
+    padding-top: rem(165px)
+    padding-bottom: rem(70px)
+    padding-left: calc((100vw - 1630px) / 2 + #{rem(80px)})
+    padding-right: calc((100vw - 1630px) / 2 + #{rem(80px)})
+    list-style: none
+    opacity: 0
+    visibility: hidden
+    +trans
+    +xl-block
+      padding-left: calc((100vw - 1270px) / 2 + #{rem(80px)})
+      padding-right: calc((100vw - 1270px) / 2 + #{rem(80px)})
+    li
+      padding-right: 0
+      &::after
+        content: ''
+        display: inline-block
+        width: rem(10px)
+        height: rem(10px)
+        margin: 0 rem(40px)
+        background-color: $light-blue
+        transform: rotate(45deg)
+      &:last-child
+        &::after
+          display: none
+    a
+      font-size: rem(21px)
+      font-weight: 600
+      text-transform: uppercase
+
 
 .nav-toggle
   display: none

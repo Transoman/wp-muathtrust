@@ -3,6 +3,8 @@
  * Template Name: Donate Page
  */
 get_header();
+
+get_template_part( 'template-parts/breadcrumbs' );
 ?>
 <?php
 $hero = get_field( 'hero' );
@@ -28,7 +30,7 @@ $section_1_text = $section_1['text'];
 					<div class="donation-form__inner">
 						<div class="donation-form__types">
 							<div class="donation-form__type">
-								<input type="radio" name="type" value="single" id="donation-type-single" checked>
+								<input type="radio" name="type" value="once" id="donation-type-single" checked>
 								<label for="donation-type-single">Single</label>
 							</div>
 							<div class="donation-form__type">
@@ -38,38 +40,38 @@ $section_1_text = $section_1['text'];
 						</div>
 
 						<div class="donation-form__list">
-							<label class="donation-form__list-item">
-								<input type="radio" name="donation" value="300">
-								<span class="donation-form__list-price">£300</span>
-								<span class="donation-form__list-name">Medicare for Child</span>
-							</label>
-							<label class="donation-form__list-item">
-								<input type="radio" name="donation" value="600">
-								<span class="donation-form__list-price">£600</span>
-								<span class="donation-form__list-name">Family Food Pack Sponsorship for 1 Year</span>
-							</label>
-							<label class="donation-form__list-item">
-								<input type="radio" name="donation" value="1000">
-								<span class="donation-form__list-price">£1000</span>
-								<span class="donation-form__list-name">Donate bread to feed 5,000 people</span>
-							</label>
-							<label class="donation-form__list-item">
-								<input type="radio" name="donation" value="2100">
-								<span class="donation-form__list-price">£2100</span>
-								<span class="donation-form__list-name">Sponsor Bakery For 1 Week</span>
-							</label>
+							<?php
+							$args = array(
+								'post_type' => 'appeals',
+								'posts_per_page' => -1
+							);
+
+							$appeals = new WP_Query( $args );
+
+							if ( $appeals->have_posts() ):
+								while ( $appeals->have_posts() ): $appeals->the_post();
+									$appeals_details = get_field( 'appeals_details' );
+								?>
+									<label class="donation-form__list-item">
+										<input type="radio" name="donation" value="<?php echo get_the_ID(); ?>" data-name="<?php the_title(); ?>" data-amount="<?php echo $appeals_details['price']; ?>">
+										<span class="donation-form__list-price">£<?php echo $appeals_details['price']; ?></span>
+										<span class="donation-form__list-name"><?php the_title(); ?></span>
+									</label>
+								<?php endwhile; wp_reset_postdata();
+							endif; ?>
 						</div>
 
 						<div class="donation-form__other-amount">
 							<h4>Or enter amount</h4>
 							<div class="form-group">
 								<input type="number" name="amount_custom" inputmode="numeric">
+								<span class="donation-form__other-amount-symbol">£</span>
 								<a href="#" class="donation-form__other-amount-remove">Remove</a>
 							</div>
 						</div>
 
 						<div class="donation-form__bottom text-center">
-							<input type="submit" class="btn btn--lighten" value="Donate">
+							<button type="submit" class="btn btn--lighten">Donate</button>
 						</div>
 					</div>
 				</form>

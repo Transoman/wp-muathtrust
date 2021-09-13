@@ -6,6 +6,10 @@ $header_font_color = get_field( 'header_font_color' );
 $page_background_type = get_field( 'page_background_type' );
 $page_background_color = get_field( 'page_background_color' );
 
+$breadcrumbs_text_color = get_field( 'breadcrumbs_text_color' );
+$breadcrumbs_link_color = get_field( 'breadcrumbs_link_color' );
+$breadcrumbs_link_hover_color = get_field( 'breadcrumbs_link_hover_color' );
+
 ob_start();
 
 if ( $page_background_color && $page_background_type != 'inherit' ) {
@@ -42,6 +46,24 @@ if ( $header_font_color && $header_style != 'inherit' ) {
 		background-color: ' . $header_font_color . '
 	}
 	';
+}
+
+if ( $breadcrumbs_text_color ) {
+	echo '.breadcrumbs {
+		color: ' . $breadcrumbs_text_color . '
+	}';
+}
+
+if ( $breadcrumbs_link_color ) {
+	echo '.breadcrumbs a {
+		color: ' . $breadcrumbs_link_color . '
+	}';
+}
+
+if ( $breadcrumbs_link_hover_color ) {
+	echo '.breadcrumbs a:hover {
+		color: ' . $breadcrumbs_link_hover_color . '
+	}';
 }
 
 $dynamic_style = ob_get_clean();

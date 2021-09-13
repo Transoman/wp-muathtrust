@@ -8,6 +8,17 @@
     left: 0
     background-color: $geyser
     animation: slideDown 0.4s
+  &.nav-hover
+    .nav
+      .nav-list
+        a
+          color: $main-color
+          &::after
+            background-color: $main-color
+          &:hover
+            color: $main-color
+    .widget-cart__cart
+      color: $main-color !important
   &__wrap
     position: relative
     display: flex
@@ -29,6 +40,7 @@
     +sm-block
       margin-right: 0
   &__btn-donate
+    position: relative
     +sm-block
       display: none
 
