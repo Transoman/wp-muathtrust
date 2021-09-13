@@ -16,7 +16,10 @@
     "wpackagist-plugin/breadcrumb-navxt": "*",
     "wpackagist-plugin/duplicate-post": "*",
     "wpackagist-plugin/custom-post-type-permalinks": "*",
-    "wpackagist-plugin/acf-unique-id-field": "*"
+    "wpackagist-plugin/acf-unique-id-field": "*",
+	"wpackagist-plugin/daily-prayer-time-for-mosques": "*",
+	"wpackagist-plugin/appointment-hour-booking": "*",
+	"wpackagist-plugin/ameliabooking": "*"
   },
   "extra": {
     "wordpress-install-dir": "app/wp",
