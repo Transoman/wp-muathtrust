@@ -31,6 +31,7 @@ if ( have_rows( 'layouts' ) ):
 		'prayer_timetable' => 'prayer-timetable',
 		'text_block' => 'text-block',
 		'accommodation_block' => 'accommodation-block',
+		'form_block' => 'form-block',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();

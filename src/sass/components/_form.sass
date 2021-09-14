@@ -30,6 +30,7 @@ input[type="email"],
 input[type="tel"],
 input[type="password"],
 input[type="number"],
+input[type="date"],
 select,
 textarea
   width: 100%
@@ -68,20 +69,25 @@ textarea
 
 .wpcf7-list-item
   margin-left: rem(25px)
+  margin-bottom: rem(10px)
   +sm-block
+    display: block
     margin-left: 0
+  &:last-child
+    margin-bottom: 0
   input[type="checkbox"]
     @extend .visually-hidden
     &:checked ~ span::after
       opacity: 1
   span
     position: relative
+    display: block
     padding-left: rem(35px)
     color: $accent
     &::before
       content: ''
       position: absolute
-      top: rem(7px)
+      top: rem(3px)
       left: 0
       width: rem(20px)
       height: rem(20px)
@@ -90,7 +96,7 @@ textarea
     &::after
       content: ''
       position: absolute
-      top: rem(12px)
+      top: rem(8px)
       left: rem(4px)
       width: rem(12px)
       height: rem(12px)
@@ -107,6 +113,9 @@ textarea
 .wpcf7
   .ajax-loader
     display: none
+
+.wpcf7-form-control-wrap
+  display: block
 
 .circle-check
   input[type="checkbox"]
