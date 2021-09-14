@@ -82,6 +82,9 @@ $section_2 = get_field( 'section_1' );
 								<?php if ( $text = get_sub_field( 'text' ) ): ?>
 									<div class="text-with-image__text"><?php echo $text; ?></div>
 								<?php endif; ?>
+								<?php if ( $btn = get_sub_field( 'button' ) ): ?>
+									<a href="<?php echo $btn['url']; ?>" class="btn"><?php echo $btn['title']; ?></a>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>

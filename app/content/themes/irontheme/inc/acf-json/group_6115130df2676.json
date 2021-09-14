@@ -207,6 +207,21 @@
                     "delay": 0
                 },
                 {
+                    "key": "field_61407c2afc949",
+                    "label": "Button",
+                    "name": "button",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                },
+                {
                     "key": "field_61151f4a12494",
                     "label": "Image",
                     "name": "image",
@@ -252,5 +267,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1628774235
+    "modified": 1631616080
 }
