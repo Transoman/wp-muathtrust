@@ -321,6 +321,33 @@ $paying_email = isset( $_SESSION['hire_fields']['paying_email'] ) ? $_SESSION['h
 			<div class="hire__top-text"><?php echo $text; ?></div>
 		</div>
 
+		<div class="hire-steps">
+			<a href="<?php echo get_permalink(); ?>" class="hire-steps__item<?php echo ($step == 0 || $step == 1) ? ' is-active' : ''; ?><?php echo $step > 1 ? ' is-complete' : ''; ?>">
+				<div class="hire-steps__number">1</div>
+				<div class="hire-steps__label">Room</div>
+			</a>
+			<a href="<?php echo get_permalink(); ?>?step=2" class="hire-steps__item<?php echo $step == 2 ? ' is-active' : ''; ?><?php echo $step > 2 ? ' is-complete' : ''; ?>">
+				<div class="hire-steps__number">2</div>
+				<div class="hire-steps__label">Room Requirements</div>
+			</a>
+			<a href="<?php echo get_permalink(); ?>?step=3" class="hire-steps__item<?php echo $step == 3 ? ' is-active' : ''; ?><?php echo $step > 3 ? ' is-complete' : ''; ?>">
+				<div class="hire-steps__number">3</div>
+				<div class="hire-steps__label">Event Details</div>
+			</a>
+			<a href="<?php echo get_permalink(); ?>?step=4" class="hire-steps__item<?php echo $step == 4 ? ' is-active' : ''; ?><?php echo $step > 4 ? ' is-complete' : ''; ?>">
+				<div class="hire-steps__number">4</div>
+				<div class="hire-steps__label">Catering</div>
+			</a>
+			<a href="<?php echo get_permalink(); ?>?step=5" class="hire-steps__item<?php echo $step == 5 ? ' is-active' : ''; ?><?php echo $step > 5 ? ' is-complete' : ''; ?>">
+				<div class="hire-steps__number">5</div>
+				<div class="hire-steps__label">Person Details</div>
+			</a>
+			<a href="<?php echo get_permalink(); ?>?step=6" class="hire-steps__item<?php echo $step == 6 ? ' is-active' : ''; ?><?php echo $step > 6 ? ' is-complete' : ''; ?>">
+				<div class="hire-steps__number">6</div>
+				<div class="hire-steps__label">Important</div>
+			</a>
+		</div>
+
 		<?php if ( $step == 1 || $step == '' ): ?>
 			<form action="<?php echo get_permalink(); ?>?step=2" method="post" class="hire-form hire-form--step-1">
 				<div class="hire-form__row">
