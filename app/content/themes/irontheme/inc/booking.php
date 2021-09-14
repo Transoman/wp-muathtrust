@@ -12,7 +12,7 @@ function booking_insert() {
 
 		$post_id = wp_insert_post( $post_data );
 
-		if( is_wp_error($post_id) ){
+		if ( is_wp_error( $post_id ) ) {
 			echo $post_id->get_error_message();
 		}
 		else {
@@ -69,9 +69,13 @@ function booking_insert() {
 			if ( booking_send_email_admin() ) {
 				unset( $_SESSION['hire_fields'] );
 
-				wp_send_json_success( '<h3>Thank you!</h3><p>Your message has been successfully sent. We will contact you very soon!</p>' );
+				wp_send_json_success();
+			} else {
+				wp_send_json_error( 'Errors sending message' );
 			}
 		}
+	} else {
+		wp_send_json_error( 'Sending error! Fill out the form' );
 	}
 
 	wp_die();
@@ -92,59 +96,159 @@ function booking_send_email_admin() {
 	$message = '<p><strong>Room:</strong> ' . $form_fields['accommodation'] . '</p>' . PHP_EOL;
 
 	$message .= '<h3>Room requirements</h3>' . PHP_EOL;
-	$message .= '<p><strong>Title of Event:</strong> ' . $form_fields['title_event'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Day:</strong> ' . $form_fields['day'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Date:</strong> ' . implode( ' ', $form_fields['date'] ) . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Start time:</strong> ' . $form_fields['start_time'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>End time:</strong> ' . $form_fields['end_time'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Delegate Numbers:</strong> ' . $form_fields['delegate_numbers'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Layout Required:</strong> ' . implode( ', ', $form_fields['landmarks'] ) . '</p>' . PHP_EOL;
 
-	$message .= '<h3>Audio/ Visual Equipment</h3>' . PHP_EOL;
-	$message .= '<p><strong>Layout Required:</strong> ' . implode( ', ', $form_fields['equipment'] ) . '</p>' . PHP_EOL;
+	if ( isset( $form_fields['title_event'] ) ) {
+		$message .= '<p><strong>Title of Event:</strong> ' . $form_fields['title_event'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['day'] ) ) {
+		$message .= '<p><strong>Day:</strong> ' . $form_fields['day'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['date'] ) ) {
+		$message .= '<p><strong>Date:</strong> ' . implode( ' ', $form_fields['date'] ) . '</p>' . PHP_EOL;
+	}
+
+	if ( isset ( $form_fields['start_time'] ) ) {
+		$message .= '<p><strong>Start time:</strong> ' . $form_fields['start_time'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset ( $form_fields['end_time'] ) ) {
+		$message .= '<p><strong>End time:</strong> ' . $form_fields['end_time'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset ( $form_fields['delegate_numbers'] ) ) {
+		$message .= '<p><strong>Delegate Numbers:</strong> ' . $form_fields['delegate_numbers'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['landmarks'] ) ) {
+		$message .= '<p><strong>Layout Required:</strong> ' . implode( ', ', $form_fields['landmarks'] ) . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['equipment'] ) ) {
+		$message .= '<h3>Audio/ Visual Equipment</h3>' . PHP_EOL;
+		$message .= '<p><strong>Layout Required:</strong> ' . implode( ', ', $form_fields['equipment'] ) . '</p>' . PHP_EOL;
+	}
 
 	$message .= '<h3>Event details</h3>' . PHP_EOL;
-	$message .= '<p><strong>Who will your speakers be?:</strong> ' . $form_fields['speaker'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>What is the aim/objective of your event?:</strong> ' . $form_fields['aim_objective_event'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Who will your attendees be?:</strong> ' . $form_fields['attendees'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Any other organisation involved in the event?:</strong> ' . $form_fields['organisation_event'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Will you be distributing literature at the event?:</strong> ' . $form_fields['distributing_literature'] . '</p>' . PHP_EOL;
+
+	if ( isset( $form_fields['speaker'] ) ) {
+		$message .= '<p><strong>Who will your speakers be?:</strong> ' . $form_fields['speaker'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['aim_objective_event'] ) ) {
+		$message .= '<p><strong>What is the aim/objective of your event?:</strong> ' . $form_fields['aim_objective_event'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['attendees'] ) ) {
+		$message .= '<p><strong>Who will your attendees be?:</strong> ' . $form_fields['attendees'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['organisation_event'] ) ) {
+		$message .= '<p><strong>Any other organisation involved in the event?:</strong> ' . $form_fields['organisation_event'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['distributing_literature'] ) ) {
+		$message .= '<p><strong>Will you be distributing literature at the event?:</strong> ' . $form_fields['distributing_literature'] . '</p>' . PHP_EOL;
+	}
 
 	$message .= '<h3>Refreshments</h3>' . PHP_EOL;
-	$message .= '<h4>Time Coffee/ Tea & Biscuits required:</h4>' . PHP_EOL;
-	$message .= '<p><strong>Break 1:</strong> ' . $form_fields['timecoffee']['break_1'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Break 2:</strong> ' . $form_fields['timecoffee']['break_2'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Break 3:</strong> ' . $form_fields['timecoffee']['break_3'] . '</p>' . PHP_EOL;
 
-	$message .= '<h4>Times water & juice required:</h4>' . PHP_EOL;
-	$message .= '<p><strong>Break 1:</strong> ' . $form_fields['timewater']['break_1'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Break 2:</strong> ' . $form_fields['timewater']['break_2'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Break 3:</strong> ' . $form_fields['timewater']['break_3'] . '</p>' . PHP_EOL;
+	if ( isset( $form_fields['timecoffee'] ) ) {
+		$message .= '<h4>Time Coffee/ Tea & Biscuits required:</h4>' . PHP_EOL;
+		$message .= '<p><strong>Break 1:</strong> ' . $form_fields['timecoffee']['break_1'] . '</p>' . PHP_EOL;
+		$message .= '<p><strong>Break 2:</strong> ' . $form_fields['timecoffee']['break_2'] . '</p>' . PHP_EOL;
+		$message .= '<p><strong>Break 3:</strong> ' . $form_fields['timecoffee']['break_3'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['timewater'] ) ) {
+		$message .= '<h4>Times water & juice required:</h4>' . PHP_EOL;
+		$message .= '<p><strong>Break 1:</strong> ' . $form_fields['timewater']['break_1'] . '</p>' . PHP_EOL;
+		$message .= '<p><strong>Break 2:</strong> ' . $form_fields['timewater']['break_2'] . '</p>' . PHP_EOL;
+		$message .= '<p><strong>Break 3:</strong> ' . $form_fields['timewater']['break_3'] . '</p>' . PHP_EOL;
+	}
 
 	$message .= '<h3>Refreshments</h3>' . PHP_EOL;
-	$message .= '<p><strong>Delegate numbers lunch required?:</strong> ' . $form_fields['numbers_lunch'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Time lunch required?:</strong> ' . $form_fields['time_lunch'] . '</p>' . PHP_EOL;
+
+	if ( isset( $form_fields['numbers_lunch'] ) ) {
+		$message .= '<p><strong>Delegate numbers lunch required?:</strong> ' . $form_fields['numbers_lunch'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['time_lunch'] ) ) {
+		$message .= '<p><strong>Time lunch required?:</strong> ' . $form_fields['time_lunch'] . '</p>' . PHP_EOL;
+	}
 
 	$message .= '<h3>Details of person booking</h3>' . PHP_EOL;
-	$message .= '<p><strong>Name:</strong> ' . $form_fields['booking_name'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Organisation:</strong> ' . $form_fields['booking_organisation'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Street:</strong> ' . $form_fields['booking_street'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Area:</strong> ' . $form_fields['booking_area'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Postcode:</strong> ' . $form_fields['booking_zip'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Telephone Number:</strong> ' . $form_fields['booking_phone'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Mobile Number:</strong> ' . $form_fields['booking_mobile'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Email:</strong> ' . $form_fields['booking_email'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Charity Number (Required to be applicable for 25% discount will not apply to catering):</strong> ' . $form_fields['booking_charity_number'] . '</p>' . PHP_EOL;
+
+	if ( isset( $form_fields['booking_name'] ) ) {
+		$message .= '<p><strong>Name:</strong> ' . $form_fields['booking_name'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['booking_organisation'] ) ) {
+		$message .= '<p><strong>Organisation:</strong> ' . $form_fields['booking_organisation'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['booking_street'] ) ) {
+		$message .= '<p><strong>Street:</strong> ' . $form_fields['booking_street'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['booking_area'] ) ) {
+		$message .= '<p><strong>Area:</strong> ' . $form_fields['booking_area'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['booking_zip'] ) ) {
+		$message .= '<p><strong>Postcode:</strong> ' . $form_fields['booking_zip'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['booking_phone'] ) ) {
+		$message .= '<p><strong>Telephone Number:</strong> ' . $form_fields['booking_phone'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['booking_mobile'] ) ) {
+		$message .= '<p><strong>Mobile Number:</strong> ' . $form_fields['booking_mobile'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['booking_email'] ) ) {
+		$message .= '<p><strong>Email:</strong> ' . $form_fields['booking_email'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['booking_charity_number'] ) ) {
+		$message .= '<p><strong>Charity Number (Required to be applicable for 25% discount will not apply to catering):</strong> ' . $form_fields['booking_charity_number'] . '</p>' . PHP_EOL;
+	}
 
 	$message .= '<h3>Details of person paying invoice</h3>' . PHP_EOL;
-	$message .= '<p><strong>Name:</strong> ' . $form_fields['paying_name'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Organisation:</strong> ' . $form_fields['paying_organisation'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Street:</strong> ' . $form_fields['paying_street'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Area:</strong> ' . $form_fields['paying_area'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Postcode:</strong> ' . $form_fields['paying_zip'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Telephone Number:</strong> ' . $form_fields['paying_phone'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Mobile Number:</strong> ' . $form_fields['paying_mobile'] . '</p>' . PHP_EOL;
-	$message .= '<p><strong>Email:</strong> ' . $form_fields['paying_email'] . '</p>' . PHP_EOL;
+
+	if ( isset( $form_fields['paying_name'] ) ) {
+		$message .= '<p><strong>Name:</strong> ' . $form_fields['paying_name'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['paying_organisation'] ) ) {
+		$message .= '<p><strong>Organisation:</strong> ' . $form_fields['paying_organisation'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['paying_street'] ) ) {
+		$message .= '<p><strong>Street:</strong> ' . $form_fields['paying_street'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['paying_area'] ) ) {
+		$message .= '<p><strong>Area:</strong> ' . $form_fields['paying_area'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['paying_zip'] ) ) {
+		$message .= '<p><strong>Postcode:</strong> ' . $form_fields['paying_zip'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['paying_phone'] ) ) {
+		$message .= '<p><strong>Telephone Number:</strong> ' . $form_fields['paying_phone'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['paying_mobile'] ) ) {
+		$message .= '<p><strong>Mobile Number:</strong> ' . $form_fields['paying_mobile'] . '</p>' . PHP_EOL;
+	}
+
+	if ( isset( $form_fields['paying_email'] ) ) {
+		$message .= '<p><strong>Email:</strong> ' . $form_fields['paying_email'] . '</p>' . PHP_EOL;
+	}
 
 	return wp_mail( $to, $subject, $message, $headers );
 }

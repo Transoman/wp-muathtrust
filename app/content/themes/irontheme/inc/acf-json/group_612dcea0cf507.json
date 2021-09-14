@@ -87,9 +87,9 @@
     "location": [
         [
             {
-                "param": "page",
+                "param": "post_template",
                 "operator": "==",
-                "value": "528"
+                "value": "templates\/tpl-thank-you.php"
             }
         ]
     ],
@@ -103,5 +103,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1630392534
+    "modified": 1631617526
 }

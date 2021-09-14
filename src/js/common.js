@@ -300,9 +300,12 @@ jQuery(document).ready(function($) {
             btn.removeClass('btn-loader');
             
             if ( data.success ) {
-              $('.alert-block').html(data.data).addClass('alert-block--success');
+              // $('.alert-block').html(data.data).addClass('alert-block--success');
               form.trigger('reset');
               btn.attr('disabled', true);
+              window.location.href = '/room-booking-thank-you/';
+            } else {
+              alert(data.data);
             }
           }
         });
