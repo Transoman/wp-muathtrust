@@ -19,7 +19,8 @@
     "wpackagist-plugin/acf-unique-id-field": "*",
 	"wpackagist-plugin/daily-prayer-time-for-mosques": "*",
 	"wpackagist-plugin/appointment-hour-booking": "*",
-	"wpackagist-plugin/ameliabooking": "*"
+	"wpackagist-plugin/ameliabooking": "*",
+	"wpackagist-plugin/cf7-repeatable-fields": "*"
   },
   "extra": {
     "wordpress-install-dir": "app/wp",

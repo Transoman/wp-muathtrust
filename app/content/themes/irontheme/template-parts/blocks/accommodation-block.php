@@ -1,4 +1,5 @@
 <?php
+$category = get_sub_field( 'category' );
 $bottom_text = get_sub_field( 'bottom_text' );
 $btn = get_sub_field( 'button' );
 ?>
@@ -9,7 +10,14 @@ $btn = get_sub_field( 'button' );
 			$args = array(
 				'post_type' => 'accommodation',
 				'posts_per_page' => -1,
-				'order' => 'ASC'
+				'order' => 'ASC',
+				'tax_query' => array(
+					array(
+						'taxonomy' => 'accommodation_category',
+						'field' => 'term_id',
+						'terms' => $category
+					)
+				)
 			);
 
 			$accommodations = new WP_Query( $args );

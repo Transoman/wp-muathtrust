@@ -2,6 +2,7 @@
 $opening_time_image = get_sub_field('image');
 $opening_time_title = get_sub_field('title');
 $opening_time_text = get_sub_field('text');
+$opening_time_btn = get_sub_field('button');
 $opening_time_id = get_sub_field('id');
 ?>
 <section class="opening-time" id="<?php echo $opening_time_id; ?>">
@@ -16,5 +17,11 @@ $opening_time_id = get_sub_field('id');
 				<?php echo wp_get_attachment_image( $opening_time_image, 'opening_time' ); ?>
 			</div>
 		</div>
+
+		<?php if ( $opening_time_btn ): ?>
+			<div class="opening-time__bottom">
+				<a href="<?php echo $opening_time_btn['url']; ?>" class="btn"><?php echo $opening_time_btn['title']; ?></a>
+			</div>
+		<?php endif; ?>
 	</div>
 </section>

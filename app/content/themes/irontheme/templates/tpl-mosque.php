@@ -21,7 +21,9 @@ $section_2 = get_field( 'section_1' );
 			<div class="mosque-hero__content">
 				<h1 class="mosque-hero__title"><?php the_title(); ?></h1>
 
-				<?php get_timetable_line( 'mosque-hero__timetable-line' ); ?>
+				<?php if ( $hero['show_prayer_time'] ) {
+					get_timetable_line( 'mosque-hero__timetable-line' );
+				} ?>
 			</div>
 		</div>
 	</section>

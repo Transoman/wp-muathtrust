@@ -2,6 +2,10 @@
   padding: rem(80px) 0 rem(100px)
   +sm-block
     padding: rem(75px) 0 rem(85px)
+  .gallery-slider-wrap
+    margin-top: rem(70px)
+    +sm-block
+      margin-top: rem(140px)
   &__wrap
     display: flex
     flex-wrap: wrap
@@ -12,11 +16,11 @@
     width: 50%
     +md-block
       width: 100%
-      margin-bottom: rem(85px)
   &__right
     width: 37.1%
     +md-block
       width: 100%
+      margin-top: rem(85px)
     img
       display: block
       width: 100%
@@ -30,3 +34,20 @@
   &__title
     margin-bottom: rem(50px)
     color: $accent
+  &__text
+    ul
+      margin: rem(20px) 0
+      padding: 0
+      list-style: none
+      li
+        margin-bottom: rem(15px)
+        &::before
+          content: '— '
+        &:last-child
+          margin-bottom: 0
+    ol
+      margin: rem(20px) 0
+      li
+        margin-bottom: rem(15px)
+        &:last-child
+          margin-bottom: 0

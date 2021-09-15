@@ -33,28 +33,21 @@ get_template_part( 'template-parts/breadcrumbs' );
 				<div class="article__right">
 					<?php the_post_thumbnail( 'news' ); ?>
 
-					<div class="share">
-						<div class="share__label">Share</div>
-						<div class="share__items">
-							<a href="mailto:info@example.com?&subject=&cc=&bcc=&body=<?php the_permalink(); ?>%0A" class="share__item" target="_blank"><?php ith_the_icon( 'mail' ); ?></a>
-							<a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="share__item" target="_blank"><?php ith_the_icon( 'facebook' ); ?></a>
-							<a href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>" class="share__item" target="_blank"><?php ith_the_icon( 'twitter' ); ?></a>
-						</div>
-					</div>
+					<?php get_template_part( 'template-parts/share' ); ?>
 				</div>
 			</div>
 
 			<?php if ( $gallery = get_field( 'gallery' ) ): ?>
-				<div class="news-gallery-wrap">
+				<div class="gallery-slider-wrap">
 					<div class="swiper-btns">
 						<div class="swiper-button-prev"><?php ith_the_icon( 'arrow-left' ); ?></div>
 						<div class="swiper-button-next"><?php ith_the_icon( 'arrow-right' ); ?></div>
 					</div>
 
-					<div class="news-gallery-slider swiper-container">
+					<div class="gallery-slider swiper-container">
 						<div class="swiper-wrapper">
 							<?php foreach ( $gallery as $image ): ?>
-								<div class="news-gallery-slider__item swiper-slide">
+								<div class="gallery-slider__item swiper-slide">
 									<?php echo wp_get_attachment_image( $image, 'gallery' ); ?>
 								</div>
 							<?php endforeach; ?>

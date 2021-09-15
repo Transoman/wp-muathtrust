@@ -1,4 +1,5 @@
 .opening-time
+  padding: rem(85px) 0
   &__wrap
     position: relative
     display: grid
@@ -12,13 +13,17 @@
   &__content
     max-width: rem(485px)
     padding: rem(60px) 0 rem(60px) rem(45px)
+    +lg-block
+      padding-right: rem(15px)
     +md-block
+      max-width: none
       padding: 0
   &__title
     margin-bottom: rem(40px)
     color: $accent
   &__image
     position: absolute
+    top: -120px
     bottom: -2px
     right: -2px
     +md-block
@@ -27,6 +32,11 @@
       right: auto
     img
       display: block
+      height: 100%
       border-radius: rem(200px) 0 rem(200px) 0
+      object-fit: cover
       +md-block
         width: 100%
+  &__bottom
+    margin-top: rem(60px)
+    text-align: center

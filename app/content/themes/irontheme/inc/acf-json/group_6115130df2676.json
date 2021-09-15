@@ -40,6 +40,25 @@
                     "max_height": "",
                     "max_size": "",
                     "mime_types": ""
+                },
+                {
+                    "key": "field_6141b34b3fdf2",
+                    "label": "Show prayer time",
+                    "name": "show_prayer_time",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
                 }
             ]
         },
@@ -267,5 +286,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1631616080
+    "modified": 1631695733
 }

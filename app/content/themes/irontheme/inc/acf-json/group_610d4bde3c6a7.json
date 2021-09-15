@@ -625,21 +625,26 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_611628dcd5455",
-                            "label": "Info",
-                            "name": "",
-                            "type": "message",
+                            "key": "field_6141bccd74b48",
+                            "label": "Category",
+                            "name": "category",
+                            "type": "taxonomy",
                             "instructions": "",
-                            "required": 0,
+                            "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "message": "Automatically displays upcoming events",
-                            "new_lines": "wpautop",
-                            "esc_html": 0
+                            "taxonomy": "event_category",
+                            "field_type": "select",
+                            "allow_null": 0,
+                            "add_term": 0,
+                            "save_terms": 0,
+                            "load_terms": 0,
+                            "return_format": "id",
+                            "multiple": 0
                         }
                     ],
                     "min": "",
@@ -1746,6 +1751,21 @@
                             "delay": 0
                         },
                         {
+                            "key": "field_6141a3d3da209",
+                            "label": "Button",
+                            "name": "button",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
                             "key": "field_6124d7dfc1212",
                             "label": "ID",
                             "name": "id",
@@ -2505,12 +2525,106 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_6140a696df61e": {
+                    "key": "layout_6140a696df61e",
+                    "name": "text_block_v2",
+                    "label": "Text Block v2",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6140a6afdf61f",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "If left blank, the page title will be displayed",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_6140a6e2df620",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_6140a6eddf621",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_612f3225525ee": {
                     "key": "layout_612f3225525ee",
                     "name": "accommodation_block",
                     "label": "Accommodation Block",
                     "display": "block",
                     "sub_fields": [
+                        {
+                            "key": "field_6141e3cdc14db",
+                            "label": "Category",
+                            "name": "category",
+                            "type": "taxonomy",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "accommodation_category",
+                            "field_type": "select",
+                            "allow_null": 0,
+                            "add_term": 0,
+                            "save_terms": 0,
+                            "load_terms": 0,
+                            "return_format": "id",
+                            "multiple": 0
+                        },
                         {
                             "key": "field_612f3229525ef",
                             "label": "Bottom Text",
@@ -2548,6 +2662,62 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_61419e96fc84a": {
+                    "key": "layout_61419e96fc84a",
+                    "name": "gallery_slider",
+                    "label": "Gallery Slider",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_61419ea3fc84b",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_61419eaefc84c",
+                            "label": "Gallery",
+                            "name": "gallery",
+                            "type": "gallery",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "preview_size": "thumbnail",
+                            "insert": "append",
+                            "library": "all",
+                            "min": "",
+                            "max": "",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Section",
@@ -2574,5 +2744,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1631623175
+    "modified": 1631708144
 }

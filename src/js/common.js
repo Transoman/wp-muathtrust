@@ -113,13 +113,13 @@ jQuery(document).ready(function($) {
     });
   };
   
-  let newsGallerySlider = function () {
-    new Swiper('.news-gallery-slider', {
+  let gallerySlider = function () {
+    new Swiper('.gallery-slider', {
       slidesPerView: 1,
       spaceBetween: 85,
       navigation: {
-        nextEl: '.news-gallery-wrap .swiper-button-next',
-        prevEl: '.news-gallery-wrap .swiper-button-prev',
+        nextEl: '.gallery-slider-wrap .swiper-button-next',
+        prevEl: '.gallery-slider-wrap .swiper-button-prev',
       }
     });
   };
@@ -204,15 +204,23 @@ jQuery(document).ready(function($) {
     let content = acc.find('.widget-acc__content');
     
     toggle.click(function() {
-      if ($(this).hasClass('is-active')) {
-        $(this).removeClass('is-active');
-        $(this).next().slideUp();
+      let $this = $(this);
+      if ($this.hasClass('is-active')) {
+        $this.removeClass('is-active');
+        $this.next().slideUp();
       }
       else {
-        $(this).addClass('is-active');
-        content.not($(this).next()).slideUp();
-        toggle.not($(this)).removeClass('is-active');
-        $(this).next().slideToggle();
+        $this.addClass('is-active');
+        content.not($this.next()).slideUp();
+        toggle.not($this).removeClass('is-active');
+        $this.next().slideToggle(function() {
+          let offset = $('.header').height();
+          
+          $('html, body').animate({
+            scrollTop: $this.offset().top - offset
+          }, 500);
+        });
+        
       }
     });
   };
@@ -230,7 +238,7 @@ jQuery(document).ready(function($) {
         location.hostname == this.hostname
       ) {
         // Figure out element to scroll to
-        var target = $(this.hash);
+        let target = $(this.hash);
         target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
         // Does a scroll target exist?
         if (target.length) {
@@ -241,14 +249,14 @@ jQuery(document).ready(function($) {
           }, 1000, function() {
             // Callback after animation
             // Must change focus!
-            var $target = $(target);
+            let $target = $(target);
             $target.focus();
             if ($target.is(":focus")) { // Checking if the target was focused
               return false;
             } else {
               $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
               $target.focus(); // Set focus again
-            };
+            }
           });
         }
       }
@@ -347,8 +355,9 @@ jQuery(document).ready(function($) {
   let fixedHeader = function() {
     let header = $('.header');
     let h = header.innerHeight();
+    let offsetShow = document.documentElement.clientHeight / 1.5;
 
-    if ($(window).scrollTop() > document.documentElement.clientHeight) {
+    if ($(window).scrollTop() > offsetShow) {
       $('body').css('padding-top', h);
       header.addClass('fixed');
     }
@@ -358,7 +367,7 @@ jQuery(document).ready(function($) {
     }
     
     $(window).scroll(function() {
-      if ($(this).scrollTop() > document.documentElement.clientHeight) {
+      if ($(this).scrollTop() > offsetShow) {
         $('body').css('padding-top', h);
         header.addClass('fixed');
       }
@@ -399,7 +408,7 @@ jQuery(document).ready(function($) {
   // inputMask();
   widgetCart();
   newsSlider();
-  newsGallerySlider();
+  gallerySlider();
   customSelect();
   loadMore();
   fpTabs();

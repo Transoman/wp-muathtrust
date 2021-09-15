@@ -1,4 +1,6 @@
 <?php
+$category = get_sub_field( 'category' );
+
 $args = array(
 	'post_type' => 'event',
 	'posts_per_page' => 3,
@@ -10,6 +12,13 @@ $args = array(
 			'key' => 'event_details_date',
 			'value' => date('Ymd'),
 			'compare' => '>='
+		)
+	),
+	'tax_query' => array(
+		array(
+			'taxonomy' => 'event_category',
+			'field' => 'term_id',
+			'terms' => $category
 		)
 	)
 );

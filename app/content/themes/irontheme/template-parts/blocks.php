@@ -30,8 +30,10 @@ if ( have_rows( 'layouts' ) ):
 		'vacancies' => 'vacancies',
 		'prayer_timetable' => 'prayer-timetable',
 		'text_block' => 'text-block',
+		'text_block_v2' => 'text-block-v2',
 		'accommodation_block' => 'accommodation-block',
 		'form_block' => 'form-block',
+		'gallery_slider' => 'gallery-slider',
 	];
 
 	while ( have_rows( 'layouts' ) ) : the_row();
