@@ -4,6 +4,7 @@ $title = get_sub_field( 'title' );
 $args = array(
 	'post_type' => 'post',
 	'orderby' => 'date',
+	'posts_per_page' => 6
 );
 
 $news = new WP_Query( $args );

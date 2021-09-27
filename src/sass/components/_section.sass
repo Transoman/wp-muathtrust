@@ -2,3 +2,17 @@
   @extend h1
   text-transform: none
   color: $accent
+
+.section-head
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin-bottom: rem(45px)
+  +sm-block
+    flex-direction: column
+    align-items: flex-start
+    margin-bottom: rem(40px)
+  h2
+    margin: 0
+    +sm-block
+      margin-bottom: rem(50px)

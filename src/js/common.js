@@ -123,6 +123,30 @@ jQuery(document).ready(function($) {
       }
     });
   };
+
+  let logosSlider = function () {
+    new Swiper('.logos-list', {
+      slidesPerView: 2,
+      spaceBetween: 25,
+      speed: 1000,
+      watchOverflow: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        1280: {
+          slidesPerView: 4,
+          spaceBetween: 100,
+        },
+      }
+    });
+  };
   
   let customSelect = function() {
     $('select').each(function(index, el) {
@@ -409,6 +433,7 @@ jQuery(document).ready(function($) {
   widgetCart();
   newsSlider();
   gallerySlider();
+  logosSlider();
   customSelect();
   loadMore();
   fpTabs();
