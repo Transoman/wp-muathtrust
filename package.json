@@ -44,6 +44,7 @@
     "jquery-popup-overlay": "^2.1.5",
     "js-cookie": "^3.0.0",
     "normalize.css": "^8.0.1",
+    "select2": "^4.1.0-rc.0",
     "svg4everybody": "^2.1.9",
     "swiper": "^6.8.1"
   },

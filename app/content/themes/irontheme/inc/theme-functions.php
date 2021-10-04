@@ -292,3 +292,13 @@ function register_session() {
 }
 
 add_action( 'init', 'register_session' );
+
+function custom_styles() {
+	echo '<style>
+		.acf-repeater .acf-row:hover > .acf-row-handle .acf-icon.show-on-shift, .acf-repeater .acf-row.-hover > .acf-row-handle .acf-icon.show-on-shift {
+            display: block !important;
+		}
+	</style>';
+}
+
+add_action( 'admin_head', 'custom_styles' );

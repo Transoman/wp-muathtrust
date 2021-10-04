@@ -149,23 +149,7 @@ foreach ( $basket_items as $basket_item ) {
 						<label for="card-element" class="form-label">Card Number</label>
 						<div id="card-element" class="stripe-field"></div>
 						<div class="card-error wpcf7-not-valid-tip"></div>
-<!--						<div id="card-number" class="stripe-field"></div>-->
 					</div>
-
-<!--					<div class="form-group">-->
-<!--						<label for="expiry" class="form-label">Expiry</label>-->
-<!--						<div id="expiry" class="stripe-field"></div>-->
-<!--					</div>-->
-<!---->
-<!--					<div class="form-group">-->
-<!--						<label for="security-code" class="form-label">Security code</label>-->
-<!--						<div id="security-code" class="stripe-field"></div>-->
-<!--					</div>-->
-<!---->
-<!--					<div class="form-group">-->
-<!--						<label for="cardholder-name" class="form-label">Cardholder Name</label>-->
-<!--						<input type="text" name="cardholder_name" id="cardholder-name" required>-->
-<!--					</div>-->
 
 					<div class="form-group form-group--last text-center">
 						<button type="submit" class="btn">Pay now</button>
@@ -177,59 +161,5 @@ foreach ( $basket_items as $basket_item ) {
 </section>
 
 <script src="https://js.stripe.com/v3/"></script>
-<script>
-	// var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
-	// var styles = {
-	// 	base: {
-	// 		iconColor: '#2C2C2C',
-	// 		color: '#2C2C2C',
-	// 		fontFamily: 'inherit',
-	// 		fontSize: '21px',
-	// 		fontSmoothing: 'antialiased',
-	// 		':-webkit-autofill': {
-	// 			color: '#fce883',
-	// 		},
-	// 		'::placeholder': {
-	// 			color: '#C8CBCD',
-	// 		},
-	// 	},
-	// 	invalid: {
-	// 		iconColor: '#f00',
-	// 		color: '#f00',
-	// 	},
-	// };
-	// var elements = stripe.elements();
-	// var cardElement = elements.create('card', {
-	// 	style: styles,
-	// 	hidePostalCode: true
-	// });
-	// var card = elements.getElement('card');
-	//
-	// card.mount('#card-element');
-
-	// var cardNumberElement = elements.create('cardNumber', {
-	// 	style: styles
-	// });
-	// var cardExpiryElement = elements.create('cardExpiry', {
-	// 	style: styles
-	// });
-	// var cardCvcElement = elements.create('cardCvc', {
-	// 	style: styles
-	// });
-	//
-	// var cardNumber = elements.getElement('cardNumber');
-	// var cardExpiry = elements.getElement('cardExpiry');
-	// var cardCvc = elements.getElement('cardCvc');
-	//
-	// cardNumber.mount('#card-number');
-	// cardExpiry.mount('#expiry');
-	// cardCvc.mount('#security-code');
-	//
-	// cardNumberElement.on('change', function(event) {
-	// 	if (event.error) {
-	// 		console.log(event.error);
-	// 	}
-	// });
-</script>
 
 <?php get_footer();

@@ -72,7 +72,12 @@ function stripe_submit_donation($donation_order, $stripe_token = null) {
 		}
 
 	} catch (Exception $e) {
-
+		echo json_encode([
+			'res' => fasle,
+			'message' => $e->getError()->message,
+			'error' => $e->getJsonBody(),
+		]);
+		die();
 	}
 
 	if ( ! $customer_id ) {

@@ -199,7 +199,8 @@ textarea
     color: $white
 
 .circle-check
-  input[type="checkbox"]
+  input[type="checkbox"],
+  input[type="radio"]
     @extend .visually-hidden
     &:checked ~ span::after
       opacity: 1
@@ -272,3 +273,9 @@ textarea
 .select-price
   @extend h4
   color: $accent
+
+.checkbox-group
+  .check
+    margin-bottom: rem(12px)
+    &:last-child
+      margin-bottom: 0

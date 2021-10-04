@@ -21876,7 +21876,7 @@ jQuery(document).ready(function ($) {
   };
 
   var customSelect = function customSelect() {
-    $('select').each(function (index, el) {
+    $('select:not(.js-not-init)').each(function (index, el) {
       new Choices(el, {
         searchEnabled: false,
         shouldSort: false,
@@ -22044,27 +22044,7 @@ jQuery(document).ready(function ($) {
         });
       });
     }
-  }; // var disabledDays = [2, 5];
-  // let dt = $('.js-datepicker').datepicker({
-  //   language: 'en',
-  //   minDate: new Date(),
-  //   range: true,
-  //   multipleDatesSeparator: ' - ',
-  //   onRenderCell: function (date, cellType) {
-  //     if (cellType == 'day') {
-  //       var day = date.getDate(),
-  //         isDisabled = disabledDays.indexOf(day) != -1;
-  //
-  //       return {
-  //         disabled: isDisabled
-  //       }
-  //     }
-  //   },
-  //   onSelect: function(formattedDate, date, inst) {
-  //     console.log(formattedDate)
-  //   }
-  // });
-
+  };
 
   $('.btn-to-top').click(function (e) {
     e.preventDefault();
@@ -22121,6 +22101,296 @@ jQuery(document).ready(function ($) {
     });
   };
 
+  var hireServiceForm = function hireServiceForm() {
+    var form = $('.hire-service-form');
+    var btn = form.find('.btn[type="submit"]');
+    var typeOneTime = form.find('.one-time');
+    var typeBlockTime = form.find('.block-time');
+    var type = form.find('input[name="hs_type"]');
+    var addDate = form.find('.hire-service-form__add-date');
+    var counter = 1;
+    var total = 0;
+    var data = {
+      oneTime: [],
+      blockTime: []
+    };
+    var errorBlock = $('.card-error');
+    var stripe = Stripe(stripe_keys["public"]);
+    var choicesSettings = {
+      searchEnabled: false,
+      shouldSort: false,
+      itemSelectText: ''
+    };
+    var typeOneSelect = new Choices(typeOneTime.find('select[name="one_time"]')[0], choicesSettings);
+    window['typeBlockSelect' + counter] = new Choices(typeBlockTime.find('select[name="block_time[]"]')[counter - 1], choicesSettings);
+    type.change(function () {
+      var value = $(this).val();
+
+      if (value === 'one-time') {
+        typeBlockTime.hide();
+        typeOneTime.show();
+        typeBlockTime.find('input, select').attr('disabled', true);
+        typeOneTime.find('input, select').attr('disabled', false);
+        typeOneSelect.enable();
+      } else {
+        typeOneTime.hide();
+        typeBlockTime.show();
+        typeOneTime.find('input, select').attr('disabled', true);
+        typeBlockTime.find('input, select').attr('disabled', false);
+        typeOneSelect.disable();
+      }
+    });
+    addDate.click(function (e) {
+      e.preventDefault();
+      var clone = $('.block-time-clone').html();
+      $(this).parent().before(clone);
+      ++counter;
+      $('[data-id="block-time__date-"]').attr('data-id', 'block-time__date-' + counter);
+      $('[data-id="block-time__time-"]').attr('data-id', 'block-time__time-' + counter);
+      window['typeBlockSelect' + counter] = new Choices(typeBlockTime.find('select[name="block_time[]"]')[counter - 1], choicesSettings);
+    });
+    typeOneTime.find('[name="one_date"]').change(function () {
+      var elementId = $(this).data('id');
+
+      if ($('.confirm__items-item[data-id="' + elementId + '"]').length) {
+        $('.confirm__items-item[data-id="' + elementId + '"]').remove();
+      }
+
+      var selectDate = $(this).val();
+      $.ajax({
+        url: window.wp_data.ajax_url,
+        data: {
+          action: 'get_service_days',
+          selectDay: selectDate,
+          nonce: window.wp_data.booking_nonce
+        },
+        type: 'POST',
+        beforeSend: function beforeSend(xhr) {
+          typeOneSelect.disable();
+        },
+        success: function success(data) {
+          if (data.success) {
+            if (data.data.length) {
+              typeOneSelect.setChoices(data.data, 'value', 'label', []).enable();
+            } else {
+              typeOneSelect.setChoices([{
+                value: '',
+                label: 'Select time',
+                selected: true,
+                disabled: true,
+                placeholder: true
+              }], 'value', 'label', []);
+            }
+          } else {
+            alert(data.data);
+          }
+        }
+      });
+    });
+
+    if (typeOneTime.find('[name="one_date"]').val() !== '') {
+      typeOneTime.find('[name="one_date"]').trigger('change');
+    }
+
+    typeOneTime.find('select[name="one_time"]')[0].addEventListener('change', function (event) {
+      var elementId = $(event.target).data('id');
+      var date = typeOneTime.find('[name="one_date"]').val();
+      var price = $(this).find('option:selected').data('custom-properties').price;
+
+      if (data.oneTime.length) {
+        data.oneTime.splice(0, 1);
+      }
+
+      data.oneTime.push({
+        date: date,
+        time: event.detail.value,
+        price: price
+      });
+      updateTotal();
+    }, false);
+    typeBlockTime.on('change', '[name="block_date[]"]', function (e) {
+      var selectDate = $(this).val();
+      var number = $(this).attr('data-id').split('-')[2];
+      $.ajax({
+        url: window.wp_data.ajax_url,
+        data: {
+          action: 'get_service_days',
+          selectDay: selectDate,
+          nonce: window.wp_data.booking_nonce
+        },
+        type: 'POST',
+        beforeSend: function beforeSend(xhr) {
+          window['typeBlockSelect' + number].disable();
+        },
+        success: function success(data) {
+          if (data.success) {
+            if (data.data.length) {
+              window['typeBlockSelect' + number].setChoices(data.data, 'value', 'label', []).enable();
+            } else {
+              window['typeBlockSelect' + number].setChoices([{
+                value: '',
+                label: 'Select time',
+                selected: true,
+                disabled: true,
+                placeholder: true
+              }], 'value', 'label', []);
+            }
+          } else {
+            alert(data.data);
+          }
+        }
+      });
+    });
+    typeBlockTime.on('change', '[name="block_time[]"]', function (e) {
+      var elementId = $(this).attr('data-id').split('-')[2];
+      var date = $(this).parents('.form-row').find('[name="block_date[]"]').val();
+      var price = $(this).find('option:selected').data('custom-properties').price;
+
+      if (data.blockTime.length) {
+        data.blockTime.splice($(this).parents('.form-row').index(), 1);
+      }
+
+      data.blockTime.push({
+        date: date,
+        time: $(this).val(),
+        price: price
+      });
+      updateTotal();
+    });
+
+    if ($('.hire-service-form #card-element').length) {
+      var styles = {
+        base: {
+          iconColor: '#2C2C2C',
+          color: '#2C2C2C',
+          fontFamily: 'inherit',
+          fontSize: '21px',
+          fontSmoothing: 'antialiased',
+          ':-webkit-autofill': {
+            color: '#fce883'
+          },
+          '::placeholder': {
+            color: '#C8CBCD'
+          }
+        },
+        invalid: {
+          iconColor: '#f00',
+          color: '#f00'
+        }
+      };
+      var elements = stripe.elements();
+      var card = elements.create('card', {
+        style: styles,
+        hidePostalCode: true
+      });
+      card.mount('#card-element');
+      card.on('change', function (event) {
+        if (event.error) {
+          errorBlock.text(event.error.message);
+        } else {
+          errorBlock.text('');
+        }
+      });
+      form.submit(function (e) {
+        e.preventDefault();
+        btn.addClass('btn-loader');
+        btn.attr('disabled', true);
+        stripe.createToken(card).then(function (result) {
+          if (result.error) {
+            // Inform the user if there was an error.
+            errorBlock.text(result.error.message);
+            btn.removeClass('btn-loader');
+            btn.attr('disabled', false);
+          } else {
+            // Send the token to your server.
+            var _data = {
+              action: 'booking_service',
+              token: result.token.id,
+              data: form.serialize(),
+              total: getTotal()
+            };
+            $.ajax({
+              url: window.wp_data.ajax_url,
+              data: _data,
+              type: 'POST',
+              dataType: 'json',
+              success: function success(data) {
+                btn.removeClass('btn-loader');
+                btn.removeAttr('disabled');
+
+                if (data.success) {
+                  alert('Success'); // location.href = '/thank-you';
+                } else {
+                  errorBlock.text(data.message);
+                }
+              }
+            });
+            return false;
+          }
+        });
+      });
+    }
+
+    function updateTotal() {
+      var sum = 0;
+
+      if (data.oneTime.length) {
+        data.oneTime.forEach(function (element) {
+          sum += parseInt(element.price, 10);
+        });
+      }
+
+      if (data.blockTime.length) {
+        data.blockTime.forEach(function (element) {
+          sum += parseInt(element.price, 10);
+        });
+      }
+
+      total = sum;
+      $('.confirm__items').html('');
+      $('.confirm__total span span').text(total);
+
+      if (data.oneTime.length) {
+        $('.confirm__items').append($('<div class="confirm__items-item"></div>').append(data.oneTime[0].date + ' ' + data.oneTime[0].time + '<span>£' + data.oneTime[0].price + '</span>'));
+      }
+
+      if (data.blockTime.length) {
+        data.blockTime.forEach(function (element) {
+          $('.confirm__items').append($('<div class="confirm__items-item"></div>').append(element.date + ' ' + element.time + '<span>£' + element.price + '</span>'));
+        });
+      } // $.ajax({
+      //   url: window.wp_data.ajax_url,
+      //   data: {
+      //     action: 'update_booking_date',
+      //     data: data
+      //   },
+      //   type: 'POST',
+      //   dataType: 'json',
+      //   success: function (data) {
+      //   }
+      // });
+
+    }
+
+    function getTotal() {
+      var sum = 0;
+
+      if (data.oneTime.length) {
+        data.oneTime.forEach(function (element) {
+          sum += parseInt(element.price, 10);
+        });
+      }
+
+      if (data.blockTime.length) {
+        data.blockTime.forEach(function (element) {
+          sum += parseInt(element.price, 10);
+        });
+      }
+
+      return sum;
+    }
+  };
+
   toggleNav();
   initModal(); // inputMask();
 
@@ -22134,7 +22404,8 @@ jQuery(document).ready(function ($) {
   widgetAcc();
   hireForm();
   fixedHeader();
-  aboutBlock(); // SVG
+  aboutBlock();
+  hireServiceForm(); // SVG
 
   svg4everybody({});
 });

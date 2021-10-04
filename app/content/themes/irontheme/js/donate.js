@@ -263,8 +263,8 @@ jQuery(document).ready(function($) {
   }
   
   let confirmDonation = function() {
-    if ($('#card-element').length) {
-      let stripe = Stripe('pk_test_51JXoKCG3CZkpXfTwJRAQvg3BVJxhyPRTePgRGms0tCrpFTVtEE8HAgRzqSJw3X8AvLdFO3tC2o5vGRrT5semutri00oA9Gj8fY');
+    if ($('.confirm-form #card-element').length) {
+      let stripe = Stripe(stripe_keys.public);
       let styles = {
         base: {
           iconColor: '#2C2C2C',
