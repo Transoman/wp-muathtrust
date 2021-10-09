@@ -22108,55 +22108,51 @@ jQuery(document).ready(function ($) {
     var typeBlockTime = form.find('.block-time');
     var type = form.find('input[name="hs_type"]');
     var addDate = form.find('.hire-service-form__add-date');
-    var counter = 1;
-    var total = 0;
-    var data = {
-      oneTime: [],
-      blockTime: []
-    };
     var errorBlock = $('.card-error');
     var stripe = Stripe(stripe_keys["public"]);
-    var choicesSettings = {
-      searchEnabled: false,
-      shouldSort: false,
-      itemSelectText: ''
+    var settings = {
+      minimumResultsForSearch: Infinity
     };
-    var typeOneSelect = new Choices(typeOneTime.find('select[name="one_time"]')[0], choicesSettings);
-    window['typeBlockSelect' + counter] = new Choices(typeBlockTime.find('select[name="block_time[]"]')[counter - 1], choicesSettings);
+    $('.hire-service-form__datetime-time').select2(settings);
     type.change(function () {
+      if (!$(this).is(':checked')) return;
       var value = $(this).val();
+      var oneTimeBlock = $('.one-time');
+      var blockTimeBlock = $('.block-time');
 
       if (value === 'one-time') {
         typeBlockTime.hide();
         typeOneTime.show();
-        typeBlockTime.find('input, select').attr('disabled', true);
-        typeOneTime.find('input, select').attr('disabled', false);
-        typeOneSelect.enable();
+        oneTimeBlock.find('.hire-service-form__datetime-date').attr('disabled', false);
+        blockTimeBlock.find('.hire-service-form__datetime-date').attr('disabled', true);
+        blockTimeBlock.find('.hire-service-form__datetime-time').prop('disabled', true);
+
+        if (oneTimeBlock.find('.hire-service-form__datetime-date').val() !== '') {
+          oneTimeBlock.find('.hire-service-form__datetime-time').prop('disabled', false);
+        }
       } else {
         typeOneTime.hide();
         typeBlockTime.show();
-        typeOneTime.find('input, select').attr('disabled', true);
-        typeBlockTime.find('input, select').attr('disabled', false);
-        typeOneSelect.disable();
+        blockTimeBlock.find('.hire-service-form__datetime-date').attr('disabled', false);
+        oneTimeBlock.find('.hire-service-form__datetime-date').attr('disabled', true);
+        oneTimeBlock.find('.hire-service-form__datetime-time').prop('disabled', true);
+        blockTimeBlock.find('.hire-service-form__datetime-date').each(function () {
+          if ($(this).val() !== '') {
+            $(this).parents('.hire-service-form__datetime').find('.hire-service-form__datetime-time').prop('disabled', false);
+          }
+        });
       }
     });
+    type.trigger('change');
     addDate.click(function (e) {
       e.preventDefault();
       var clone = $('.block-time-clone').html();
       $(this).parent().before(clone);
-      ++counter;
-      $('[data-id="block-time__date-"]').attr('data-id', 'block-time__date-' + counter);
-      $('[data-id="block-time__time-"]').attr('data-id', 'block-time__time-' + counter);
-      window['typeBlockSelect' + counter] = new Choices(typeBlockTime.find('select[name="block_time[]"]')[counter - 1], choicesSettings);
+      typeBlockTime.find('.hire-service-form__datetime-time').select2(settings);
     });
-    typeOneTime.find('[name="one_date"]').change(function () {
-      var elementId = $(this).data('id');
-
-      if ($('.confirm__items-item[data-id="' + elementId + '"]').length) {
-        $('.confirm__items-item[data-id="' + elementId + '"]').remove();
-      }
-
+    $(document).on('change', '.hire-service-form__datetime-date', function () {
       var selectDate = $(this).val();
+      var select = $(this).parents('.hire-service-form__datetime').find('.hire-service-form__datetime-time');
       $.ajax({
         url: window.wp_data.ajax_url,
         data: {
@@ -22166,20 +22162,17 @@ jQuery(document).ready(function ($) {
         },
         type: 'POST',
         beforeSend: function beforeSend(xhr) {
-          typeOneSelect.disable();
+          select.prop("disabled", true);
         },
         success: function success(data) {
           if (data.success) {
             if (data.data.length) {
-              typeOneSelect.setChoices(data.data, 'value', 'label', []).enable();
-            } else {
-              typeOneSelect.setChoices([{
-                value: '',
-                label: 'Select time',
-                selected: true,
-                disabled: true,
-                placeholder: true
-              }], 'value', 'label', []);
+              select.val(null);
+              select.html('').select2({
+                minimumResultsForSearch: Infinity,
+                data: data.data
+              });
+              select.prop("disabled", false);
             }
           } else {
             alert(data.data);
@@ -22187,75 +22180,25 @@ jQuery(document).ready(function ($) {
         }
       });
     });
-
-    if (typeOneTime.find('[name="one_date"]').val() !== '') {
-      typeOneTime.find('[name="one_date"]').trigger('change');
-    }
-
-    typeOneTime.find('select[name="one_time"]')[0].addEventListener('change', function (event) {
-      var elementId = $(event.target).data('id');
-      var date = typeOneTime.find('[name="one_date"]').val();
-      var price = $(this).find('option:selected').data('custom-properties').price;
-
-      if (data.oneTime.length) {
-        data.oneTime.splice(0, 1);
-      }
-
-      data.oneTime.push({
-        date: date,
-        time: event.detail.value,
-        price: price
-      });
-      updateTotal();
-    }, false);
-    typeBlockTime.on('change', '[name="block_date[]"]', function (e) {
-      var selectDate = $(this).val();
-      var number = $(this).attr('data-id').split('-')[2];
+    $(document).on('select2:select', '.hire-service-form__datetime-time', function (e) {
       $.ajax({
         url: window.wp_data.ajax_url,
         data: {
-          action: 'get_service_days',
-          selectDay: selectDate,
+          action: 'get_service_data',
+          data: form.serialize(),
           nonce: window.wp_data.booking_nonce
         },
         type: 'POST',
-        beforeSend: function beforeSend(xhr) {
-          window['typeBlockSelect' + number].disable();
-        },
+        beforeSend: function beforeSend(xhr) {},
         success: function success(data) {
           if (data.success) {
-            if (data.data.length) {
-              window['typeBlockSelect' + number].setChoices(data.data, 'value', 'label', []).enable();
-            } else {
-              window['typeBlockSelect' + number].setChoices([{
-                value: '',
-                label: 'Select time',
-                selected: true,
-                disabled: true,
-                placeholder: true
-              }], 'value', 'label', []);
-            }
+            $('.confirm__items').html(data.data.prices);
+            $('.confirm__total span span').html(data.data.total);
           } else {
             alert(data.data);
           }
         }
       });
-    });
-    typeBlockTime.on('change', '[name="block_time[]"]', function (e) {
-      var elementId = $(this).attr('data-id').split('-')[2];
-      var date = $(this).parents('.form-row').find('[name="block_date[]"]').val();
-      var price = $(this).find('option:selected').data('custom-properties').price;
-
-      if (data.blockTime.length) {
-        data.blockTime.splice($(this).parents('.form-row').index(), 1);
-      }
-
-      data.blockTime.push({
-        date: date,
-        time: $(this).val(),
-        price: price
-      });
-      updateTotal();
     });
 
     if ($('.hire-service-form #card-element').length) {
@@ -22303,15 +22246,14 @@ jQuery(document).ready(function ($) {
             btn.attr('disabled', false);
           } else {
             // Send the token to your server.
-            var _data = {
+            var data = {
               action: 'booking_service',
               token: result.token.id,
-              data: form.serialize(),
-              total: getTotal()
+              data: form.serialize()
             };
             $.ajax({
               url: window.wp_data.ajax_url,
-              data: _data,
+              data: data,
               type: 'POST',
               dataType: 'json',
               success: function success(data) {
@@ -22319,9 +22261,9 @@ jQuery(document).ready(function ($) {
                 btn.removeAttr('disabled');
 
                 if (data.success) {
-                  alert('Success'); // location.href = '/thank-you';
+                  location.href = '/sports-hall-hire-thank-you';
                 } else {
-                  errorBlock.text(data.message);
+                  errorBlock.text(data.data);
                 }
               }
             });
@@ -22329,66 +22271,67 @@ jQuery(document).ready(function ($) {
           }
         });
       });
-    }
+    } // function updateTotal() {
+    //   let sum = 0;
+    //
+    //   if (data.oneTime.length) {
+    //     data.oneTime.forEach(element => {
+    //       sum += parseInt(element.price, 10);
+    //     });
+    //   }
+    //
+    //   if (data.blockTime.length) {
+    //     data.blockTime.forEach(element => {
+    //       sum += parseInt(element.price, 10);
+    //     });
+    //   }
+    //
+    //   total = sum;
+    //
+    //   $('.confirm__items').html('');
+    //   $('.confirm__total span span').text(total);
+    //  
+    //   if (data.oneTime.length) {
+    //     $('.confirm__items').append($('<div class="confirm__items-item"></div>').append(data.oneTime[0].date + ' ' + data.oneTime[0].time + '<span>£' + data.oneTime[0].price + '</span>'));
+    //   }
+    //  
+    //   if (data.blockTime.length) {
+    //     data.blockTime.forEach(element => {
+    //       $('.confirm__items').append($('<div class="confirm__items-item"></div>').append(element.date + ' ' + element.time + '<span>£' + element.price + '</span>'));
+    //     });
+    //   }
+    //
+    //   // $.ajax({
+    //   //   url: window.wp_data.ajax_url,
+    //   //   data: {
+    //   //     action: 'update_booking_date',
+    //   //     data: data
+    //   //   },
+    //   //   type: 'POST',
+    //   //   dataType: 'json',
+    //   //   success: function (data) {
+    //   //   }
+    //   // });
+    // }
+    //
+    // function getTotal() {
+    //   let sum = 0;
+    //
+    //   if (data.oneTime.length) {
+    //     data.oneTime.forEach(element => {
+    //       sum += parseInt(element.price, 10);
+    //     });
+    //   }
+    //
+    //   if (data.blockTime.length) {
+    //     data.blockTime.forEach(element => {
+    //       sum += parseInt(element.price, 10);
+    //     });
+    //   }
+    //
+    //   return sum;
+    // }
 
-    function updateTotal() {
-      var sum = 0;
-
-      if (data.oneTime.length) {
-        data.oneTime.forEach(function (element) {
-          sum += parseInt(element.price, 10);
-        });
-      }
-
-      if (data.blockTime.length) {
-        data.blockTime.forEach(function (element) {
-          sum += parseInt(element.price, 10);
-        });
-      }
-
-      total = sum;
-      $('.confirm__items').html('');
-      $('.confirm__total span span').text(total);
-
-      if (data.oneTime.length) {
-        $('.confirm__items').append($('<div class="confirm__items-item"></div>').append(data.oneTime[0].date + ' ' + data.oneTime[0].time + '<span>£' + data.oneTime[0].price + '</span>'));
-      }
-
-      if (data.blockTime.length) {
-        data.blockTime.forEach(function (element) {
-          $('.confirm__items').append($('<div class="confirm__items-item"></div>').append(element.date + ' ' + element.time + '<span>£' + element.price + '</span>'));
-        });
-      } // $.ajax({
-      //   url: window.wp_data.ajax_url,
-      //   data: {
-      //     action: 'update_booking_date',
-      //     data: data
-      //   },
-      //   type: 'POST',
-      //   dataType: 'json',
-      //   success: function (data) {
-      //   }
-      // });
-
-    }
-
-    function getTotal() {
-      var sum = 0;
-
-      if (data.oneTime.length) {
-        data.oneTime.forEach(function (element) {
-          sum += parseInt(element.price, 10);
-        });
-      }
-
-      if (data.blockTime.length) {
-        data.blockTime.forEach(function (element) {
-          sum += parseInt(element.price, 10);
-        });
-      }
-
-      return sum;
-    }
   };
 
   toggleNav();

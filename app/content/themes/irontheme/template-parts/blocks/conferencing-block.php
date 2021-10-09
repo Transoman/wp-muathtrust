@@ -7,18 +7,18 @@ $btn = get_sub_field( 'button' );
 		<div class="accommodation-block__wrap">
 			<?php
 			$args = array(
-				'post_type' => 'accommodation',
+				'post_type' => 'conferencing',
 				'post_status' => 'publish',
 				'posts_per_page' => -1,
 				'order' => 'ASC',
 			);
 
-			$accommodations = new WP_Query( $args );
+			$conferencing = new WP_Query( $args );
 
-			if ( $accommodations->have_posts() ):
+			if ( $conferencing->have_posts() ):
 			?>
 				<div class="accommodation-grid">
-					<?php $i = 1; while ( $accommodations->have_posts() ): $accommodations->the_post(); ?>
+					<?php $i = 1; while ( $conferencing->have_posts() ): $conferencing->the_post(); ?>
 					<?php
 						$item_class = '';
 						$image_size = 'acm';

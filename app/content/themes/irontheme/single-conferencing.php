@@ -12,7 +12,7 @@ $details = get_field( 'accommodation_details' );
 
 	<div class="event-hero__content">
 		<div class="container">
-			<p class="event-hero__type">Accommodation</p>
+			<p class="event-hero__type">Conferencing</p>
 			<h1 class="event-hero__title"><?php the_title(); ?></h1>
 		</div>
 	</div>

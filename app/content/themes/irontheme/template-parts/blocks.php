@@ -32,6 +32,7 @@ if ( have_rows( 'layouts' ) ):
 		'text_block' => 'text-block',
 		'text_block_v2' => 'text-block-v2',
 		'accommodation_block' => 'accommodation-block',
+		'conferencing_block' => 'conferencing-block',
 		'form_block' => 'form-block',
 		'gallery_slider' => 'gallery-slider',
 	];

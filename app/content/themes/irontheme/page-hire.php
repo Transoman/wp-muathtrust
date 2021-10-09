@@ -358,8 +358,9 @@ $paying_email = isset( $_SESSION['hire_fields']['paying_email'] ) ? $_SESSION['h
 							<select name="hire_accommodation">
 								<?php
 								$args = array(
-									'post_type'      => 'accommodation',
-									'posts_per_page' => - 1
+									'post_type'      => 'conferencing',
+									'posts_per_page' => - 1,
+									'post_status'    => 'publish'
 								);
 
 								$price = 0;
@@ -382,7 +383,9 @@ $paying_email = isset( $_SESSION['hire_fields']['paying_email'] ) ? $_SESSION['h
 								endif;
 								?>
 							</select>
-							<span class="select-price">£<span><?php echo $price; ?></span></span>
+							<?php if ( $price ): ?>
+								<span class="select-price">£<span><?php echo $price; ?></span></span>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>

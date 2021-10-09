@@ -48,6 +48,13 @@
                 "operator": "==",
                 "value": "accommodation"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "conferencing"
+            }
         ]
     ],
     "menu_order": 0,
@@ -58,5 +65,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1630503104
+    "modified": 1633441173
 }

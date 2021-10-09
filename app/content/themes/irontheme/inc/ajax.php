@@ -66,7 +66,6 @@ function get_service_days() {
 
 	$name_day = strtolower( date( 'l', strtotime( $select_day ) ) );
 	$days = get_field( 'days', 'option' );
-	$block_booking = get_field( 'block_booking', 'option' )['hours'];
 	$result = [];
 	$disable_times = [];
 
@@ -93,15 +92,15 @@ function get_service_days() {
 		while ( $query->have_posts() ) {
 			$query->the_post();
 
-			$one_time = get_post_meta( get_the_ID() , 'one_time', true );
-			$block_date = get_post_meta( get_the_ID() , 'block_date', true );
+			$one_time_meta = get_post_meta( get_the_ID() , 'one_time', true );
+			$block_date_meta = get_post_meta( get_the_ID() , 'block_date', true );
 
-			if ( $one_time ) {
-				$disable_times[] = $one_time;
+			if ( $one_time_meta ) {
+				$disable_times[] = $one_time_meta;
 			}
 
-			if ( $block_date ) {
-				foreach ( explode( ', ', $block_date ) as $item ) {
+			if ( $block_date_meta ) {
+				foreach ( explode( ', ', $block_date_meta ) as $item ) {
 					if ( date( 'Y-m-d', strtotime( $item )) == $select_day ) {
 						$disable_times[] = date( 'H:i', strtotime( $item ) );
 					}
@@ -114,11 +113,8 @@ function get_service_days() {
 	if ( $name_day ) {
 		if ( is_countable( $days[$name_day] ) ) {
 			$result[] = [
-				'value' => '',
-				'label' => 'Select time',
-				'disabled' => true,
-				'selected' => true,
-				'placeholder' => true
+				'id' => '-1',
+				'text' => 'Select time',
 			];
 
 			foreach ( $days[$name_day] as $day ) {
@@ -133,14 +129,21 @@ function get_service_days() {
 					if ( $day['hour'] . ':00' == $_SESSION['hire_service_fields']['one_time'] ) {
 						$selected = true;
 					}
+				} elseif ( isset( $_SESSION['hire_service_fields']['block_date'] ) ) {
+					foreach ( $_SESSION['hire_service_fields']['block_date'] as $item ) {
+						if ( $item == $select_day ) {
+							if ( $day['hour'] . ':00' == $item ) {
+								$selected = true;
+							}
+						}
+					}
 				}
 
 				$result[] = [
-					'value' => $day['hour'] . ':00',
-					'label' => $day['hour'] . ':00',
+					'id' => $day['hour'] . ':00',
+					'text' => $day['hour'] . ':00',
 					'disabled' => $disabled,
 					'selected' => $selected,
-					'customProperties' => '{"price": "' .$day['price'] . '"}',
 				];
 			}
 
@@ -156,25 +159,201 @@ function get_service_days() {
 add_action('wp_ajax_get_service_days', 'get_service_days');
 add_action('wp_ajax_nopriv_get_service_days', 'get_service_days');
 
+function get_service_data() {
+	parse_str( $_POST['data'], $data );
+
+	$type = isset( $data['hs_type'] ) ? sanitize_text_field( $data['hs_type'] ) : null;
+	$one_date = isset( $data['one_date'] ) ? sanitize_text_field( $data['one_date'] ) : '';
+	$one_time = isset( $data['one_time'] ) ? sanitize_text_field( $data['one_time'] ) : '';
+
+	if ( ! $type ) {
+		wp_send_json_error( 'Error! Not all data transferred' );
+	}
+
+	$days = get_field( 'days', 'option' );
+	$block_booking = get_field( 'block_booking', 'option' )['hours'];
+	$result = [];
+	$str = '';
+	$total = 0;
+
+	if ( $type == 'one-time' ) {
+		$name_day = strtolower( date( 'l', strtotime( $one_date ) ) );
+
+		if ( $name_day ) {
+			if ( is_countable( $days[ $name_day ] ) ) {
+				foreach ( $days[ $name_day ] as $day ) {
+					if ( $day['hour'] == str_replace( ':00', '', $one_time ) ) {
+						$str .= "<div class=\"confirm__items-item\">$one_date {$one_time} <span>£{$day['price']}</span></div>" . PHP_EOL;
+
+						$total += $day['price'];
+					}
+				}
+			}
+		}
+
+	} elseif ( $type == 'block-time' ) {
+		if ( is_countable( $data['block_date'] ) ) {
+			$i = 0;
+			$count = count( $data['block_date'] );
+
+			foreach ( $data['block_date'] as $date ) {
+				$name_day = strtolower( date( 'l', strtotime( $date ) ) );
+
+				if ( !empty( $data['block_time'][$i] ) ) {
+					if ( $name_day ) {
+						if ( $count >= 5 ) {
+							foreach ( $block_booking as $block ) {
+								if ( $block['hour'] == str_replace( ':00', '', $data['block_time'][ $i ] ) ) {
+									if ( (($i + 1) % 10) === 0 ) {
+										$str .= "<div class=\"confirm__items-item\">$date {$data['block_time'][$i]} <span>£0</span></div>" . PHP_EOL;
+									} else {
+										$str .= "<div class=\"confirm__items-item\">$date {$data['block_time'][$i]} <span>£{$block['price']}</span></div>" . PHP_EOL;
+										$total += $block['price'];
+									}
+								}
+							}
+						} else {
+							if ( is_countable( $days[ $name_day ] ) ) {
+								foreach ( $days[ $name_day ] as $day ) {
+									if ( $day['hour'] == str_replace( ':00', '', $data['block_time'][ $i ] ) ) {
+										$str .= "<div class=\"confirm__items-item\">$date {$data['block_time'][$i]} <span>£{$day['price']}</span></div>" . PHP_EOL;
+
+										$total += $day['price'];
+									}
+								}
+							}
+						}
+					}
+				}
+
+				$i++;
+			}
+		}
+	}
+
+	$result['prices'] = $str;
+	$result['total'] = $total;
+
+	wp_send_json_success( $result );
+
+	wp_die();
+}
+
+add_action('wp_ajax_get_service_data', 'get_service_data');
+add_action('wp_ajax_nopriv_get_service_data', 'get_service_data');
+
 function booking_service() {
 	if ( is_countable( $_POST ) ) {
 		parse_str( $_POST['data'], $data );
-		$name       = isset( $data['hs_name'] ) ? sanitize_text_field( $data['hs_name'] ) : '';
-		$email      = isset( $data['hs_email'] ) ? sanitize_text_field( $data['hs_email'] ) : '';
-		$phone      = isset( $data['hs_phone'] ) ? sanitize_text_field( $data['hs_phone'] ) : '';
-		$address    = isset( $data['hs_address'] ) ? sanitize_text_field( $data['hs_address'] ) : '';
-		$company    = isset( $data['hs_company'] ) ? sanitize_text_field( $data['hs_company'] ) : '';
-		$type       = isset( $data['hs_type'] ) ? sanitize_text_field( $data['hs_type'] ) : '';
-		$one_date   = isset( $data['one_date'] ) ? sanitize_text_field( $data['one_date'] ) : '';
-		$one_time   = isset( $data['one_time'] ) ? sanitize_text_field( $data['one_time'] ) : '';
-		$block_date = isset( $data['block_date'] ) ? $data['block_date'] : '';
-		$block_time = isset( $data['block_time'] ) ? $data['block_time'] : '';
-		$total      = isset( $_POST['total'] ) ? sanitize_text_field( $_POST['total'] ) : 0;
+		$name          = null;
+		$email         = null;
+		$phone         = null;
+		$type          = isset( $_SESSION['hire_service_fields']['type'] ) ? $_SESSION['hire_service_fields']['type'] : '';
+		$one_date      = null;
+		$one_time      = null;
+		$block_date    = null;
+		$block_time    = null;
+		$total         = 0;
+		$customer      = null;
+		$customer_id   = null;
+		$street        = isset( $_SESSION['hire_service_fields']['street'] ) ? $_SESSION['hire_service_fields']['street'] : '';
+		$area          = isset( $_SESSION['hire_service_fields']['area'] ) ? $_SESSION['hire_service_fields']['area'] : '';
+		$city          = isset( $_SESSION['hire_service_fields']['city'] ) ? $_SESSION['hire_service_fields']['city'] : '';
+		$postcode      = isset( $_SESSION['hire_service_fields']['postcode'] ) ? $_SESSION['hire_service_fields']['postcode'] : '';
+		$company       = isset( $_SESSION['hire_service_fields']['company'] ) ? $_SESSION['hire_service_fields']['company'] : '';
+		$days          = get_field( 'days', 'option' );
+		$block_booking = get_field( 'block_booking', 'option' )['hours'];
 
-		$customer = null;
-		$customer_id = null;
+		if ( $type == 'one-time' ) {
+			if ( empty( $_SESSION['hire_service_fields']['one_date'] ) ) {
+				wp_send_json_error( 'Date field is required' );
+			} else {
+				$one_date = $_SESSION['hire_service_fields']['one_date'];
+			}
 
-//		var_dump($one_date, $one_time);
+			if ( empty( $_SESSION['hire_service_fields']['one_time'] ) ) {
+				wp_send_json_error( 'Time field is required' );
+			} else {
+				$one_time = $_SESSION['hire_service_fields']['one_time'];
+			}
+
+			$name_day = strtolower( date( 'l', strtotime( $one_date ) ) );
+
+			if ( $name_day ) {
+				if ( is_countable( $days[ $name_day ] ) ) {
+					foreach ( $days[ $name_day ] as $day ) {
+						if ( $day['hour'] == str_replace( ':00', '', $one_time ) ) {
+							$total += $day['price'];
+						}
+					}
+				}
+			}
+		} elseif ( $type == 'block-time' ) {
+			if ( empty( $_SESSION['hire_service_fields']['block_date'] ) ) {
+				wp_send_json_error( 'Date field is required' );
+			} else {
+				$block_date = $_SESSION['hire_service_fields']['block_date'];
+			}
+
+			if ( empty( $_SESSION['hire_service_fields']['block_time'] ) ) {
+				wp_send_json_error( 'Time field is required' );
+			} else {
+				$block_time = $_SESSION['hire_service_fields']['block_time'];
+			}
+
+			if ( is_countable( $block_date ) ) {
+				$i = 0;
+				$count = count( $block_date );
+
+				foreach ( $block_date as $date ) {
+					$name_day = strtolower( date( 'l', strtotime( $date ) ) );
+
+					if ( !empty( $block_time[$i] ) ) {
+						if ( $name_day ) {
+							if ( $count >= 5 ) {
+								foreach ( $block_booking as $block ) {
+									if ( $block['hour'] == str_replace( ':00', '', $block_time[ $i ] ) ) {
+										if ( (($i + 1) % 10) === 0 ) {
+											$total += 0;
+										} else {
+											$total += $block['price'];
+										}
+									}
+								}
+							} else {
+								if ( is_countable( $days[ $name_day ] ) ) {
+									foreach ( $days[ $name_day ] as $day ) {
+										if ( $day['hour'] == str_replace( ':00', '', $block_time[ $i ] ) ) {
+											$total += $day['price'];
+										}
+									}
+								}
+							}
+						}
+					}
+
+					$i++;
+				}
+			}
+		}
+
+		if ( empty( $_SESSION['hire_service_fields']['name'] ) ) {
+			wp_send_json_error( 'Name field is required' );
+		} else {
+			$name = $_SESSION['hire_service_fields']['name'];
+		}
+
+		if ( empty( $_SESSION['hire_service_fields']['email'] ) ) {
+			wp_send_json_error( 'Email field is required' );
+		} else {
+			$email = $_SESSION['hire_service_fields']['email'];
+		}
+
+		if ( empty( $_SESSION['hire_service_fields']['phone'] ) ) {
+			wp_send_json_error( 'Phone field is required' );
+		} else {
+			$phone = $_SESSION['hire_service_fields']['phone'];
+		}
 
 		$post_data = array(
 			'post_type'   => 'booking_service',
@@ -187,8 +366,20 @@ function booking_service() {
 			],
 		);
 
-		if ( $address ) {
-			$post_data['meta_input']['address'] = $address;
+		if ( $street ) {
+			$post_data['meta_input']['street'] = $street;
+		}
+
+		if ( $area ) {
+			$post_data['meta_input']['area'] = $area;
+		}
+
+		if ( $city ) {
+			$post_data['meta_input']['city'] = $city;
+		}
+
+		if ( $postcode ) {
+			$post_data['meta_input']['postcode'] = $postcode;
 		}
 
 		if ( $company ) {
@@ -212,10 +403,6 @@ function booking_service() {
 
 			$post_data['meta_input']['block_date'] = implode( ', ', $combined_date );
 		}
-
-//		if ( $block_time ) {
-//			$post_data['meta_input']['block_time'] = implode( ', ', $block_time );
-//		}
 
 		$str_date = '';
 
@@ -260,7 +447,9 @@ function booking_service() {
 					'email' => $email,
 					'name' => $name,
 					'address' => [
-						'line1' => $address,
+						'line1' => $street,
+						'city' => $city,
+						'postal_code' => $postcode,
 					],
 					'metadata' => [
 						'company' => $company,
@@ -273,7 +462,9 @@ function booking_service() {
 					$customer->id,
 					$card_id,
 					[
-						"address_line1" => $address,
+						"address_city"  => $city,
+						"address_line1" => $street,
+						"address_zip" => $postcode,
 					]
 				);
 
@@ -305,7 +496,11 @@ function booking_service() {
 				'description' => $str_date,
 				'customer' => $customer->id,
 				"metadata" => [
-					'type' => $type
+					'type' => $type,
+					'first_name' => $name,
+					'address_town' => $city,
+					'address_street' => $street,
+					'address_postcode' => $postcode
 				],
 			]);
 		} catch(\Stripe\Exception\CardException $e) {
@@ -320,7 +515,6 @@ function booking_service() {
 		$result = array(
 			'res' => true,
 			'customer_id' => $customer->id,
-
 		);
 
 		$post_id = wp_insert_post( $post_data );
@@ -328,7 +522,14 @@ function booking_service() {
 		if ( is_wp_error( $post_id ) ) {
 			echo $post_id->get_error_message();
 		} else {
-			wp_send_json_success( $result );
+			// Send to admin email
+			if ( hire_service_send_email_admin() && hire_service_send_email_customer() ) {
+				unset( $_SESSION['hire_service_fields'] );
+
+				wp_send_json_success( $result );
+			} else {
+				wp_send_json_error( 'Errors sending message' );
+			}
 		}
 	}
 
@@ -338,19 +539,88 @@ function booking_service() {
 add_action('wp_ajax_booking_service', 'booking_service');
 add_action('wp_ajax_nopriv_booking_service', 'booking_service');
 
-function update_booking_date() {
-	var_dump($_POST);
+function hire_service_send_email_admin() {
+	$form_fields = $_SESSION['hire_service_fields'];
 
-	if ( is_countable( $_POST['data']['oneTime'] ) ) {
-		$_SESSION['hire_service_fields']['oneTime'] = $_POST['data']['oneTime'];
+	$headers = array(
+		'From: ' . $form_fields['name'] . ' <' . $form_fields['email'] . '>',
+		'content-type: text/html',
+	);
+	$to = get_bloginfo( 'admin_email' );
+	$subject = 'Muath Trust - Sports Hall Hire';
+	$message = "<p>Mr/Mrs {$form_fields['name']} has a confirmed booking for the Muath Trust Sports Hall on ";
+
+	if ( $form_fields['type'] == 'one-time' ) {
+		$start_date = date( 'Ymd', strtotime( $form_fields['one_date'] ) );
+		$start_time = date( 'Hi', strtotime( $form_fields['one_time'] ) );
+		$end_time = date( 'Hi', strtotime( $form_fields['one_time'] . ' +1 hour' )  );
+		$details = urlencode( 'Booking for the Muath Trust Sports Hall' );
+		$name = urlencode($form_fields['name']);
+		$message .= "{$form_fields['one_date']} at {$form_fields['one_time']}";
+		$message .= " - <a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text={$name}&dates={$start_date}T{$start_time}00Z/{$start_date}T{$end_time}00Z&details=$details\">Add to Google Calendar</a>";
+	} elseif ( $form_fields['type'] == 'block-time' ) {
+		$i = 0;
+		$count = count( $form_fields['block_date'] );
+
+		foreach ( $form_fields['block_date'] as $date ) {
+			$start_date = date( 'Ymd', strtotime( $date ) );
+			$start_time = date( 'Hi', strtotime( $form_fields['block_time'][$i] ) );
+			$end_time = date( 'Hi', strtotime( $form_fields['block_time'][$i] . ' +1 hour' )  );
+			$details = urlencode( 'Booking for the Muath Trust Sports Hall' );
+			$name = urlencode($form_fields['name']);
+			$message .= "$date at {$form_fields['block_time'][$i]}";
+			$message .= " - <a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text={$name}&dates={$start_date}T{$start_time}00Z/{$start_date}T{$end_time}00Z&details=$details\">Add to Google Calendar</a>";
+
+			if ( ($i + 1) < $count) {
+				$message .= ', ';
+			}
+
+			$i++;
+		}
 	}
 
-	if ( is_countable( $_POST['data']['blockTime'] ) ) {
-		$_SESSION['hire_service_fields']['blockTime'] = $_POST['data']['blockTime'];
-	}
-
-	wp_die();
+	return wp_mail( $to, $subject, $message, $headers );
 }
 
-add_action('wp_ajax_update_booking_date', 'update_booking_date');
-add_action('wp_ajax_nopriv_update_booking_date', 'update_booking_date');
+function hire_service_send_email_customer() {
+	$form_fields = $_SESSION['hire_service_fields'];
+
+	$headers = array(
+		'From: ' . get_bloginfo( 'name' ) . ' <' . get_bloginfo( 'admin_email' ) . '>',
+		'content-type: text/html',
+	);
+	$to = $form_fields['email'];
+	$subject = 'Muath Trust - Sports Hall Hire';
+	$message = "<p>Thank you for booking the Muath Trust Sports Hall on ";
+
+	if ( $form_fields['type'] == 'one-time' ) {
+		$start_date = date( 'Ymd', strtotime( $form_fields['one_date'] ) );
+		$start_time = date( 'Hi', strtotime( $form_fields['one_time'] ) );
+		$end_time = date( 'Hi', strtotime( $form_fields['one_time'] . ' +1 hour' )  );
+		$details = urlencode( 'Booking for the Muath Trust Sports Hall' );
+		$name = urlencode( 'Muath Trust Sports Hall hire' );
+		$message .= "{$form_fields['one_date']} at {$form_fields['one_time']}";
+		$message .= " - <a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text={$name}&dates={$start_date}T{$start_time}00Z/{$start_date}T{$end_time}00Z&details=$details\">Add to Google Calendar</a>";
+	} elseif ( $form_fields['type'] == 'block-time' ) {
+		$i = 0;
+		$count = count( $form_fields['block_date'] );
+
+		foreach ( $form_fields['block_date'] as $date ) {
+			$start_date = date( 'Ymd', strtotime( $date ) );
+			$start_time = date( 'Hi', strtotime( $form_fields['block_time'][$i] ) );
+			$end_time = date( 'Hi', strtotime( $form_fields['block_time'][$i] . ' +1 hour' )  );
+			$details = urlencode( 'Booking for the Muath Trust Sports Hall' );
+			$name = urlencode( 'Muath Trust Sports Hall hire' );
+			$message .= "$date at {$form_fields['block_time'][$i]}";
+			$message .= " - <a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text={$name}&dates={$start_date}T{$start_time}00Z/{$start_date}T{$end_time}00Z&details=$details\">Add to Google Calendar</a>";
+
+			if ( ($i + 1) < $count) {
+				$message .= ', ';
+			}
+
+			$i++;
+		}
+	}
+
+	return wp_mail( $to, $subject, $message, $headers );
+}

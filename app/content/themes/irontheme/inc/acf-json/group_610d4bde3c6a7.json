@@ -2604,28 +2604,6 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_6141e3cdc14db",
-                            "label": "Category",
-                            "name": "category",
-                            "type": "taxonomy",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "taxonomy": "accommodation_category",
-                            "field_type": "select",
-                            "allow_null": 0,
-                            "add_term": 0,
-                            "save_terms": 0,
-                            "load_terms": 0,
-                            "return_format": "id",
-                            "multiple": 0
-                        },
-                        {
                             "key": "field_612f3229525ef",
                             "label": "Bottom Text",
                             "name": "bottom_text",
@@ -2646,6 +2624,50 @@
                         },
                         {
                             "key": "field_612f3251525f0",
+                            "label": "Button",
+                            "name": "button",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_615c55f2a8189": {
+                    "key": "layout_615c55f2a8189",
+                    "name": "conferencing_block",
+                    "label": "Conferencing Block",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_615c55f2a818a",
+                            "label": "Bottom Text",
+                            "name": "bottom_text",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_615c55f2a818b",
                             "label": "Button",
                             "name": "button",
                             "type": "link",
@@ -2744,5 +2766,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1631708144
+    "modified": 1633441290
 }

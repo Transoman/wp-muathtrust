@@ -64,7 +64,6 @@ class Booking_Services_List_Table extends WP_List_Table {
 					'name' => get_post_meta( get_the_ID() , 'name', true ),
 					'email' => get_post_meta( get_the_ID() , 'email', true ),
 					'phone' => get_post_meta( get_the_ID() , 'phone', true ),
-					'address' => get_post_meta( get_the_ID() , 'address', true ),
 					'company' => get_post_meta( get_the_ID() , 'company', true ),
 					'date' => $str_date
 				];
@@ -122,6 +121,32 @@ class Booking_Services_List_Table extends WP_List_Table {
 
 	function column_cb( $item ){
 		echo '<input type="checkbox" name="licids[]" id="cb-select-'. $item['id'] .'" value="'. $item['id'] .'" />';
+	}
+
+	function column_address( $item ) {
+		$address = [];
+		$street = get_post_meta( $item['id'], 'street', true );
+		$city = get_post_meta( $item['id'], 'city', true );
+		$area = get_post_meta( $item['id'], 'area', true );
+		$postcode = get_post_meta( $item['id'], 'postcode', true );
+
+		if ( $city ) {
+			$address['city'] = $city;
+		}
+
+		if ( $street ) {
+			$address['street'] = $street;
+		}
+
+		if ( $area ) {
+			$address['area'] = $area;
+		}
+
+		if ( $postcode ) {
+			$address['postcode'] = $postcode;
+		}
+
+		echo implode( ' | ', $address );
 	}
 
 	// остальные методы, в частности вывод каждой ячейки таблицы...
